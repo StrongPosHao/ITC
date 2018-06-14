@@ -77,6 +77,7 @@ class User(db.Model):
                                         backref=db.backref('questions', lazy='joined'),
                                         lazy='dynamic',
                                         cascade='all, delete-orphan')
+    notifications = db.relationship('Notification', backref=db.backref('notifications'))
 
 
 class Admin(db.Model):
@@ -177,3 +178,14 @@ class AnswerComment(db.Model):
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     childComments = db.relationship('AnswerComment', backref=db.backref('childComments'))
+
+
+class Notification(db.Model):
+    __tablename__ = 'Notification'
+    notificationId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    isRead = db.Column(db.Boolean, default=False, nullable=False)
+    notifyTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+
