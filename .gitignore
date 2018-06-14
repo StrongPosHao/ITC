@@ -23,6 +23,7 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+venv/
 MANIFEST
 
 # PyInstaller
@@ -59,6 +60,7 @@ db.sqlite3
 # Flask stuff:
 instance/
 .webassets-cache
+config.py
 
 # Scrapy stuff:
 .scrapy
