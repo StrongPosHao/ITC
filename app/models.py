@@ -143,6 +143,7 @@ class Draft(db.Model):
 class Tag(db.Model):
     __tablename__ = 'Tag'
     tagId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    parentId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), nullable=True)
     name = db.Column(db.Unicode(30), nullable=False)
     description = db.Column(db.Text, nullable=False)
     popularity = db.Column(db.Integer, default=0, nullable=False)
