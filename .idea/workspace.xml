@@ -1,28 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dbc8f386-9a4a-45d5-8028-add309a3e09c" name="Default" comment="'完善整理项目结构'">
-      <change afterPath="$PROJECT_DIR$/app/main/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/AdminPageCSS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/HomePageCSS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/QuestionPageCSS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/SignInAndUPCSS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/css/base_css/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/image/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/AdminPageJS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/HomePageJS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/QuestionPageJS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/SignInAndUpJS/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/static/js/base_js/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/AdminPage/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/ArticlePage/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/HomePage/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/QuestionPage/README.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/templates/SignInAndUp/README.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="dbc8f386-9a4a-45d5-8028-add309a3e09c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -143,16 +122,6 @@
               <item name="ITC" type="b2602c69:ProjectViewProjectNode" />
               <item name="ITC" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="ITC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ITC" type="462c0819:PsiDirectoryNode" />
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ITC" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ITC" type="462c0819:PsiDirectoryNode" />
-              <item name="venv" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -231,7 +200,14 @@
       <option name="project" value="LOCAL" />
       <updated>1529057209196</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="'完善整理项目结构'">
+      <created>1529142254365</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1529142254365</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -244,7 +220,7 @@
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.2920228" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985755" visible="true" weight="0.20067114" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985755" visible="true" weight="0.21677852" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.33825505" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -271,7 +247,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="'Add notification table'" />
     <MESSAGE value="'Tag one to many recursion'" />
-    <option name="LAST_COMMIT_MESSAGE" value="'Tag one to many recursion'" />
+    <MESSAGE value="'完善整理项目结构'" />
+    <option name="LAST_COMMIT_MESSAGE" value="'完善整理项目结构'" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
