@@ -52,7 +52,8 @@ class User(db.Model):
     phone = db.Column(db.CHAR(11), nullable=False)
     password = db.Column(db.Unicode(100), nullable=False)
     headImage = db.Column(db.Unicode(256), nullable=False)
-    authority = db.Column(db.CHAR(1), nullable=False)
+    permission = db.Column(db.CHAR(1), nullable=False)
+    introduction = db.Column(db.Text, default='这家伙很懒，什么也没有写~', nullable=False)
     tags = db.relationship('UserTag', foreign_keys=[UserTag.tagId],
                            backref=db.backref('tags'),
                            lazy='dynamic',
@@ -88,7 +89,7 @@ class Admin(db.Model):
     phone = db.Column(db.CHAR(11), nullable=False)
     password = db.Column(db.Unicode(100), nullable=False)
     headImage = db.Column(db.Unicode(256), nullable=False)
-    authority = db.Column(db.CHAR(1), nullable=False)
+    permission = db.Column(db.CHAR(1), nullable=False)
 
 
 class Question(db.Model):
