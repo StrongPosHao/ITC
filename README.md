@@ -15,7 +15,7 @@ Notice:
 * 项目运行入口为manage.py
     * PyCharm直接右键run
     * 命令行下 $ python manage.py runserver
-* 项目结构
+* 项目结构<br>
 ![image](https://raw.githubusercontent.com/StrongPosHao/MarkdownPhotos/master/ProjectStructure.png)
 * 缺失的config.py在群文件中下载
 
