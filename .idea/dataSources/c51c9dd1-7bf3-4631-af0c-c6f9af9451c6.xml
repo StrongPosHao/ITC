@@ -957,7 +957,7 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="249" parent="226" name="authority">
+    <column id="249" parent="226" name="permission">
       <Position>7</Position>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1583,64 +1583,70 @@ tagId</ColNames>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="359" parent="240" name="authority">
+    <column id="359" parent="240" name="introduction">
       <Position>7</Position>
+      <DataType>text|0s</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="360" parent="240" name="permission">
+      <Position>8</Position>
       <DataType>char(1)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="360" parent="240" name="PRIMARY">
+    <key id="361" parent="240" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="361" parent="241" name="userId">
+    <column id="362" parent="241" name="userId">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="362" parent="241" name="tagId">
+    <column id="363" parent="241" name="tagId">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="363" parent="241" name="time">
+    <column id="364" parent="241" name="time">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="364" parent="241" name="tagId">
+    <index id="365" parent="241" name="tagId">
       <ColNames>tagId</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="365" parent="241" name="PRIMARY">
+    <key id="366" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>userId
 tagId</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="366" parent="241" name="UserTag_ibfk_2">
+    <foreign-key id="367" parent="241" name="UserTag_ibfk_2">
       <ColNames>userId</ColNames>
       <RefSchemaName>ITC</RefSchemaName>
       <RefTableName>User</RefTableName>
       <RefColNames>userId</RefColNames>
     </foreign-key>
-    <foreign-key id="367" parent="241" name="UserTag_ibfk_1">
+    <foreign-key id="368" parent="241" name="UserTag_ibfk_1">
       <ColNames>tagId</ColNames>
       <RefSchemaName>ITC</RefSchemaName>
       <RefTableName>Tag</RefTableName>
       <RefColNames>tagId</RefColNames>
     </foreign-key>
-    <column id="368" parent="242" name="version_num">
+    <column id="369" parent="242" name="version_num">
       <Position>1</Position>
       <DataType>varchar(32)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="369" parent="242" name="PRIMARY">
+    <key id="370" parent="242" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>version_num</ColNames>
       <Primary>1</Primary>
