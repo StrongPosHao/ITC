@@ -15,6 +15,14 @@
     <title>账号登录|ITC技术社区</title>
 </head>
 <body>
+<div class="container">
+    {% for message in get_flashed_messages() %}
+    <div class="alert alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
 <div class="nav-box">
     <nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
         <div class="container-fluid">
@@ -70,7 +78,7 @@
                         <label id="back-error2"></label>
                     </div>
                     <div class="small_link">
-                        <a  href="{{ url_for('forgetPassword') }}">忘记密码</a>
+                        <a  href="{{ url_for('auth.forget_password') }}">忘记密码</a>
                     </div>
                     <div  class="tip_div" align="center">
                         <div id="loginTip" class="tip" align="center"></div>
@@ -79,7 +87,7 @@
                            id="login">
                     <div class="small_link">
                         <span>还没有账号？&nbsp;</span>
-                        <a href="{{ url_for('register') }}">注册</a>
+                        <a href="{{ url_for('auth.register') }}">注册</a>
                     </div>
                 </form>
             </div>
