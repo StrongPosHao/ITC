@@ -152,7 +152,7 @@ input.form-control {
     -webkit-appearance: none;
 }
 
-button.btn.btn-default {
+button.btn.btn-mydefault {
     border: none;
     width: 19px;
     height: 19px;

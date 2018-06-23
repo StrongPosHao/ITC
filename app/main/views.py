@@ -4,9 +4,7 @@ from . import main
 
 @main.route('/')
 def index():
-<<<<<<< HEAD
-    return render_template('main/index.html')
-=======
+
     # return render_template('main/index.html')
-    return render_template('tag/tag-index.html')
->>>>>>> dev1
+    return render_template('auth/auth-info.html')
+

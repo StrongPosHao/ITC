@@ -168,6 +168,7 @@ input::-ms-input-placeholder { /* Internet Explorer 10-11 */
 }
 
 .category-tag a{
+    font-size: medium;
     font-weight: bold;
     color: #ffffff;
     cursor: pointer;
@@ -206,14 +207,14 @@ input::-ms-input-placeholder { /* Internet Explorer 10-11 */
 
 }
 .user_item1{
+    width: 200%;
     display: flex;
     display: -webkit-flex;
     justify-content: start;
 }
 .user_meta{
     font-size: 1.3em;
-    width: 45em;
-    padding-left: 5%;
+    margin-left: 7%;
 }
 .user_meta .otherintor{
     color: #757575;
@@ -268,4 +269,162 @@ input::-ms-input-placeholder { /* Internet Explorer 10-11 */
     border: 1px #d4211d solid;
 
 
+}
+.user_change_large{
+    font-size: 16px;
+}
+
+.content-box{
+    background-color: rgba(255, 255, 255, 0.88);
+    border-bottom: 1px solid #e8e8e8;
+    padding-top: 20px;
+    padding-left: 30px;
+}
+.f-left-o{
+    float: left;
+    margin-left: 13%;
+}
+
+.f-left-t{
+    float: left;
+    margin-left: 3%;
+}
+
+.f-left-th{
+    float: left;
+    margin-left: 4%;
+}
+
+.content-title h4{
+    margin-top: 0;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.content-title h4>a{
+    color: rgba(15, 16, 18, 0.78);
+    font-size: 1.4em;
+}
+
+.content-title h4>a:hover{
+    color: #a94442;
+}
+
+.content-box a:hover{
+    text-decoration: none;
+}
+
+.content-tag a{
+    font-size: 11px;
+    color: #5bc0de;
+    margin-right: 1%;
+}
+
+.content-tag a:hover{
+    color: #ac2925;
+}
+
+.content{
+    font-size: 1.4em;
+    color: #777777eb;
+    margin-top: 10px;
+    margin-left: 2%;
+}
+.article-info{
+    height: 24px;
+    line-height: 24px;
+}
+
+.article-info dd {
+    float: left;
+    font-size: 9px;
+    color: #8a8a8a;
+    line-height: 24px;
+    margin-right: 20px;
+}
+
+.writer{
+
+}
+
+.writer a{
+    font-size: 13px;
+}
+
+.writer a:hover{
+    color: #ac2925;
+}
+.comment{
+    float: right;
+    line-height: 24px;
+}
+
+.comment a{
+    color: #777;
+}
+
+.comment a:hover{
+    color: #f5940b;
+}
+
+.comment span {
+    right: 3px;
+    top: 2px;
+    font-size: 13px;
+}
+
+.read {
+    float: left;
+    text-align: center;
+}
+
+.comment-num {
+    float: left;
+}
+.refute {
+    float: left;
+}
+
+.support {
+    float: left;
+}
+
+@media (min-width: 1050px){
+    .side{
+        left: 12%;
+    }
+    .f-left-o{
+        float: left;
+        margin-left: 16%;
+    }
+
+    .f-left-t{
+        float: left;
+        margin-left: 5%;
+    }
+
+    .f-left-th{
+        float: left;
+        margin-left: 7%;
+    }
+}
+
+@media (min-width: 1080px){
+    .side{
+        left: 13%;
+    }
+    .f-left-o{
+        float: left;
+        margin-left: 15%;
+    }
+
+    .f-left-t{
+        float: left;
+        margin-left: 7%;
+    }
+
+    .f-left-th{
+        float: left;
+        margin-left: 9%;
+    }
 }
