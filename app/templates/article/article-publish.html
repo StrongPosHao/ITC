@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block title %}发表文章-ITC技术社区{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="../static/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/publish.css" type="text/css">
+{% endblock %}
+{% block content %}
+<div style="margin-top: 7.5em">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-2 col-xs-offset-3 col-xs-6 col-md-8">
+                <div class="form-box">
+                    <form class="" action="" method="post">
+                        <div class="title-box">
+                            <input type="text" class="form-control" placeholder="请输入文章标题">
+                        </div>
+                        <div class="article-box">
+                             <!--加载编辑器的容器-->
+                            <script id="container" name="content" type="text/plain" style="width: 100%; height:
+                            500px;z-index: -1;"></script>
+                        </div>
+                        <div class="tail-box">
+                            <div class="choose-cate-box">
+                                <span>文章类别：</span>
+                                <select class="form-control">
+                                    <option>人工智能</option>
+                                    <option>大数据</option>
+                                    <option>前端</option>
+                                    <option>后端</option>
+                                    <option>移动应用</option>
+                                    <option>数据库</option>
+                                </select>
+                            </div>
+                            <div class="choose-btn-box">
+                                <button type="submit" class="btn submit" value="发表">发表</button>
+                                <button class="btn draft" value="草稿">存为草稿</button>
+                                <button class="btn return" value="返回">返回</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- 配置文件 -->
+                    <script type="text/javascript" src="../static/ueditor/ueditor.config.js"></script>
+                    <!-- 编辑器源码文件 -->
+                    <script type="text/javascript" src="../static/ueditor/ueditor.all.js"></script>
+                    <!-- 实例化编辑器 -->
+                    <script type="text/javascript">
+                        var ue = UE.getEditor('container');
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

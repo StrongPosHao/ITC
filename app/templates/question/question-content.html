@@ -1,0 +1,307 @@
+{% extends "base.html" %}
+{% block title %}{{ question-title }}-ITC技术社区{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/problem.css" type="text/css">
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/problem/support.js"></script>
+    <script src="../../static/js/problem/collection.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+{% endblock %}
+{% block content %}
+<div style="margin-top: 7.5em">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-0 col-xs-offset-0 col-md-1 col-xs-1">
+                <nav class="side">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle=".navbar-collapse"
+                                data-target="#side-collapse">
+                            <span class="sr-only">toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse collapse-pad" id="side-collapse">
+                        <ul class="side-menu">
+                            <li><a title="问答首页">问答首页</a></li>
+                            <li><a title="最近发出的受欢迎的问题">最新</a></li>
+                            <li><a title="浏览量大、受欢迎、回答量多的问题">最热</a></li>
+                            <li><a title="可能感兴趣的标签的问题">感兴趣</a></li>
+                            <li><a title="本周内的热门问题">一周内</a></li>
+                            <li><a title="本月内的热门问题">一个月</a></li>
+                            <li><a title="所关注的用户提的问题">关注</a></li>
+                            <li><a title="选择问题标签">标签</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-offset-2 col-xs-offset-2 col-md-7 col-xs-8">
+                <div class="article-panel">
+                    <div class="pro-content-box">
+                        <div class="head">
+                            <div class="content-title">
+                                <h4><a href="">js错误要怎么解决，明明页面上面有，却匹配不到</a></h4>
+                                <!--userId,problemId-->
+                                <button type="button" class="btn plus-pro" title="收藏该问题" onclick="collect(1,1)">
+                                    <span class="glyphicon glyphicon-plus">收藏</span>
+                                </button>
+                            </div>
+                            <div class="content-tag">
+                                <a title="该问题的标签">javascript</a>
+                            </div>
+                            <div class="writer">
+                                <a href="">作者</a>
+                                <span>2018-06-11 14:12:30</span>
+                                &nbsp;&nbsp;提问
+                                <div class="comment">
+                                    <dd class="read">
+                                        <span title="浏览">浏览<span>30</span></span>
+                                    </dd>
+                                    <dd class="comment-num">
+                                        <span title="回答">回答<span>3</span></span>
+                                    </dd>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pro-content">
+                            <p>明明页面上面有<br>
+                                为什么不行呢<br>
+                                Uncaught DOMException: Failed to execute 'querySelectorAll' on 'Document':
+                                'ul.la-list li:last' is not a valid selector.</p>
+                        </div>
+                        <dl class="answer-info">
+                            <div class="answer-head">
+                                <div class="answer-num">
+                                    <span>3</span>条回答
+                                </div>
+                                <div class="btn-group sort">
+                                    <select class="form-control">
+                                        <option>按时间</option>
+                                        <option>按点赞数</option>
+                                        <option>按评论量</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="answer-content">
+                                <div class="answer-name">
+                                    <a class="name">某某某</a>
+                                    <span class="time">2018-06-18 20:23:56</span>
+                                    <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                    <a class="del-comment">删除</a>
+                                </div>
+                                <div class="answer">
+                                    <p>
+                                        作业布置好了，那你就赶快答呗。1块5毛钱找人帮你写程序估计有点困难。姐姐买个茶鸡蛋都要1块5啦。
+                                    </p>
+                                </div>
+                                <div class="answer-tail" id='comment_1'>
+                                    <div class="support">
+                                        <a title="评论"><span class="glyphicon glyphicon-edit"></span><span>3</span></a>
+                                    </div>
+                                    <div class="support">
+                                        <a title="点赞" href="javascript:commentsupport('点赞',1,1)"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                    </div>
+                                    <div class="support">
+                                        <a title="没帮助" href="javascript:commentsupport('没帮助',1,1)"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                    </div>
+                                </div>
+                                <div class="answer-comment-box">
+                                    <div class="write-comment">
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <textarea row="1" class="form-control" placeholder="评论..."></textarea>
+                                                <button type="submit" class="form-control btn" value="评论">评&nbsp;&nbsp;论</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>abc</a>:&nbsp;&nbsp;<span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                            <a class="del-comment">删除</a>
+                                            <span>2018-06-06 06:06:06</span>
+                                        </div>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>abc</a>:&nbsp;&nbsp;<span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                            <a class="del-comment">删除</a>
+                                            <span>2018-06-06 06:06:06</span>
+                                        </div>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>efg</a>&nbsp;&nbsp;回复&nbsp;<span>abc</span>:&nbsp;&nbsp;
+                                            <span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                            <a class="del-comment">删除</a>
+                                            <span>2018-06-06 06:08:06</span>
+                                        </div>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>abc</a>:&nbsp;&nbsp;<span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                            <a class="del-comment">删除</a>
+                                            <span>2018-06-06 06:06:06</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="answer-content">
+                                <div class="answer-name">
+                                    <a class="name">某某某</a>
+                                    <span class="time">2018-06-18 20:23:56</span>
+                                    <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                    <a class="del-comment">删除</a>
+                                </div>
+                                <div class="answer">
+                                    <p>
+                                        作业布置好了，那你就赶快答呗。1块5毛钱找人帮你写程序估计有点困难。姐姐买个茶鸡蛋都要1块5啦。
+                                    </p>
+                                </div>
+                                <div class="answer-tail">
+                                    <div class="support">
+                                        <a title="评论" ><span class="glyphicon glyphicon-edit"></span><span>0</span></a>
+                                    </div>
+                                    <div class="support">
+                                        <a title="点赞" ><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                    </div>
+                                    <div class="support">
+                                        <a title="没帮助" href="javascript:commentsupport('没帮助',1,1)"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                    </div>
+                                </div>
+                                <div class="answer-comment-box">
+                                    <div class="write-comment">
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <textarea row="1" class="form-control" placeholder="评论..."></textarea>
+                                                <button type="submit" class="form-control btn" value="评论">评&nbsp;&nbsp;论</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="no-answer-comment">
+                                            还没有人发表过评论
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="answer-content">
+                                <div class="answer-name">
+                                    <a class="name">某某某</a>
+                                    <span class="time">2018-06-18 20:23:56</span>
+                                    <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                    <a class="del-comment">删除</a>
+                                </div>
+                                <div class="answer">
+                                    <p>
+                                        作业布置好了，那你就赶快答呗。1块5毛钱找人帮你写程序估计有点困难。姐姐买个茶鸡蛋都要1块5啦。
+                                    </p>
+                                </div>
+                                <div class="answer-tail">
+                                    <div class="support">
+                                        <a title="评论"><span class="glyphicon glyphicon-edit"></span><span>3</span></a>
+                                    </div>
+                                    <div class="support">
+                                        <a title="点赞"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                    </div>
+                                    <div class="support">
+                                        <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                    </div>
+                                </div>
+                                <div class="answer-comment-box">
+                                    <div class="write-comment">
+                                        <form action="" method="post">
+                                            <div class="form-group">
+                                                <textarea row="1" class="form-control" placeholder="评论..."></textarea>
+                                                <button type="submit" class="form-control btn" value="评论">评&nbsp;&nbsp;论</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>abc</a>:&nbsp;&nbsp;<span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <span>2018-06-06 06:06:06</span>
+                                        </div>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>abc</a>:&nbsp;&nbsp;<span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <span>2018-06-06 06:06:06</span>
+                                        </div>
+                                    </div>
+                                    <div class="answer-comment">
+                                        <div class="answer-comment-head">
+                                            <a>abc</a>:&nbsp;&nbsp;<span>666666</span>
+                                        </div>
+                                        <div class="answer-comment-tail">
+                                            <a>评论</a>
+                                            <span>2018-06-06 06:06:06</span>
+                                        </div>
+                                        <div class="comment-comment">
+                                            <form action="" method="post">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" placeholder="评论...">
+                                                    <div class="comment-comment-btn">
+                                                        <button type="button" class="btn" style="background: none;" value="取消">取消</button>
+                                                        <button type="submit" class="btn form-control" value="评论">评&nbsp;&nbsp;论</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="write-box">
+                                <form action="" method="post">
+                                    <div class="form-group">
+                                        <div class="write-question">
+                                            <!--加载编辑器的容器-->
+                                            <script id="container" type="text/plain" style="width: 100%;overflow: auto;
+                height:222px;z-index: -1;"></script>
+                                                <!-- 配置文件 -->
+                                                <script type="text/javascript" src="../static/ueditor/ueditor.config.pro.js"></script>
+                                            <!-- 编辑器源码文件 -->
+                                            <script type="text/javascript" src="../static/ueditor/ueditor.all.js"></script>
+                                            <!-- 实例化编辑器 -->
+                                            <script type="text/javascript">
+                                                var ue = UE.getEditor('container');
+                                            </script>
+                                        </div>
+                                        <button type="submit" class="form-control btn write-box-button" value="评论">评&nbsp;&nbsp;论</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

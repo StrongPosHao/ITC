@@ -1,0 +1,118 @@
+
+body{
+    background: #e8e8e8 !important;
+}
+
+.tag-name{
+    border: none;
+    background: #fcfcfcc7;
+    border-bottom: 1px solid;
+    border-bottom-color: tan;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-bottom: 13px;
+}
+
+.tag-name span{
+    font-size: 18px;
+    margin-top: 0;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.tag-name span>.glyphicon-tag{
+    font-size: 12px;
+    padding-right: 0;
+}
+
+.tag-name a{
+    color: #f0ad4ed1;
+}
+
+.tag-name a:hover{
+    color: blue;
+}
+
+.category-panel{
+    background: #f8f8f8e8;
+    padding-bottom: 15px;
+}
+
+.category-box{
+    margin-bottom: 5px;
+    margin-top: 25px;
+}
+
+.category span{
+    width: 5px;
+    padding-top: 1px;
+    color: #8a6d3bc9;
+    background: #8a6d3bc9;
+    margin-right: 5px;
+    display: inline-block;
+    height: 17px;
+}
+
+.category a{
+    color: #a58550;
+    font-size: 18px;
+}
+
+.category a:hover{
+    text-decoration: none;
+    color: #2aabd2;
+}
+
+.category-tags{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.category-tag{
+    display: inline-block;
+    background: rgba(138, 109, 59, 0.15);
+    margin-bottom: 15px;
+    padding: 5px;
+    margin-right: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 9px;
+}
+
+.category-tag span{
+    margin-right: 8px;
+}
+
+.category-tag a{
+    cursor: pointer;
+    /*background: rgba(138, 109, 59, 0.15);*/
+    /*padding: 5px;*/
+    /*border-radius: 5px;*/
+    /*margin-right: 8px;*/
+}
+
+.category-tag:hover{
+    color: white;
+    background: #337ab757;
+}
+
+.category-tag a:hover{
+    text-decoration: none;
+}
+
+.collect-btn{
+    border: none;
+    background: unset;
+    font-size: 5px;
+    margin: 0;
+    padding: 0;
+}
+
+.collect-btn span{
+    margin-right: 0;
+    color: #8a6d3b;
+}
+
+.collect-btn span:hover{
+    color: #d9534f;
+}

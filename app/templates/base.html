@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../static/css/bootstrap-theme.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+{#    <link rel="stylesheet" href="../../static/css/index.css" type="text/css">#}
+{#    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">#}
+{#    <link rel="stylesheet" href="../../static/css/index(nl).css" type="text/css">#}
+{#    <link rel="stylesheet" href="../../static/css/navbar(nl).css" type="text/css">#}
+
+    {% block head %}
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+
+
+{#如果已登录#}
+<script>
+        $(document).ready(function(){
+            $(document).off('click.bs.dropdown.data-api');
+
+            // $(".return-pro").click(function () {
+            //     $(".write-question-box").hide();
+            //     $(".question-container").hide()
+            // });
+        });
+</script>
+
+</head>
+<body>
+
+{% if True %}
+    {#已登录header#}
+<div class="nav-box">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header" style="margin-left: 3%;margin-right: 7%;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#col-navbar">
+                    <span class="sr-only">toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo">
+                    <h1><a title="ITC技术社区">ITC</a></h1>
+                </div>
+            </div>
+            <div class="collapse navbar-collapse" id="col-navbar" >
+                <ul class="nav navbar-nav f-left-o">
+                    <li class="active"><a>主页</a></li>
+                    <li><a>文章</a></li>
+                    <li><a>问答</a></li>
+                </ul>
+                <form class="nav navbar-form f-left-t" role="search" action="" method="post" name="searchForm">
+                    <div class="form-group input-box">
+                        <input type="text" class="form-control" placeholder="搜索...">
+                        <button type="submit" class="serach-btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav f-left-th">
+                    <li><a>发文章</a></li>
+                    <li><a>提问</a></li>
+                    <li><a title="消息通知"><span class="glyphicon glyphicon-envelope"></span><sup>1</sup></a></li>
+                    <li role="presentation" class="dropdown">
+                        <a title="个人中心" href="" target="_blank" class="dropdown-toggle head-img-box" data-toggle="dropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false"><img src="../../static/image/head.jpg" class="img-circle"></a>
+                        <ul class="dropdown-menu" aria-labelledby="center">
+                            <li><a>个人中心</a></li>
+                            <li><a>设置</a></li>
+                            <li><a>退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+{% else %}
+
+    {#未登录header#}
+<div class="nav-box">
+    <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div class="navbar-header" style="margin-left: 3%;margin-right: 7%;">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#col-navbar">
+                        <span class="sr-only">toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logo">
+                        <h1><a title="ITC技术社区">ITC</a></h1>
+                    </div>
+                </div>
+                <div class="collapse navbar-collapse" id="col-navbar" >
+                    <ul class="nav navbar-nav f-left-o">
+                        <li class="active"><a>主页</a></li>
+                        <li><a>文章</a></li>
+                        <li><a>问答</a></li>
+                        <li><a>发文章</a></li>
+                        <li><a>提问</a></li>
+                    </ul>
+                    <form class="nav navbar-form f-left-t" role="search" action="" method="post" name="searchForm">
+                        <div class="form-group input-box">
+                            <input type="text" class="form-control" placeholder="搜索...">
+                            <button type="submit" class="serach-btn">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </div>
+                    </form>
+                    <ul class="nav navbar-nav f-left-th">
+                        <li><a>注册</a></li>
+                        <li><a>登录</a></li>
+                    </ul>
+                    </div>
+                </div>
+        </nav>
+</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+{% if True %}
+{#    如果已登录#}
+<!--<div class="write-question-box">-->
+    <!--<div class="question-container">-->
+        <!--<div class="box-title">-->
+            <!--<h4>提问</h4>-->
+        <!--</div>-->
+        <!--<form action="" method="post">-->
+            <!--<div class="question-title">-->
+                <!--<textarea row="2" type="text" class="form-control" placeholder="输入问题的标题"></textarea>-->
+            <!--</div>-->
+            <!--<div class="write-question">-->
+                <!--&lt;!&ndash;加载编辑器的容器&ndash;&gt;-->
+                <!--<script id="myEditor" type="text/plain" style="width: 100%;overflow: auto;-->
+                <!--height:252px;z-index: -1;"></script>-->
+            <!--</div>-->
+            <!--<div class="write-tag-box">-->
+                <!--<div class="write-tag">-->
+                    <!--<div class="tag">-->
+                        <!--<span>javascript<a><span class="glyphicon glyphicon-remove"></span></a></span>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="rcm-tag">-->
+                    <!--<span>推荐标签：</span>-->
+                    <!--<a>javascript<span class="glyphicon glyphicon-plus"></span></a>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="write-btn">-->
+                <!--<button type="submit" class="btn submit-pro">提交</button>-->
+                <!--<button type="button" class="btn return-pro">取消</button>-->
+            <!--</div>-->
+        <!--</form>-->
+                <!--&lt;!&ndash; 配置文件 &ndash;&gt;-->
+                <!--<script type="text/javascript" src="../static/ueditor/ueditor.config.pro.js"></script>-->
+                <!--&lt;!&ndash; 编辑器源码文件 &ndash;&gt;-->
+                <!--<script type="text/javascript" src="../static/ueditor/ueditor.all.js"></script>-->
+                <!--&lt;!&ndash; 实例化编辑器 &ndash;&gt;-->
+                <!--<script type="text/javascript">-->
+                    <!--var ue = UE.getEditor('myEditor',{-->
+                        <!--toolbar:-->
+                            <!--['bold italic underline fullscreen', 'link unlink','insertcode',-->
+                                <!--'| justifyleft justifycenter justifyright justifyjustify |', 'emotion image video  | map']-->
+                    <!--});-->
+                <!--</script>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+{% endif %}
+
+
+</body>
+</html>

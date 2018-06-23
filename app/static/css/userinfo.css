@@ -1,0 +1,153 @@
+body{
+    background-color: #e8e8e8;
+    background-size: cover;
+    margin: 0;
+    font-size: 1em;
+}
+
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: "Microsoft YaHei", 微软雅黑, Tahoma, Helvetica, Arial, 宋体, sans-serif;
+}
+
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #6f6553 !important;;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #6f6553 !important;;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #6f6553 !important;;
+}
+input::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #6f6553 !important;;
+}
+
+
+/*header*/
+
+#notifybtn {
+    margin-top: 5px;
+    font-size: large;
+    position: relative;
+    background: none;
+    outline: none;
+}
+#profilephoto{
+    margin-top: 3px;
+    font-size: large;
+    margin-left: 20px;
+    position: relative;
+    background: none;
+    outline: none;
+}
+.Menu-item {
+    font-family: "Microsoft YaHei", 微软雅黑, Tahoma, Helvetica, Arial, 宋体, sans-serif;
+    font-size: medium;
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: #8590a6;
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 200;
+    line-height: 1.42857143;
+    color:    #6f6553 ;
+    white-space: nowrap;
+}
+
+/*content*/
+.userInfo_content{
+    background-color: white;
+    width: 65%;
+    align: center;
+    margin: 0 auto;
+    height: 100%;
+
+}
+
+.userInfo_item1{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    margin: 8% 0;
+}
+
+.userInfo_imgandintro {
+    display: -webkit-flex;
+    display: flex;
+    justify-content: start;
+}
+
+.userInfo_item2{
+    font-size: large;
+    margin:0 18% 0 25%;
+}
+
+.userInfo_intro{
+    font-size: large;
+    margin: 0 5%;
+    width: 650px;
+}
+.userInfo_intro p{
+    padding: 4% 0 5%;
+    border-bottom: #b5b5b5 1px solid;
+}
+
+
+
+.userInfo_intro p label {
+    outline: 0 none !important;
+
+}
+.userInfo_intro p label:hover{
+    color: #7b7eff;
+}
+
+.userInfo_intro p button {
+    outline: 0 none !important;
+
+}
+.userInfo_intro p button:hover{
+    color: #7b7eff;
+}
+
+
+.userInfo_item2 >div{
+    margin: 7% 0;
+    border-bottom: #b5b5b5 1px solid;
+}
+.img_btn{
+    background: none;
+    outline: none;
+    border: none;
+}
+.userInfo_return button{
+    margin: 10% 5%;
+}
+.usr_img img{
+    border-radius: 10px;
+    border: 4px #b18b8b solid;
+    margin:5% 10% 5% 5%;
+}
+.camera_svg{
+    margin-right: 10%;
+}
+.change_info{
+    color: #7b7eff;
+    /*visibility: hidden;*/
+    margin-left: 5%;
+    font-size: small;
+}
+.userInfo_item2 >div p{
+    display: flex;
+    justify-content: space-between;
+}
+.userInfo_item2 div >input{
+    font-size: medium;
+}

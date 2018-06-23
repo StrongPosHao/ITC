@@ -1,0 +1,64 @@
+body{
+    background: url("../image/pineapple-supply-co-100584-unsplash.jpg") no-repeat fixed center;
+    background-size: cover;
+}
+
+.form-box{
+    padding: 25px;
+    /*background: #a99e879c;*/
+    /*background: #d0d3daa1;*/
+    background: #fdfdfde0;
+    border-radius: 5px;
+}
+
+.title-box{
+    margin-bottom: 15px;
+    font-size: 18px;
+    border: 1px solid tan;
+    border-radius: 5px;
+}
+
+.article-box{
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 5px;
+    border: 1px solid tan;
+}
+
+.tail-box{
+    margin: 35px 0;
+    font-size: 16px;
+}
+
+.choose-cate-box{
+    margin-bottom: 15px;
+
+}
+
+.choose-cate-box select.form-control{
+    width: auto;
+    display: inline-block;
+    margin-left: 30px;
+}
+
+.choose-btn-box{
+    margin-top: 25px;
+    text-align: center;
+}
+
+.choose-btn-box button:hover{
+    background: #5bc0de;
+    color: white;
+}
+
+.submit, .draft{
+    background: #ffffff;
+    margin-right: 25px;
+    border-color: #8a6d3b9e;
+    font-size: 16px;
+}
+
+.return{
+    font-size: 15px;
+    border-color: #8a6d3b52;
+    background: white;
+}
