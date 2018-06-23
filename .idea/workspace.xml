@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="dbc8f386-9a4a-45d5-8028-add309a3e09c" name="Default" comment="'修复图片显示问题'">
-=======
     <list default="true" id="dbc8f386-9a4a-45d5-8028-add309a3e09c" name="Default" comment="">
->>>>>>> dev1
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,10 +14,6 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/ITC$ITC.coverage" NAME="ITC Coverage Results" MODIFIED="1529672921602" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/ITC$Flask__manage_py_.coverage" NAME="Flask (manage.py) Coverage Results" MODIFIED="1529681500330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-<<<<<<< HEAD
-=======
-    <SUITE FILE_PATH="coverage/ITC_master$Flask__manage_py_.coverage" NAME="Flask (manage.py) Coverage Results" MODIFIED="1529725576110" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
->>>>>>> dev1
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -57,46 +49,13 @@
     <favorites_list name="ITC" />
   </component>
   <component name="FileEditorManager">
-<<<<<<< HEAD
     <leaf />
-=======
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="86" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="manage.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/manage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="506">
-              <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/main/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="154">
-              <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
->>>>>>> dev1
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Flask Main" />
         <option value="Setup Script" />
-<<<<<<< HEAD
         <option value="HTML File" />
         <option value="Python Script" />
       </list>
@@ -119,29 +78,6 @@
         <option value="$PROJECT_DIR$/app/templates/ArticlePage/README.txt" />
         <option value="$PROJECT_DIR$/app/static/css/README.txt" />
         <option value="$PROJECT_DIR$/app/static/image/README.txt" />
-=======
-        <option value="Python Script" />
-        <option value="HTML File" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>收藏</find>
-    </findStrings>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubProjectSettings">
-    <option name="CREATE_PULL_REQUEST_DEFAULT_BRANCH" value="wukangjun-dev" />
-    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_USER" value="StrongPosHao" />
-    <option name="CREATE_PULL_REQUEST_DEFAULT_REPO_NAME" value="ITC" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
->>>>>>> dev1
         <option value="$PROJECT_DIR$/app/templates/HomePage/README.txt" />
         <option value="$PROJECT_DIR$/app/static/css/base_css/README.txt" />
         <option value="$PROJECT_DIR$/app/static/css/AdminPageCSS/README.txt" />
@@ -163,10 +99,7 @@
         <option value="$PROJECT_DIR$/app/main/README.txt" />
         <option value="$PROJECT_DIR$/app/exts.py" />
         <option value="$PROJECT_DIR$/app/main/errors.py" />
-<<<<<<< HEAD
         <option value="$PROJECT_DIR$/app/main/views.py" />
-=======
->>>>>>> dev1
         <option value="$PROJECT_DIR$/app/admin/views.html" />
         <option value="$PROJECT_DIR$/config.py" />
         <option value="$PROJECT_DIR$/manage.py" />
@@ -184,22 +117,6 @@
         <option value="$PROJECT_DIR$/app/static/js/auth/README" />
         <option value="$PROJECT_DIR$/app/static/js/base/README.txt" />
         <option value="$PROJECT_DIR$/README.md" />
-<<<<<<< HEAD
-=======
-        <option value="$PROJECT_DIR$/app/templates/login/Login.html" />
-        <option value="$PROJECT_DIR$/app/templates/login/Register.html" />
-        <option value="$PROJECT_DIR$/app/templates/base.html" />
-        <option value="$PROJECT_DIR$/app/templates/main/index.html" />
-        <option value="$PROJECT_DIR$/app/templates/article/article-list.html" />
-        <option value="$PROJECT_DIR$/app/templates/article/article-publish.html" />
-        <option value="$PROJECT_DIR$/app/templates/question/question-content.html" />
-        <option value="$PROJECT_DIR$/app/templates/article/article-content.html" />
-        <option value="$PROJECT_DIR$/app/templates/question/question-list.html" />
-        <option value="$PROJECT_DIR$/app/templates/tag/tag-list.html" />
-        <option value="$PROJECT_DIR$/app/static/css/tags.css" />
-        <option value="$PROJECT_DIR$/app/main/views.py" />
-        <option value="$PROJECT_DIR$/app/templates/tag/tag-index.html" />
->>>>>>> dev1
       </list>
     </option>
   </component>
@@ -213,17 +130,10 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-<<<<<<< HEAD
-    <option name="x" value="-92" />
+    <option name="x" value="-93" />
     <option name="y" value="70" />
     <option name="width" value="1335" />
     <option name="height" value="925" />
-=======
-    <option name="x" value="412" />
-    <option name="y" value="-27" />
-    <option name="width" value="1250" />
-    <option name="height" value="995" />
->>>>>>> dev1
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -233,39 +143,29 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-<<<<<<< HEAD
       <pane id="Scope" />
-=======
->>>>>>> dev1
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
-<<<<<<< HEAD
               <item name="ITC" type="b2602c69:ProjectViewProjectNode" />
               <item name="ITC" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="ITC" type="b2602c69:ProjectViewProjectNode" />
               <item name="ITC" type="462c0819:PsiDirectoryNode" />
-=======
-              <item name="ITC-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ITC-master" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="ITC-master" type="b2602c69:ProjectViewProjectNode" />
-              <item name="ITC-master" type="462c0819:PsiDirectoryNode" />
->>>>>>> dev1
               <item name="app" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ITC" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ITC" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-<<<<<<< HEAD
-=======
-      <pane id="Scope" />
->>>>>>> dev1
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -279,7 +179,6 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="DDL Data Source&#10;MySQL" />
     <property name="database.console.LAST_STATE" value="true" />
     <property name="full.screen.before.presentation.mode" value="false" />
-<<<<<<< HEAD
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
@@ -289,30 +188,10 @@
       <recent name="D:\ProgrammingWorkspace\PyCharm\ITC\app\templates\admin" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-=======
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\inuse\python期末大作业\ITC-master" />
->>>>>>> dev1
       <recent name="D:\ProgrammingWorkspace\PyCharm\ITC\app\static" />
       <recent name="D:\ProgrammingWorkspace\PyCharm\ITC\app\main" />
       <recent name="D:\ProgrammingWorkspace\PyCharm\ITC\app" />
     </key>
-<<<<<<< HEAD
-=======
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\inuse\python期末大作业\ITC-master\app\templates\login" />
-      <recent name="D:\inuse\python期末大作业\ITC-master\app\templates\main" />
-      <recent name="D:\inuse\python期末大作业\ITC-master\app\templates" />
-      <recent name="D:\inuse\python期末大作业\ITC-master\app" />
-      <recent name="D:\ProgrammingWorkspace\PyCharm\ITC\app\templates\admin" />
-    </key>
->>>>>>> dev1
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -346,28 +225,6 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-<<<<<<< HEAD
-=======
-    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="ITC" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/manage.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
->>>>>>> dev1
     <configuration name="Flask (manage.py)" type="Python.FlaskServer" factoryName="Flask server" temporary="true" nameIsGenerated="true">
       <module name="ITC" />
       <option name="target" value="$PROJECT_DIR$/manage.py" />
@@ -400,18 +257,10 @@
       <item itemvalue="Flask server.ITC" />
       <item itemvalue="Python.config" />
       <item itemvalue="Flask server.Flask (manage.py)" />
-<<<<<<< HEAD
-=======
-      <item itemvalue="Python.manage" />
->>>>>>> dev1
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Flask server.Flask (manage.py)" />
-<<<<<<< HEAD
-=======
-        <item itemvalue="Python.manage" />
->>>>>>> dev1
         <item itemvalue="Python.config" />
       </list>
     </recent_temporary>
@@ -490,7 +339,6 @@
       <option name="project" value="LOCAL" />
       <updated>1529685471919</updated>
     </task>
-<<<<<<< HEAD
     <task id="LOCAL-00010" summary="'修复图片显示问题'">
       <created>1529685706579</created>
       <option name="number" value="00010" />
@@ -499,32 +347,20 @@
       <updated>1529685706580</updated>
     </task>
     <option name="localTasksCounter" value="11" />
-=======
-    <option name="localTasksCounter" value="10" />
->>>>>>> dev1
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-<<<<<<< HEAD
       <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" weight="0.32905984" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.15669516" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.3559322" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.38418078" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985755" visible="true" weight="0.2080537" />
-=======
-      <window_info anchor="bottom" id="Event Log" order="13" sideWeight="0.50067115" side_tool="true" weight="0.38418078" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.15669516" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.2740113" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49932885" visible="true" weight="0.38418078" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4985755" visible="true" weight="0.18657719" />
->>>>>>> dev1
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985755" visible="true" weight="0.13154362" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="5" weight="0.20319149" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -541,34 +377,6 @@
       <window_info anchor="bottom" id="Database Console" order="12" weight="0.32905984" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32868022" />
     </layout>
-<<<<<<< HEAD
-=======
-    <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3559322" />
-      <window_info anchor="right" id="Remote Host" order="4" weight="0.3295302" />
-      <window_info anchor="right" id="SciView" order="3" />
-      <window_info id="Structure" order="1" sideWeight="0.5014245" side_tool="true" weight="0.15771812" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32868022" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4985755" visible="true" weight="0.18389262" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.38418078" />
-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" weight="0.32905984" />
-      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.15669516" />
-      <window_info id="Favorites" order="2" sideWeight="0.5014245" side_tool="true" weight="0.15771812" />
-      <window_info anchor="bottom" id="Database Console" order="12" weight="0.32905984" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="Database" order="5" weight="0.20319149" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-    </layout-to-restore>
->>>>>>> dev1
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -587,7 +395,6 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-<<<<<<< HEAD
       <option name="time" value="2" />
     </breakpoint-manager>
   </component>
@@ -716,125 +523,10 @@
     <entry file="file://$PROJECT_DIR$/app/main/errors.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
-=======
-      <option name="time" value="3" />
-    </breakpoint-manager>
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/static/image/README" />
-    <entry file="file://$PROJECT_DIR$/app/static/js/question/README" />
-    <entry file="file://$PROJECT_DIR$/app/static/js/README" />
-    <entry file="file://$PROJECT_DIR$/app/templates/HomePage/HomePage.txt" />
-    <entry file="file://$PROJECT_DIR$/app/templates/main/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="11" selection-start-column="11" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/requirements.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/head_footer/README" />
-    <entry file="file://$PROJECT_DIR$/app/admin/admin.py" />
-    <entry file="file://$PROJECT_DIR$/app/admin/views.html" />
-    <entry file="file://$PROJECT_DIR$/app/templates/admin/index.html" />
-    <entry file="file://$PROJECT_DIR$/app/templates/admin/index.html" />
-    <entry file="file://$PROJECT_DIR$/app/main/app.py" />
-    <entry file="file://$PROJECT_DIR$/app/templates/index.html" />
-    <entry file="file://$PROJECT_DIR$/app/article/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/auth/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/README.txt" />
-    <entry file="file://$PROJECT_DIR$/app/static/css/README" />
-    <entry file="file://$PROJECT_DIR$/app/static/js/admin/README" />
-    <entry file="file://$PROJECT_DIR$/app/static/js/auth/README" />
-    <entry file="file://$PROJECT_DIR$/app/static/js/base/README" />
-    <entry file="file://$PROJECT_DIR$/config.py" />
-    <entry file="file://$PROJECT_DIR$/app/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="27" column="68" selection-start-line="27" selection-start-column="68" selection-end-line="27" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/email.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/exts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1204">
-          <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="8" column="10" lean-forward="true" selection-start-line="8" selection-start-column="10" selection-end-line="8" selection-end-column="10" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="2" selection-start-line="4" selection-start-column="2" selection-end-line="4" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/admin/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/admin/README">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/article/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/auth/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/errors.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
->>>>>>> dev1
           <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
@@ -899,62 +591,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret column="12" selection-start-column="12" selection-end-column="12" />
-=======
-    <entry file="file://$PROJECT_DIR$/config.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/question/views.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/question/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="19" selection-start-line="4" selection-start-column="19" selection-end-line="4" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/js/tags/cutpoint.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/login/Login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="15" column="7" lean-forward="true" selection-start-line="15" selection-start-column="7" selection-end-line="15" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/article/article-publish.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="53" column="14" lean-forward="true" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/question/question-content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6688">
-          <caret line="305" column="6" selection-start-line="305" selection-start-column="6" selection-end-line="305" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/login/Register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="20" selection-start-line="13" selection-start-column="20" selection-end-line="13" selection-end-column="20" />
->>>>>>> dev1
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/templates/main/index.html">
       <provider selected="true" editor-type-id="text-editor">
-<<<<<<< HEAD
         <state relative-caret-position="162">
           <caret line="9" column="3" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="3" />
         </state>
@@ -1034,73 +675,6 @@
             <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
           </first_editor>
           <second_editor />
-=======
-        <state relative-caret-position="66">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/question/question-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" column="36" selection-start-line="6" selection-start-column="36" selection-end-line="6" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/article/article-content.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="410" column="6" selection-start-line="410" selection-start-column="6" selection-end-line="410" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/article/article-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="11" selection-start-line="11" selection-end-line="14" selection-end-column="86" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/static/css/tags.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="26" lean-forward="true" selection-start-line="7" selection-start-column="26" selection-end-line="7" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="41" selection-start-line="7" selection-start-column="41" selection-end-line="7" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/tag/tag-index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="35" column="149" selection-start-line="35" selection-start-column="149" selection-end-line="35" selection-end-column="149" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/templates/tag/tag-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/manage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="506">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
->>>>>>> dev1
         </state>
       </provider>
     </entry>
