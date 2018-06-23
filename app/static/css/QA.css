@@ -1,0 +1,95 @@
+.article-info{
+    height: 46px;
+    line-height: 24px;
+    margin-bottom: 8px;
+}
+
+.article-info dd {
+    float: left;
+    font-size: 9px;
+    color: #8a8a8a;
+    line-height: 24px;
+    margin-right: 20px;
+}
+
+.writer{
+    margin-left: 2%;
+}
+
+.writer a{
+    font-size: 13px;
+}
+
+.writer a:hover{
+    color: #ac2925;
+}
+
+.comment{
+    float: right;
+    line-height: 24px;
+}
+
+.comment a{
+    color: #777;
+}
+
+.comment a:hover{
+    color: #f5940b;
+}
+
+.comment span {
+    right: 3px;
+    top: 2px;
+    font-size: 13px;
+}
+
+.read {
+    float: left;
+    text-align: center;
+}
+
+.comment-num {
+    float: left;
+}
+
+.refute {
+    float: left;
+}
+
+.support {
+    float: left;
+}
+
+.qa-bar{
+    background: #ecebe847;
+    border-radius: 8px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    width: auto;
+}
+
+.qa-bar ul{
+    list-style: none;
+}
+
+.qa-bar li{
+    float: left;
+    margin-right: 5px;
+}
+
+.qa-bar li>a{
+    color: rgb(255, 255, 255);
+    font-size: 1.5em;
+}
+
+.qa-bar li>a.active, .qa-bar li>a:hover{
+    color: #f5940b;
+    background-color: rgb(252, 252, 252);
+    border-bottom: solid;
+    border-bottom-width: 1px;
+    border-color:rgb(252, 252, 252);
+}
+
+.qa-bar li>a.active{
+    border-color: #deb88778;
+}

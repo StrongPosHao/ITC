@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% block title %}标签-ITC技术社区{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/QA.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/tags.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
+
+    <script src="../../static/js/tags/cutpoint.js"></script>
+{% endblock %}
+{% block content %}
+<div style="margin-top: 7.5em">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-2 col-xs-offset-2 col-md-8 col-xs-8">
+                <div class="article-panel">
+                    <div class="tag-name">
+                        <span>
+                            <span class="glyphicon glyphicon-tags" style="font-size: 12px;background: none"></span>
+                            选择标签
+                        </span>
+                    </div>
+                </div>
+                <div class="row category-panel">
+                    <div class="col-md-offset-1 col-xs-offset-1 col-md-5 col-xs-8">
+                        <div class="">
+                            <div class="category-box">
+                                <div class="category">
+                                    <span>|</span><a>前端</a>
+                                </div>
+                                <div class="category-tags">
+
+                                    <div class="category-tag">
+                                         <!--title,tagId,userId-->
+                                         <!--glyphicon glyphicon-plus-sign-->
+                                        <button class="btn collect-btn" title="取消收藏" onclick="cut('取消收藏',1,1);"><span style="font-size: large" class="glyphicon glyphicon-minus-sign" ></span></button>
+                                        <!-- <button class="btn collect-btn" title="收藏该标签" onclick="cut('收藏该标签',1,1);"><span style="font-size: large" class="glyphicon glyphicon-plus-sign"></span></button> -->
+                                        <a><span>javascript</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>html</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>jquery</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>css</span>×100</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1 col-xs-offset-1 col-md-5 col-xs-8">
+                        <div class="">
+                            <div class="category-box">
+                                <div class="category">
+                                    <span>|</span><a>数据库</a>
+                                </div>
+                                <div class="category-tags">
+                                    <div class="category-tag">
+                                        <a><span>mysql</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>sql server</span>×10</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>jdbc</span>×1</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>oracle</span>×10</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>access</span>×10</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>sql</span>×60</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1 col-xs-offset-1 col-md-5 col-xs-8">
+                        <div class="">
+                            <div class="category-box">
+                                <div class="category">
+                                    <span>|</span><a>Android</a>
+                                </div>
+                                <div class="category-tags">
+                                    <div class="category-tag">
+                                        <a><span>java</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>eclipse</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>android</span>×100</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1 col-xs-offset-1 col-md-5 col-xs-8">
+                        <div class="">
+                            <div class="category-box">
+                                <div class="category">
+                                    <span>|</span><a>开发语言</a>
+                                </div>
+                                <div class="category-tags">
+                                    <div class="category-tag">
+                                        <a><span>python</span>×1000</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>c++</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>java</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>c#</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>c</span>×100</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1 col-xs-offset-1 col-md-5 col-xs-8">
+                        <div class="">
+                            <div class="category-box">
+                                <div class="category">
+                                    <span>|</span><a>前端</a>
+                                </div>
+                                <div class="category-tags">
+                                    <div class="category-tag">
+                                        <a><span>javascript</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>html</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>jquery</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>css</span>×100</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-offset-1 col-xs-offset-1 col-md-5 col-xs-8">
+                        <div class="">
+                            <div class="category-box">
+                                <div class="category">
+                                    <span>|</span><a>前端</a>
+                                </div>
+                                <div class="category-tags">
+                                    <div class="category-tag">
+                                        <a><span>javascript</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>html</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>jquery</span>×100</a>
+                                    </div>
+                                    <div class="category-tag">
+                                        <a><span>css</span>×100</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

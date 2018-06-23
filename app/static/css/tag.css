@@ -1,0 +1,30 @@
+.tag-name{
+    border: none;
+    background: #fcfcfcc7;
+    border-bottom: 1px solid;
+    border-bottom-color: tan;
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-bottom: 13px;
+}
+
+.tag-name span{
+    background: #5bc0de4d;
+    font-size: 18px;
+    margin-top: 0;
+    padding: 6px;
+    border-radius: 6px;
+}
+
+.tag-name span>.glyphicon-tag,.tag-name span>.glyphicon-tags{
+    font-size: 12px;
+    padding-right: 0;
+}
+
+.tag-name a{
+    color: #f0ad4ed1;
+}
+
+.tag-name a:hover{
+    color: blue;
+}

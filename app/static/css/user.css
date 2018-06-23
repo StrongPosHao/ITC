@@ -1,0 +1,271 @@
+body{
+    background: url("../image/index.png") no-repeat fixed center;
+    background-size: cover;
+    margin: 0;
+    font-size: 1em;
+}
+
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6 {
+    font-family: "Microsoft YaHei", 微软雅黑, Tahoma, Helvetica, Arial, 宋体, sans-serif;
+}
+
+input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #6f6553 !important;;
+}
+input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #6f6553 !important;;
+}
+input::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #6f6553 !important;;
+}
+input::-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    #6f6553 !important;;
+}
+
+
+#notifybtn {
+    margin-top: 5px;
+    font-size: large;
+    position: relative;
+    background: none;
+    outline: none;
+}
+#profilephoto{
+    margin-top: 3px;
+    font-size: large;
+    margin-left: 20px;
+    position: relative;
+    background: none;
+    outline: none;
+}
+.Menu-item {
+    font-family: "Microsoft YaHei", 微软雅黑, Tahoma, Helvetica, Arial, 宋体, sans-serif;
+    font-size: medium;
+    display: block;
+    width: 100%;
+    padding: 0 20px;
+    text-align: left;
+    cursor: pointer;
+    box-sizing: border-box;
+    color: #8590a6;
+}
+.dropdown-menu>li>a {
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    font-weight: 200;
+    line-height: 1.42857143;
+    color:    #6f6553 ;
+    white-space: nowrap;
+}
+
+.usercontent{
+    width: 80%;
+    align: center;
+    background-color: rgba(0,0,0,0.2);
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+.usercontent img {
+    border: #9d836c solid 3px;
+    margin: 30px 80px 10px 80px;
+}
+
+.userintroduction{
+    margin-top: 5%;
+    font-size: large;
+    margin-right: 40%;
+    color: white;
+}
+
+
+.userbtn{
+    border-radius: 10px;
+    outline: 0 none !important;
+    font-size: medium;
+    background: none;
+    width: 150px;
+    height: 30px;
+    margin: 100px 20px 0 20px;
+    color: white;
+    border: #9d836c solid 1px;
+    padding: 0 12px !important;
+}
+.userbtn :active{
+    color: #2aabd2;
+}
+
+.userblock{
+    width: 80%;
+    align: center;
+    margin: 5% auto;
+}
+
+.bar-item li a{
+    color: white;
+    border: none;
+    /*border-color: #9d836c;*/
+}
+
+.bar-item li a:hover{
+    color: #f7ac41e6;
+}
+
+.bar-item li a:focus{
+    color: #f7ac41e6;
+}
+
+.userblock.bar{
+    background-color: rgba(0,0,0,0.2);
+    margin: 0 10%;
+}
+.userblock.tag{
+    background-color: rgba(0,0,0,0.2);
+    margin: 0 10%;
+}
+
+.bar-cate{
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+}
+.bar-cate p{
+    color: rgba(255, 255, 255, 0.8);
+    font-size: large;
+}
+
+.category-box{
+    margin-bottom: 5px;
+    margin-top: 25px;
+}
+
+
+.category p{
+
+    color: #fbffe3;
+    font-size: large;
+    margin: 20% auto 10% auto;
+}
+
+
+
+.category-tags{
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.category-tag{
+    display: inline-block;
+    margin-bottom: 15px;
+    font-size: 9px;
+}
+
+.category-tag span{
+    margin-right: 8px;
+}
+
+.category-tag a{
+    font-weight: bold;
+    color: #ffffff;
+    cursor: pointer;
+    background: rgba(255, 194, 142, 0.15);
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 8px;
+}
+
+.category-tag a:hover{
+    color: rgba(3, 0, 255, 0.34);
+    background: white;
+    text-decoration: none;
+}
+
+.add_tag_btn a{
+    padding: 3%;
+    border-radius: 10px;
+    background-color: #f7d6bf;
+    color: #8689e4;
+    font-size: large;
+    margin: 20% auto 10% auto;
+}
+
+.tag{
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+}
+
+.user-item{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: space-between;
+    background-color: white;
+    border-bottom: 1px solid #8590a6;
+    padding: 16px 20px;
+
+}
+.user_item1{
+    display: flex;
+    display: -webkit-flex;
+    justify-content: start;
+}
+.user_meta{
+    font-size: 1.3em;
+    width: 45em;
+    padding-left: 5%;
+}
+.user_meta .otherintor{
+    color: #757575;
+}
+.user_item_2 button{
+    width: 8em;
+    margin-top: 33%;
+    background-color: #8590a6;
+    color: #fff;
+
+}
+.user_item_2 .btn :hover{
+    background-color: #6d5d42;
+    color: #fff;
+}
+
+.notification-box {
+    background-color: white;
+    border-bottom: 1px solid #8590a6;
+    padding: 10px 15px 5px ;
+}
+.notification-title button{
+    background: none;
+    border: none;
+}
+
+.notification-title button {
+    background: none;
+    border: 0 none;
+    padding: 0 !important;;
+    outline: none;
+}
+
+.red-point{
+    position: relative;
+}
+
+.red-point::before{
+    content: " ";
+    border: 3px solid red;/*设置红色*/
+    border-radius:3px;/*设置圆角*/
+    position: absolute;
+    z-index: 1000;
+    right: 0;
+    margin-right: -8px;
+}
+
+.delete-btn{
+    background: none;
+    margin-left: 10%;
+    outline: 0 none !important;
+    border: 1px #d4211d solid;
+
+
+}

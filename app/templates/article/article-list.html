@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+{% block title %}文章-ITC技术社区{% endblock %}
+{% block head %}
+    <link rel="stylesheet" href="../../static/css/index.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/index(nl).css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/navbar(nl).css" type="text/css">
+    <link rel="stylesheet" href="../../static/css/articles-index.css" type="text/css">
+    <script src="../../static/js/jquery.min.js"></script>
+    <script src="../../static/js/article/support.js"></script>
+{% endblock %}
+{% block content %}
+<div style="margin-top: 7.5em">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-offset-0 col-xs-offset-0 col-md-1 col-xs-1">
+                <nav class="side">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle=".navbar-collapse"
+                                data-target="#side-collapse">
+                            <span class="sr-only">toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="collapse navbar-collapse collapse-pad" id="side-collapse">
+                        <ul class="side-menu">
+                            <li><a class="active">文章首页</a></li>
+                            <li><a title="最近发出的受欢迎的文章">最新</a></li>
+                            <li><a title="浏览量大、受欢迎、评论数多的文章">最热</a></li>
+                            <li><a title="可能感兴趣的文章">感兴趣</a></li>
+                            <li><a title="所关注的用户发表的文章">关注</a></li>
+                            <li><a title="文章分类">数据库</a></li>
+                            <li><a title="文章分类">前端</a></li>
+                            <li><a title="文章分类">大数据</a></li>
+                            <li><a title="文章分类">编程</a></li>
+                            <li><a title="文章分类">移动开发</a></li>
+                            <li><a title="文章分类">架构</a></li>
+                            <li><a>其他</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-md-offset-2 col-xs-offset-2 col-md-7 col-xs-8">
+                <div class="article-panel">
+
+{#                    content-box内容for循环生成 #}
+                    <div class="content-box" id='1'>
+                        <div class="content-title">
+                            <h4><a href="">python datetime模块基本操作</a></h4>
+                        </div>
+                        <div class="content-tag">
+                            <a title="该文章的标签">标签1</a>
+                            <a title="该文章的标签">标签2</a>
+                        </div>
+                        <div class="content">
+                            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+                                parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                        </div>
+                        <dl class="article-info">
+                            <dd class="writer">
+                                <a href="">作者</a>
+                            </dd>
+                            <dd class="article-time">
+                                <span>2018-06-11</span>
+                            </dd>
+                            <div class="comment">
+                                <dd class="support">
+                                    <a title="点赞"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                </dd>
+                                <dd class="refute">
+                                    <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                </dd>
+                                <dd class="read">
+                                    <a title="浏览"><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
+                                </dd>
+                                <dd class="comment-num">
+                                    <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                    <div class="content-box">
+                        <div class="content-title">
+                            <h4><a href="">python datetime模块基本操作</a></h4>
+                        </div>
+                        <div class="content-tag">
+                            <a title="该文章的标签">标签1</a>
+                            <a title="该文章的标签">标签2</a>
+                        </div>
+                        <div class="content">
+                            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
+                                parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+                        </div>
+                        <dl class="article-info">
+                            <dd class="writer">
+                                <a href="">作者</a>
+                            </dd>
+                            <dd class="article-time">
+                                <span>2018-06-11</span>
+                            </dd>
+                            <div class="comment">
+                                <dd class="support">
+                                    <a title="点赞" ><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                </dd>
+                                <dd class="refute">
+                                    <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                </dd>
+                                <dd class="read">
+                                    <a title="浏览"><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
+                                </dd>
+                                <dd class="comment-num">
+                                    <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

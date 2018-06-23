@@ -1,0 +1,60 @@
+.article-info{
+    height: 24px;
+    line-height: 24px;
+}
+
+.article-info dd {
+    float: left;
+    font-size: 9px;
+    color: #8a8a8a;
+    line-height: 24px;
+    margin-right: 20px;
+}
+
+.writer{
+
+}
+
+.writer a{
+     font-size: 13px;
+ }
+
+.writer a:hover{
+    color: #ac2925;
+}
+
+.comment{
+    float: right;
+    line-height: 24px;
+}
+
+.comment a{
+    color: #777;
+}
+
+.comment a:hover{
+    color: #f5940b;
+}
+
+.comment span {
+    right: 3px;
+    top: 2px;
+    font-size: 13px;
+}
+
+.read {
+    float: left;
+    text-align: center;
+}
+
+.comment-num {
+    float: left;
+}
+
+.refute {
+    float: left;
+}
+
+.support {
+    float: left;
+}

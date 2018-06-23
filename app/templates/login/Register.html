@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewpoint" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../static/css/bootstrap-theme.min.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../../static/css/login.css" type="text/css">
+
+    <script src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
+    <script src="../../static/js/register/validation.js"></script>
+    <title>注册账号|ITC技术社区</title>
+</head>
+<body>
+<div class="nav-box">
+    <nav class="navbar navbar-expand-md navbar-light bg-light" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-collapse"
+                        aria-controls="nav-collapse">
+                    <span class="sr-only">toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="nav-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a>首页</a></li>
+                    <li class="active"><a>登录</a></li>
+                    <li><a>注册</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </nav>
+</div>
+
+<!--<div class="container">-->
+<!--{% for message in get_flashed_messages() %}-->
+<!--<div class="alert alert-warning">-->
+<!--<button type="button" class="close" data-dismiss="alert">&times;</button>-->
+<!--{{ message }}-->
+<!--</div>-->
+<!--{% endfor %}-->
+<!--</div>-->
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-offset-3 col-md-offset-3 col-xs-6 col-md-6">
+            <div class="register-panel">
+                <div class="logo">
+                    <h1><a title="ITC技术社区">ITC</a></h1>
+                </div>
+                <form class="login-form" action="" method="post" name="loginForm" role="form">
+                    <div class="form-group input-box">
+                        <span class="glyphicon glyphicon-user"></span>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名,4-20个字符,不含-和_以为的特殊字符"
+                               maxlength="20" autofocus="autofocus">
+                    </div>
+                    <div class="form-group input-box">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <input type="text" class="form-control" id="email" name="email" placeholder="请输入邮箱"
+                               maxlength="35" autofocus="autofocus">
+                    </div>
+                    <div class="form-group input-box">
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        <input type="text" class="form-control" id="phone" name="phone" placeholder="请输入手机号(11位)"
+                               maxlength="26" autofocus="autofocus">
+                    </div>
+                    <div class="form-group input-box">
+                        <span class="glyphicon glyphicon-lock"></span>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码,7-30个字符,不含-和_以为的特殊字符"
+                               maxlength="30">
+                    </div>
+                    <div class="form-group input-box">
+                        <span class="glyphicon glyphicon-lock"></span>
+                        <input type="password" class="form-control" id="confirm" name="confirm" placeholder="再次输入，确认密码"
+                               maxlength="30">
+                    </div>
+                    <!--<div  class="tip_div" align="center">-->
+                        <!--<div id="loginTip" class="tip" align="center"></div>-->
+                    <!--</div>-->
+                    <input class="btn btn-large btn-login" type="submit" value="注&nbsp;&nbsp;&nbsp;&nbsp;册"
+                           id="login">
+                    <div class="small_link">
+                        <span>已有账号？&nbsp;</span>
+                        <a>登录</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script language="JavaScript">
+    var loginForm = document.getElementById('loginForm');
+    $("#login").click(function () {
+        document.getElementById("password").value = md5(document.getElementById("password").value);
+        loginForm.submit();
+        window.location.href="index.html";
+    });
+</script>
+</html>
