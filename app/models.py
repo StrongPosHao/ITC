@@ -1,5 +1,7 @@
 from app.exts import db
 from datetime import datetime
+from flask_login import UserMixin
+from app.exts import login_manager
 
 
 class Follow(db.Model):
@@ -44,24 +46,24 @@ class FavoriteQuestion(db.Model):
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
 
-class User(db.Model):
+class User(UserMixin, db.Model):
     __tablename__ = 'User'
     userId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userName = db.Column(db.Unicode(20), nullable=False)
+    username = db.Column(db.Unicode(20), nullable=False)
     email = db.Column(db.Unicode(64), nullable=False)
     phone = db.Column(db.CHAR(11), nullable=False)
     password = db.Column(db.Unicode(100), nullable=False)
-    headImage = db.Column(db.Unicode(256), nullable=False)
-    permission = db.Column(db.CHAR(1), nullable=False)
+    headImage = db.Column(db.Unicode(256), default='static/image/defaultImage.jpg', nullable=False)
+    permission = db.Column(db.CHAR(1),default=0, nullable=False)
     introduction = db.Column(db.Text, default='这家伙很懒，什么也没有写~', nullable=False)
-    tags = db.relationship('UserTag', foreign_keys=[UserTag.tagId],
-                           backref=db.backref('tags'),
+    tags = db.relationship('UserTag', foreign_keys=[UserTag.userId],
+                           backref=db.backref('tags', lazy='joined'),
                            lazy='dynamic',
                            cascade='all, delete-orphan')
     articles = db.relationship('Article', backref=db.backref('articles'))
-    questions = db.relationship('Question', backref=db.backref('questions'))
+    questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic')
     drafts = db.relationship('Draft', backref=db.backref('drafts'))
-    answers = db.relationship('Answer', backref=db.backref('answers'))
+    user_answers = db.relationship('Answer', backref=db.backref('user_answers'))
     followed = db.relationship('Follow', foreign_keys=[Follow.followerId],
                                backref=db.backref('follower', lazy='joined'),
                                lazy='dynamic',
@@ -70,15 +72,20 @@ class User(db.Model):
                                 backref=db.backref('followed', lazy='joined'),
                                 lazy='dynamic',
                                 cascade='all, delete-orphan')
-    favoriteArticles = db.relationship('FavoriteArticle', foreign_keys=[FavoriteArticle.articleId],
+    favoriteArticles = db.relationship('FavoriteArticle', foreign_keys=[FavoriteArticle.userId],
                                        backref=db.backref('articles', lazy='joined'),
                                        lazy='dynamic',
                                        cascade='all, delete-orphan')
-    favoriteQuestions = db.relationship('FavoriteQuestion', foreign_keys=[FavoriteQuestion.questionId],
+    favoriteQuestions = db.relationship('FavoriteQuestion', foreign_keys=[FavoriteQuestion.userId],
                                         backref=db.backref('questions', lazy='joined'),
                                         lazy='dynamic',
                                         cascade='all, delete-orphan')
     notifications = db.relationship('Notification', backref=db.backref('notifications'))
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class Admin(db.Model):
@@ -95,14 +102,15 @@ class Admin(db.Model):
 class Question(db.Model):
     __tablename__ = 'Question'
     questionId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'))
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     answers = db.relationship('Answer', backref=db.backref('answers'))
-    tags = db.relationship('QuestionTag', foreign_keys=[QuestionTag.tagId], backref=db.backref('tags', lazy='joined'),
+    tags = db.relationship('QuestionTag', foreign_keys=[QuestionTag.questionId], backref=db.backref('tags', lazy='joined'),
                            lazy='dynamic',
                            cascade='all, delete-orphan')
-    favoriteUsers = db.relationship('FavoriteQuestion', foreign_keys=[FavoriteQuestion.userId],
+    favoriteUsers = db.relationship('FavoriteQuestion', foreign_keys=[FavoriteQuestion.questionId],
                                     lazy='dynamic',
                                     cascade='all, delete-orphan')
 
@@ -123,10 +131,10 @@ class Article(db.Model):
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    tags = db.relationship('ArticleTag', foreign_keys=[ArticleTag.tagId], backref=db.backref('tags', lazy='joined'),
+    tags = db.relationship('ArticleTag', foreign_keys=[ArticleTag.articleId], backref=db.backref('tags', lazy='joined'),
                            lazy='dynamic',
                            cascade='all, delete-orphan')
-    favoriteUsers = db.relationship('FavoriteArticle', foreign_keys=[FavoriteArticle.userId],
+    favoriteUsers = db.relationship('FavoriteArticle', foreign_keys=[FavoriteArticle.articleId],
                                     backref=db.backref('favoriteUsers', lazy='joined'),
                                     lazy='dynamic',
                                     cascade='all, delete-orphan')
@@ -148,15 +156,15 @@ class Tag(db.Model):
     name = db.Column(db.Unicode(30), nullable=False)
     description = db.Column(db.Text, nullable=False)
     popularity = db.Column(db.Integer, default=0, nullable=False)
-    tagUsers = db.relationship('UserTag', foreign_keys=[UserTag.userId],
+    tagUsers = db.relationship('UserTag', foreign_keys=[UserTag.tagId],
                                backref=db.backref('users', lazy='joined'),
                                lazy='dynamic',
                                cascade='all, delete-orphan')
-    articles = db.relationship('ArticleTag', foreign_keys=[ArticleTag.articleId],
+    articles = db.relationship('ArticleTag', foreign_keys=[ArticleTag.tagId],
                                backref=db.backref('articles', lazy='joined'),
                                lazy='dynamic',
                                cascade='all, delete-orphan')
-    problems = db.relationship('ProblemTag', foreign_keys=[QuestionTag.questionId],
+    problems = db.relationship('QuestionTag', foreign_keys=[QuestionTag.tagId],
                                backref=db.backref('problems', lazy='joined'),
                                lazy='dynamic',
                                cascade='all, delete-orphan')
@@ -169,7 +177,7 @@ class ArticleComment(db.Model):
     articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    childComments = db.relationship('ArticleComment', backref=db.backref('childComments'))
+    # articleChildComments = db.relationship('ArticleComment', backref=db.backref('articleChildComments'))
 
 
 class AnswerComment(db.Model):
@@ -179,7 +187,7 @@ class AnswerComment(db.Model):
     userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    childComments = db.relationship('AnswerComment', backref=db.backref('childComments'))
+    # answerChildComments = db.relationship('AnswerComment', backref=db.backref('answerChildComments'))
 
 
 class Notification(db.Model):

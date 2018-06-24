@@ -2,16 +2,30 @@ from flask import Flask, render_template
 from config import Config
 from .exts import db
 from .exts import mail
+from .exts import login_manager
 from .models import *
+from flask_login import LoginManager
+
+# login_manager初始化
+
 
 
 def create_app():
+    r"""
+    app的构造工厂函数。
+    包括app的初始化配置和Blueprint的注册
+    :return: app
+    """
+
+    # 初始化并加载配置
     app = Flask(__name__)
     app.config.from_object(Config)
 
     mail.init_app(app)
     db.init_app(app)
+    login_manager.init_app(app)
 
+    # Blueprint注册
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
