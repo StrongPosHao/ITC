@@ -1,11 +1,56 @@
 {% extends "base.html" %}
 {% block title %}{{ UserName }}{% endblock %}
 {% block head %}
-
+    <link rel="stylesheet" href="../static/css/user.css">
 {% endblock %}
 {% block content %}
-    <h1>Index</h1>
-    <p class="important">
-      Welcome to my awesome homepage.
-    </p>
+        <div class="usercontent">
+            <img src="../static/image/touxiang.jpg" height="100" width="100" />
+            <div class="userintroduction">
+                <p>
+                    <b>{{UserName}}</b>
+                </p>
+                <p>{{UserIntroduction}}</p>
+            </div>
+            <button class=" btn btn-default userbtn ">编辑个人资料</button>
+        </div>
+    <div class="userblock row">
+        {% block usercontent %}{% endblock %}
+        <div class="tag col-lg-3 col-md-3 category-box">
+                    <div class="category">
+                        <p>我的标签</p>
+                    </div>
+                    <div class="category-tags">
+                        <div class="category-tag">
+                            <a>
+                                <span>mysql</span>×100</a>
+                        </div>
+                        <div class="category-tag">
+                            <a>
+                                <span>sql server</span>×10</a>
+                        </div>
+                        <div class="category-tag">
+                            <a>
+                                <span>jdbc</span>×1</a>
+                        </div>
+                        <div class="category-tag">
+                            <a>
+                                <span>oracle</span>×10</a>
+                        </div>
+                        <div class="category-tag">
+                            <a>
+                                <span>access</span>×10</a>
+                        </div>
+                        <div class="category-tag">
+                            <a>
+                                <span>sql</span>×60</a>
+                        </div>
+                    </div>
+                    <div class="add_tag_btn">
+                        <a>
+                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 添加标签</a>
+                    </div>
+                </div>
+    </div>
+
 {% endblock %}
