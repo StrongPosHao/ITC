@@ -54,15 +54,12 @@ class User(UserMixin, db.Model):
     phone = db.Column(db.CHAR(11), nullable=False)
     password = db.Column(db.Unicode(100), nullable=False)
     headImage = db.Column(db.Unicode(256), default='static/image/defaultImage.jpg', nullable=False)
-    permission = db.Column(db.CHAR(1),default=0, nullable=False)
+    permission = db.Column(db.CHAR(1), default=0, nullable=False)
     introduction = db.Column(db.Text, default='这家伙很懒，什么也没有写~', nullable=False)
-    tags = db.relationship('UserTag', foreign_keys=[UserTag.userId],
-                           backref=db.backref('tags', lazy='joined'),
-                           lazy='dynamic',
-                           cascade='all, delete-orphan')
-    articles = db.relationship('Article', backref=db.backref('articles'))
+    tags = db.relationship('UserTag', backref=db.backref('tags'), lazy='dynamic')
+    articles = db.relationship('Article', backref=db.backref('articles'), lazy='dynamic')
     questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic')
-    drafts = db.relationship('Draft', backref=db.backref('drafts'))
+    drafts = db.relationship('Draft', backref=db.backref('drafts'), lazy='dynamic')
     user_answers = db.relationship('Answer', backref=db.backref('user_answers'))
     followed = db.relationship('Follow', foreign_keys=[Follow.followerId],
                                backref=db.backref('follower', lazy='joined'),
@@ -72,15 +69,9 @@ class User(UserMixin, db.Model):
                                 backref=db.backref('followed', lazy='joined'),
                                 lazy='dynamic',
                                 cascade='all, delete-orphan')
-    favoriteArticles = db.relationship('FavoriteArticle', foreign_keys=[FavoriteArticle.userId],
-                                       backref=db.backref('articles', lazy='joined'),
-                                       lazy='dynamic',
-                                       cascade='all, delete-orphan')
-    favoriteQuestions = db.relationship('FavoriteQuestion', foreign_keys=[FavoriteQuestion.userId],
-                                        backref=db.backref('questions', lazy='joined'),
-                                        lazy='dynamic',
-                                        cascade='all, delete-orphan')
-    notifications = db.relationship('Notification', backref=db.backref('notifications'))
+    favoriteArticles = db.relationship('FavoriteArticle', backref=db.backref('articles'), lazy='dynamic')
+    favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
+    notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
 
 
 @login_manager.user_loader
@@ -107,12 +98,8 @@ class Question(db.Model):
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     answers = db.relationship('Answer', backref=db.backref('answers'))
-    tags = db.relationship('QuestionTag', foreign_keys=[QuestionTag.questionId], backref=db.backref('tags', lazy='joined'),
-                           lazy='dynamic',
-                           cascade='all, delete-orphan')
-    favoriteUsers = db.relationship('FavoriteQuestion', foreign_keys=[FavoriteQuestion.questionId],
-                                    lazy='dynamic',
-                                    cascade='all, delete-orphan')
+    tags = db.relationship('QuestionTag', backref=db.backref('tags'), lazy='dynamic')
+    favoriteUsers = db.relationship('FavoriteQuestion', lazy='dynamic')
 
 
 class Answer(db.Model):
@@ -131,13 +118,8 @@ class Article(db.Model):
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    tags = db.relationship('ArticleTag', foreign_keys=[ArticleTag.articleId], backref=db.backref('tags', lazy='joined'),
-                           lazy='dynamic',
-                           cascade='all, delete-orphan')
-    favoriteUsers = db.relationship('FavoriteArticle', foreign_keys=[FavoriteArticle.articleId],
-                                    backref=db.backref('favoriteUsers', lazy='joined'),
-                                    lazy='dynamic',
-                                    cascade='all, delete-orphan')
+    tags = db.relationship('ArticleTag', backref=db.backref('tags'), lazy='dynamic')
+    favoriteUsers = db.relationship('FavoriteArticle', backref=db.backref('favoriteUsers'), lazy='dynamic')
 
 
 class Draft(db.Model):
@@ -156,18 +138,9 @@ class Tag(db.Model):
     name = db.Column(db.Unicode(30), nullable=False)
     description = db.Column(db.Text, nullable=False)
     popularity = db.Column(db.Integer, default=0, nullable=False)
-    tagUsers = db.relationship('UserTag', foreign_keys=[UserTag.tagId],
-                               backref=db.backref('users', lazy='joined'),
-                               lazy='dynamic',
-                               cascade='all, delete-orphan')
-    articles = db.relationship('ArticleTag', foreign_keys=[ArticleTag.tagId],
-                               backref=db.backref('articles', lazy='joined'),
-                               lazy='dynamic',
-                               cascade='all, delete-orphan')
-    problems = db.relationship('QuestionTag', foreign_keys=[QuestionTag.tagId],
-                               backref=db.backref('problems', lazy='joined'),
-                               lazy='dynamic',
-                               cascade='all, delete-orphan')
+    tagUsers = db.relationship('UserTag', backref=db.backref('users'), lazy='dynamic')
+    articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic')
+    problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic')
 
 
 class ArticleComment(db.Model):
@@ -197,5 +170,3 @@ class Notification(db.Model):
     content = db.Column(db.Text, nullable=False)
     isRead = db.Column(db.Boolean, default=False, nullable=False)
     notifyTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-
-
