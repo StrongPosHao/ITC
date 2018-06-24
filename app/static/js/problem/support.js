@@ -11,6 +11,7 @@ function commentsupport(title,commentId,userId){
 
             //设置踩不能被点击
             $('#comment_'+commentId+' a[title="没帮助"]').attr('href',"javascript:return false;");
+            toastr.success('点赞成功!');
             send_to_back(title, commentId, userId,true)
         }else{
             $('#comment_'+commentId+' a[title="点赞"] span').css({ color: 'black' });
@@ -18,6 +19,7 @@ function commentsupport(title,commentId,userId){
             $($('#comment_'+commentId+' a[title="点赞"] span')[1]).text(supportpoint-1);
             
             $('#comment_'+commentId+' a[title="没帮助"]').attr('href',"javascript:commentsupport('没帮助',"+commentId+")");
+            toastr.info('取消点赞!');
             send_to_back(title, commentId, userId,false)
         }
     }
@@ -32,6 +34,7 @@ function commentsupport(title,commentId,userId){
 
             //设置点赞不能被点击
             $('#comment_'+commentId+' a[title="点赞"]').attr('href',"javascript:return false;");
+            toastr.success('踩成功!');
             send_to_back(title, commentId, userId,true)
         }else{
             $('#comment_'+commentId+' a[title="没帮助"] span').css({ color: 'black' });
@@ -39,6 +42,7 @@ function commentsupport(title,commentId,userId){
             $($('#comment_'+commentId+' a[title="没帮助"] span')[1]).text(supportpoint-1);
 
             $('#comment_'+commentId+' a[title="点赞"]').attr('href',"javascript:commentsupport('点赞',"+commentId+")");
+            toastr.info('取消踩!');
             send_to_back(title, commentId, userId,false)
         }
     }

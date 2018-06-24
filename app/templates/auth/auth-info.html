@@ -3,145 +3,209 @@
 {% block head %}
     <link rel="stylesheet" href="../../static/css/userinfo.css">
     <link rel="stylesheet" href="../../static/css/navbar.css" >
+
+    <script src="../../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
+    <script src="../../static/js/userinfo/showedit.js"></script>
+    <script src="../../static/js/userinfo/validation.js"></script>
 {% endblock %}
 {% block content %}
 
-<div class="userInfo_content">
-    <div class="userInfo_item1">
-        <div class="userInfo_imgandintro">
-            <div class="usr_img">
-                <img src="../static/image/touxiang.jpg" height="200" width="200"/>
-            </div>
-            <div class="userInfo_intro">
-                <p><label for="file" class="btn img_btn"><span class="camera_svg glyphicon glyphicon-camera" aria-hidden="true"></span>修改头像</label></p>
-                <form action="xxx" method="post" enctype="multipart/form-data">
-                    <input id="file"type="file"style="display:none">
-                </form>
-                <!--点击修改之后显示-->
-                <!--<div>-->
-                    <!--<input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">-->
-                    <!--<p><button class="btn btn-primary">确认</button> <button class="btn btn-default">取消</button></p>-->
-                <!--</div>-->
-                <p><b>UserName</b><span class="change_info"><button class="btn img_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button></span></p>
+    <!--content-->
+    <div class="userInfo_content">
+        <form class="userinfo-form" action="" method="post" name="userinfoForm">
+            <div class="userInfo_item1">
+                <div class="userInfo_imgandintro">
+                    <div class="usr_img">
+                        <img src="../static/image/touxiang.jpg" height="200" width="200" />
+                    </div>
 
-                <!--点击修改之后显示-->
-                <!--<div>-->
-                    <!--<input type="text" class="form-control" placeholder="Introduction" aria-describedby="basic-addon1">-->
-                    <!--<p><button class="btn btn-primary">确认</button> <button class="btn btn-default">取消</button></p>-->
-                <!--</div>-->
-                <p>Introduction<span class="change_info"><button class="btn img_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button></span></p>
+                    <div class="userInfo_intro">
+                        <p>
+                            <label for="file" class="btn img_btn">
+                                <span class="camera_svg glyphicon glyphicon-camera" aria-hidden="true"></span>修改头像</label>
+                        </p>
+                        <form action="xxx" method="post" enctype="multipart/form-data">
+                            <input id="file" type="file" style="display:none">
+                        </form>
+                        <!--点击修改之后显示-->
+                        <div style="display: none;" id='name_div_1'>
+                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                            <p>
+                                <button class="btn btn-primary">确认</button>
+                                <button class="btn btn-default">取消</button>
+                            </p>
+                        </div>
+                        <!--name_1-->
+                        <p id='name_p_1'>
+                            <b onmouseover="showEdit('name',1)">UserName</b>
+                            <span class="change_info">
+                                <button class="btn img_btn" id="name_1" style="visibility:hidden" onclick="showForm('name',1)">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button>
+                            </span>
+                        </p>
 
+                        <!--点击修改之后显示-->
+                        <div style="display: none;" id='intro_div_1'>
+                            <input type="text" id="introduction" name="introduction" class="form-control" placeholder="Introduction" aria-describedby="basic-addon1">
+                            <p>
+                                <button class="btn btn-primary">确认</button>
+                                <button class="btn btn-default">取消</button>
+                            </p>
+                        </div>
+                        <!-- <p>Introduction<span class="change_info"><button class="btn img_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button></span></p> -->
+                        <p id='intro_p_1'>
+                            <b onmouseover="showEdit('intro',1)">Introduction</b>
+                            <span class="change_info">
+                                <button class="btn img_btn" id="intro_1" style="visibility:hidden" onclick="showForm('intro',1)">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button>
+                            </span>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="userInfo_return">
+                    <button class="btn btn-default">返回我的主页></button>
+                </div>
             </div>
-        </div>
-        <div class="userInfo_return">
-            <button class="btn btn-default">返回我的主页></button>
+
+            <div class="userInfo_item2">
+                <div>
+                    <p>
+                        <b>邮箱</b>
+                    </p>
+                    <!--<p>atKsOption@163.com<span class="change_info"><button class="btn img_btn" data-toggle="modal" data-target="#email_model">编辑</button></span></p>-->
+
+                    <!--验证成功之后显示-->
+                    <div>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">
+                        <br>
+                        <p>
+                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-default">取消</button>
+                        </p>
+                    </div>
+
+
+                </div>
+
+
+
+                <div>
+                    <p>
+                        <b>手机号</b>
+                    </p>
+                    <p>
+                        已设置
+                        <span class="change_info">
+                            <button class="btn img_btn" data-toggle="modal" data-target="#phone_model">编辑</button>
+                        </span>
+                    </p>
+
+                    <!--验证成功之后显示-->
+                    <div>
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">
+                        <br>
+                        <p>
+                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-default">取消</button>
+                        </p>
+                    </div>
+
+                </div>
+                <div>
+                    <p>
+                        <b>密码</b>
+                    </p>
+                    <p>已设置
+                        <span class="change_info">
+                            <button class="btn img_btn" data-toggle="modal" data-target="#passwd_model">编辑</button>
+                        </span>
+                    </p>
+
+                    <!--验证成功之后显示-->
+                    <div>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="新的密码" aria-describedby="basic-addon1"
+                        />
+                        <br>
+                        <input type="password" id="confirm" name="confirm" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1"
+                        />
+                        <br>
+                        <p>
+                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-default">取消</button>
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </form>
+
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="email_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">修改邮箱</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="password" class="form-control" placeholder="请输入密码进行用户认证" aria-describedby="basic-addon1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">确认</button>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="userInfo_item2">
-        <div>
-            <p><b>邮箱</b></p>
-            <!--<p>atKsOption@163.com<span class="change_info"><button class="btn img_btn" data-toggle="modal" data-target="#email_model">编辑</button></span></p>-->
 
-            <!--验证成功之后显示-->
-            <div>
-            <input type="text" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">
-                <br>
-            <p><button class="btn btn-primary">确认</button> <button class="btn btn-default">取消</button></p>
-            </div>
-
-
-        </div>
-
-
-
-        <div>
-            <p><b>手机号</b></p>
-            <p>18208762894<span class="change_info"><button class="btn img_btn" data-toggle="modal" data-target="#phone_model">编辑</button></span></p>
-
-            <!--验证成功之后显示-->
-            <!--<div>-->
-            <!--<input type="text" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">-->
-                <!--<br>-->
-            <!--<p><button class="btn btn-primary">确认</button> <button class="btn btn-default">取消</button></p>-->
-            <!--</div>-->
-
-        </div>
-        <div>
-            <p><b>密码</b></p>
-            <p>已设置<span class="change_info"><button class="btn img_btn"data-toggle="modal" data-target="#passwd_model">编辑</button></span></p>
-
-            <!--验证成功之后显示-->
-            <div>
-            <input type="password" class="form-control" placeholder="新的密码" aria-describedby="basic-addon1"/>
-            <br>
-            <input type="password" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1"/>
-            <br>
-            <p><button class="btn btn-primary">确认</button> <button class="btn btn-default">取消</button></p>
-            </div>
-
-
-        </div>
-    </div>
-
-
-
-</div>
-<!-- Modal -->
-<div class="modal fade" id="email_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">修改邮箱</h4>
-            </div>
-            <div class="modal-body">
-                <input type="password" class="form-control" placeholder="请输入密码进行用户认证" aria-describedby="basic-addon1">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">确认</button>
+    <!-- Modal -->
+    <div class="modal fade" id="phone_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">修改手机号</h4>
+                </div>
+                <div class="modal-body">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;我们已向您的邮箱发送验证码</p>
+                    <input type="text" class="form-control" placeholder="请输入验证码进行用户认证" aria-describedby="basic-addon1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">确认</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="phone_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" >修改手机号</h4>
-            </div>
-            <div class="modal-body">
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;我们已向您的邮箱发送验证码</p>
-                <input type="text" class="form-control" placeholder="请输入验证码进行用户认证" aria-describedby="basic-addon1">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">确认</button>
+    <!-- Modal -->
+    <div class="modal fade" id="passwd_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">修改密码</h4>
+                </div>
+                <div class="modal-body">
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;我们已向您的邮箱发送验证码</p>
+                    <input type="text" class="form-control" placeholder="请输入验证码进行用户认证" aria-describedby="basic-addon1">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary">确认</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="passwd_model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" >修改密码</h4>
-            </div>
-            <div class="modal-body">
-                <p>&nbsp;&nbsp;&nbsp;&nbsp;我们已向您的邮箱发送验证码</p>
-                <input type="text" class="form-control" placeholder="请输入验证码进行用户认证" aria-describedby="basic-addon1">
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary">确认</button>
-            </div>
-        </div>
-    </div>
-</div>
 {% endblock %}

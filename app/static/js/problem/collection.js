@@ -4,10 +4,12 @@ function collect(userId, problemId) {
     if ($('.glyphicon.glyphicon-plus').text() == '收藏') {
         $('.btn.plus-pro').css({ color: 'blue' });
         $('.glyphicon.glyphicon-plus').html('已收藏');
+        toastr.success('收藏成功!');
         send_to_back(userId, problemId, true);
     } else {
         $('.btn.plus-pro').css({ color: 'orange' });
         $('.glyphicon.glyphicon-plus').html('收藏');
+        toastr.info('取消收藏!');
         send_to_back(userId, problemId, false);
     }
 }

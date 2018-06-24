@@ -3,9 +3,11 @@ function focus(user_id,writer_id){
   console.debug($('.plus').text())
   if($('.plus').text()=='关注'){
     $('.plus').html('<span style="color:blue"><span class="glyphicon glyphicon-plus"></span>已关注</span>')
+    toastr.success('关注成功!');
     send_to_back(user_id,writer_id,true);
   }else{
     $('.plus').html('<span><span class="glyphicon glyphicon-plus"></span>关注</span>')
+    toastr.info('取消关注!');
     send_to_back(user_id,writer_id,false);
   }
 }

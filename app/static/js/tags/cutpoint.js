@@ -4,12 +4,14 @@ function cut(title,tagId,userId){
         $('.btn.collect-btn').attr('title','收藏该标签');
         $('.btn.collect-btn').attr('onclick','cut("收藏该标签",1,1);');
         $('.btn.collect-btn span').attr('class','glyphicon glyphicon-plus-sign');
+        toastr.success('收藏标签成功!');
         send_to_back(userId,tagId,false);
     }
     if(title == '收藏该标签'){
         $('.btn.collect-btn').attr('title','取消收藏');
         $('.btn.collect-btn').attr('onclick','cut("取消收藏",1,1);');
         $('.btn.collect-btn span').attr('class','glyphicon glyphicon-minus-sign');
+        toastr.info('取消收藏标签!');
         send_to_back(userId,tagId,true);
     }
 }
