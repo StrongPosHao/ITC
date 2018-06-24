@@ -3,10 +3,7 @@ from . import auth
 from sqlalchemy import or_
 from app.models import *
 from app.exts import db
-
-
-# @auth.app_context_processor()
-# def
+from flask_login import logout_user, login_required
 
 
 @auth.route('/login', methods=['GET', 'POST'])
@@ -21,7 +18,7 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
 
-        user = User.query.filter(or_(User.email == username, User.phone == username, User.userName == username), User.password == password).first()
+        user = User.query.filter(or_(User.email == username, User.phone == username, User.username == username), User.password == password).first()
 
         if user:
             session['username'] = username
@@ -49,15 +46,54 @@ def register():
         if not (email and phone and username and password):
             return redirect(url_for('register'))
         user = User(username=username, email=email, phone=phone, password=password)
-        print(user)
         db.session.add(user)
         db.session.commit()
     return redirect(url_for('auth.login'))
 
 
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
+
+
 @auth.route('/forget-password')
 def forget_password():
     return render_template('auth/Login.html')
+
+
+# @auth.before_app_request
+# def my_before_request():
+#     r"""
+#     请求上下文管理器
+#     :return:
+#     """
+#     user = session.get('user')
+#     admin = session.get('admin')
+#     if user:
+#         g.user = user
+#     if admin:
+#         g.admin = admin
+
+
+@auth.context_processor
+def my_context_processor():
+    r"""
+    上下文处理器->将用户设置为可以在所有模板中访问
+    :return:
+    """
+    username = session.get('username')
+    adminname = session.get('admin')
+    if username:
+        user = User.query.filter(User.username == username).first()
+        g.user = user
+        return {'user': user}
+    elif adminname:
+        admin = Admin.query.filter(Admin.adminName == adminname).first()
+        g.admin = admin
+        return {'admin': admin}
+
 
 
 
