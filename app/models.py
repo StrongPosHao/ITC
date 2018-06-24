@@ -6,14 +6,14 @@ from app.exts import login_manager
 
 class Follow(db.Model):
     __tablename__ = 'Follow'
-    followerId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), primary_key=True)
-    followedId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), primary_key=True)
+    followerId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True)
+    followedId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True)
     followTime = db.Column(db.DateTime, default=datetime.now())
 
 
 class UserTag(db.Model):
     __tablename__ = 'UserTag'
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), primary_key=True, nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True, nullable=False)
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
@@ -35,20 +35,20 @@ class QuestionTag(db.Model):
 class FavoriteArticle(db.Model):
     __tablename__ = 'FavoriteArticle'
     articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), primary_key=True, nullable=False)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), primary_key=True, nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
 
 class FavoriteQuestion(db.Model):
     __tablename__ = 'FavoriteQuestion'
     questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), primary_key=True, nullable=False)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), primary_key=True, nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
 
 class User(UserMixin, db.Model):
     __tablename__ = 'User'
-    userId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    id = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
     username = db.Column(db.Unicode(20), nullable=False)
     email = db.Column(db.Unicode(64), nullable=False)
     phone = db.Column(db.CHAR(11), nullable=False)
@@ -75,13 +75,13 @@ class User(UserMixin, db.Model):
 
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User.query.get(int(user_id))
+def load_user(userid):
+    return User.get(userid)
 
 
 class Admin(db.Model):
     __tablename__ = 'Admin'
-    adminId = db.Column(db.BigInteger, primary_key=True, nullable=False)
+    id = db.Column(db.BigInteger, primary_key=True)
     adminName = db.Column(db.Unicode(20), nullable=False)
     email = db.Column(db.Unicode(64), nullable=False)
     phone = db.Column(db.CHAR(11), nullable=False)
@@ -93,7 +93,7 @@ class Admin(db.Model):
 class Question(db.Model):
     __tablename__ = 'Question'
     questionId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'))
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'))
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
@@ -105,7 +105,7 @@ class Question(db.Model):
 class Answer(db.Model):
     __tablename__ = 'Answer'
     answerId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     answerTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
@@ -114,7 +114,7 @@ class Answer(db.Model):
 class Article(db.Model):
     __tablename__ = 'Article'
     articleId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
@@ -125,7 +125,7 @@ class Article(db.Model):
 class Draft(db.Model):
     __tablename__ = 'Draft'
     draftId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     saveTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
@@ -157,7 +157,7 @@ class AnswerComment(db.Model):
     __tablename__ = 'AnswerComment'
     commentId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
     parentId = db.Column(db.BigInteger, db.ForeignKey('AnswerComment.commentId'), nullable=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     # answerChildComments = db.relationship('AnswerComment', backref=db.backref('answerChildComments'))
@@ -166,7 +166,7 @@ class AnswerComment(db.Model):
 class Notification(db.Model):
     __tablename__ = 'Notification'
     notificationId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.userId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     isRead = db.Column(db.Boolean, default=False, nullable=False)
     notifyTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
