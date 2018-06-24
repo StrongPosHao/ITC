@@ -22,13 +22,13 @@ def login():
         user = User.query.filter(or_(User.email == username, User.phone == username, User.username == username), User.password == password).first()
 
         if user:
-            login_user(user)
             session['username'] = username
             session.permanent = True
+            login_user(user)
             return redirect(url_for('main.index'))
         else:
             flash('用户名或密码错误，请检查您的输入后重试')
-            return redirect(url_for(login))
+            return redirect(url_for('auth.login'))
 
 
 @auth.route('/register', methods=['GET', 'POST'])
