@@ -19,6 +19,8 @@ function support(title, user_id, article_id) {
             if (title == '没帮助' || title == '举报') {
                 $(".btn.support[title='点赞']").attr('disabled', true);
             }
+
+            toastr.success(title+'成功!');
             //向后台发送数据
             send_to_back(title, user_id, article_id, true);
         } else {
@@ -40,6 +42,7 @@ function support(title, user_id, article_id) {
             if ($(".btn.support[title='举报'] span").css('color') != 'rgb(255, 163, 33)' && ($(".btn.support[title='没帮助'] span").css('color') != 'rgb(255, 163, 33)')) {
                 $(".btn.support[title='点赞']").attr('disabled', false);
             }
+            toastr.info("取消"+title+'!');
             //向后台发送数据
             send_to_back(title, user_id, article_id, false);
         }
