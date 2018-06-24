@@ -5,11 +5,18 @@
     <meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../../static/css/bootstrap-theme.min.css" type="text/css">
+    <link rel="stylesheet" href="../static/css/bootstrap-theme.min.css" type="text/css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
+    <link rel="stylesheet" href="../static/CodeSeven-toastr-50092cc/build/toastr.min.css" type="text/css">
+    <script src="../static/CodeSeven-toastr-50092cc/build/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.options.positionClass = 'toast-top-center';
+        toastr.options.timeOut = "1000";
+    </script>
 
     {% block head %}
     <title>{% block title %}{% endblock %}</title>
