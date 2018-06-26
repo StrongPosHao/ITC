@@ -102,9 +102,49 @@ def logout():
     return redirect(url_for('auth.login'))
 
 
-@auth.route('/forget-password')
+@auth.route('/forget-password', methods=['GET', 'POST'])
 def forget_password():
-    return render_template('auth/forgetpasswd.html')
+    r"""
+    忘记密码路由函数
+    :param token:
+    :return:
+    """
+    if request.method == 'GET':
+        return render_template('auth/forget-password.html')
+    else:
+        if not current_user.is_anonymous:
+            return redirect(url_for('main.index'))
+        username = request.form.get('username')
+        user = User.query.filter(User.username == username).first()
+        if user is None:
+            return '该用户不存在'
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        if email != user.email or phone != user.phone:
+            return '用户邮箱或手机号输入有误'
+        token = user.generate_reset_token()
+        send_mail(user.email, 'Reset Your Password', 'auth/email/reset_password' , user=user, token=token, next=request.args.get('next'))
+        return '一封确认和指导您重置密码的邮件已发往您的邮箱中!'
+
+
+@auth.route('/reset/<token>', methods=['GET', 'POST'])
+def password_reset(token):
+    if request.method == 'GET':
+        return render_template('auth/reset-password.html')
+    if not current_user.is_anonymous:
+        return redirect(url_for('main.index'))
+    else:
+        user = User.query.filter(User.email == request.form.get('email')).first()
+        if user is None:
+            return '邮箱输入错误'
+        if user.reset_password(token, request.form.get('password')):
+            db.session.commit()
+            flash('密码重置成功！')
+            return redirect(url_for('auth.login'))
+        else:
+            return redirect(url_for('main.index'))
+
+
 
 # @auth.before_app_request
 # def my_before_request():
