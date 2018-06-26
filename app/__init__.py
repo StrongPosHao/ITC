@@ -6,9 +6,6 @@ from .exts import login_manager
 from .models import *
 from flask_login import LoginManager
 
-# login_manager初始化
-
-
 
 def create_app():
     r"""

@@ -6,5 +6,10 @@ from flask_login import login_required
 @main.route('/')
 @login_required
 def index():
-    # return render_template('main/index.html')
-    return render_template('auth/auth-my-concern.html')
+    return render_template('main/index.html')
+    # return render_template('auth/auth-my-concern.html')
+
+
+# @main.route('/')
+# def test():
+#     return render_template('auth/auth-my-concern.html')
