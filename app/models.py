@@ -6,6 +6,10 @@ from datetime import datetime
 from flask_login import UserMixin
 from app.exts import login_manager
 
+from sqlalchemy.exc import IntegrityError
+from random import seed, randint
+import forgery_py
+
 
 class Follow(db.Model):
     __tablename__ = 'Follow'
@@ -110,6 +114,22 @@ class User(UserMixin, db.Model):
         db.session.add(self)
         return True
 
+    @staticmethod
+    def generate_fake(count=100):
+        seed()
+        for i in range(count):
+            u = User(email=forgery_py.internet.email_address(),
+                     phone="18787053797",
+                     username=forgery_py.internet.user_name(True),
+                     password=forgery_py.lorem_ipsum.word(),
+                     introduction=forgery_py.lorem_ipsum.sentence(),
+                     confirmed=True)
+            db.session.add(u)
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -157,6 +177,28 @@ class Article(db.Model):
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     tags = db.relationship('ArticleTag', backref=db.backref('tags'), lazy='dynamic')
     favoriteUsers = db.relationship('FavoriteArticle', backref=db.backref('favoriteUsers'), lazy='dynamic')
+
+    @staticmethod
+    def generate_fake(count=100):
+        seed()
+        user_count = User.query.count()
+        for i in range(count):
+            user = User.query.offset(randint(0, user_count - 1)).first()
+            title = forgery_py.lorem_ipsum.sentence()
+            if len(title) > 50:
+                title = title[:20]
+            print(len(title))
+            article = Article(userId=user.id, title=title,
+                              content=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
+                              publicTime=forgery_py.date.date(True))
+            db.session.add(article)
+            try:
+                db.session.commit()
+            except:
+                db.session.rollback()
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().username
 
 
 class Draft(db.Model):

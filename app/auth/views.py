@@ -145,7 +145,6 @@ def password_reset(token):
             return redirect(url_for('main.index'))
 
 
-
 # @auth.before_app_request
 # def my_before_request():
 #     r"""

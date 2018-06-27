@@ -12,17 +12,16 @@
                 <div class="form-box">
                     <form class="" action="" method="post">
                         <div class="title-box">
-                            <input type="text" class="form-control" placeholder="请输入文章标题">
+                            <input type="text" class="form-control" name="title" placeholder="请输入文章标题">
                         </div>
                         <div class="article-box">
                              <!--加载编辑器的容器-->
-                            <script id="container" name="content" type="text/plain" style="width: 100%; height:
-                            500px;z-index: -1;"></script>
+                            <script id="container" name="content" type="text/plain" style="width: 100%; height:500px; z-index: -1;"></script>
                         </div>
                         <div class="tail-box">
                             <div class="choose-cate-box">
                                 <span>文章类别：</span>
-                                <select class="form-control">
+                                <select class="form-control" name="tag">
                                     <option>人工智能</option>
                                     <option>大数据</option>
                                     <option>前端</option>
@@ -32,8 +31,8 @@
                                 </select>
                             </div>
                             <div class="choose-btn-box">
-                                <button type="submit" class="btn submit" value="发表">发表</button>
-                                <button class="btn draft" value="草稿">存为草稿</button>
+                                <button type="submit" name='publish' class="btn submit" value="发表">发表</button>
+                                <button type="submit" name='save' class="btn draft" value="草稿">存为草稿</button>
                                 <button class="btn return" value="返回">返回</button>
                             </div>
                         </div>
