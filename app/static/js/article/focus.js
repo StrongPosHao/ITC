@@ -14,7 +14,7 @@ function focus(user_id,writer_id){
 //向后台发送Ajax请求
 function send_to_back(user_id,writer_id,ischecked) {
     $.ajax({
-        url: '/XX',
+        url: '/',
         type: 'POST',
         data: 'user_id=' + user_id + '&writer_id=' + writer_id + '&ischecked' + ischecked,
         success: function (data) {

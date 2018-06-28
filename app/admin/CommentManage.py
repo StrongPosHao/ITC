@@ -8,8 +8,7 @@ from app.exts import db
 #跳转到用户管理界面,查询所有用户
 @admin.route('/user')
 def index():
-    articleComment = ArticleComment.query.all()
-    articleComment = ArticleComment.query.all()
+    users = Comm.query.filter_by(permission=0)
     return render_template('admin/admin-user.html',users = users)
 
 #处理删除单个请求
