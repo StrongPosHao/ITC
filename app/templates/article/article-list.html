@@ -44,78 +44,79 @@
             </div>
             <div class="col-md-offset-2 col-xs-offset-2 col-md-7 col-xs-8">
                 <div class="article-panel">
-
-{#                    content-box内容for循环生成 #}
-                    <div class="content-box" id='1'>
-                        <div class="content-title">
-                            <h4><a href="">python datetime模块基本操作</a></h4>
-                        </div>
-                        <div class="content-tag">
-                            <a title="该文章的标签">标签1</a>
-                            <a title="该文章的标签">标签2</a>
-                        </div>
-                        <div class="content">
-                            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
-                                parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                        <dl class="article-info">
-                            <dd class="writer">
-                                <a href="">作者</a>
-                            </dd>
-                            <dd class="article-time">
-                                <span>2018-06-11</span>
-                            </dd>
-                            <div class="comment">
-                                <dd class="support">
-                                    <a title="点赞"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
-                                </dd>
-                                <dd class="refute">
-                                    <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
-                                </dd>
-                                <dd class="read">
-                                    <a title="浏览"><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
-                                </dd>
-                                <dd class="comment-num">
-                                    <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
-                                </dd>
+                    {% for article in articles %}
+    {#                    content-box内容for循环生成 #}
+                        <div class="content-box" id='1'>
+                            <div class="content-title">
+                                <h4><a href="">{{ article.title }}</a></h4>
                             </div>
-                        </dl>
-                    </div>
-                    <div class="content-box">
-                        <div class="content-title">
-                            <h4><a href="">python datetime模块基本操作</a></h4>
-                        </div>
-                        <div class="content-tag">
-                            <a title="该文章的标签">标签1</a>
-                            <a title="该文章的标签">标签2</a>
-                        </div>
-                        <div class="content">
-                            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
-                                parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                        </div>
-                        <dl class="article-info">
-                            <dd class="writer">
-                                <a href="">作者</a>
-                            </dd>
-                            <dd class="article-time">
-                                <span>2018-06-11</span>
-                            </dd>
-                            <div class="comment">
-                                <dd class="support">
-                                    <a title="点赞" ><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
-                                </dd>
-                                <dd class="refute">
-                                    <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
-                                </dd>
-                                <dd class="read">
-                                    <a title="浏览"><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
-                                </dd>
-                                <dd class="comment-num">
-                                    <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
-                                </dd>
+                                {% for tag in article.tags %}
+                                    <div class="content-tag">
+                                        <a title="该文章的标签">tag</a>
+                                    </div>
+                                {% endfor %}
+                            <div class="content">
+                                <p>{{ article.content }}</p>
                             </div>
-                        </dl>
-                    </div>
+                            <dl class="article-info">
+                                <dd class="writer">
+                                    <a href="">{{ article.get_user() }}</a>
+                                </dd>
+                                <dd class="article-time">
+                                    <span>{{ article.publicTime }}</span>
+                                </dd>
+                                <div class="comment">
+                                    <dd class="support">
+                                        <a title="点赞"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                    </dd>
+                                    <dd class="refute">
+                                        <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                    </dd>
+                                    <dd class="read">
+                                        <a title="浏览"><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
+                                    </dd>
+                                    <dd class="comment-num">
+                                        <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
+                                    </dd>
+                                </div>
+                            </dl>
+                        </div>
+                    {% endfor %}
+{#                    <div class="content-box">#}
+{#                        <div class="content-title">#}
+{#                            <h4><a href="">python datetime模块基本操作</a></h4>#}
+{#                        </div>#}
+{#                        <div class="content-tag">#}
+{#                            <a title="该文章的标签">标签1</a>#}
+{#                            <a title="该文章的标签">标签2</a>#}
+{#                        </div>#}
+{#                        <div class="content">#}
+{#                            <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis#}
+{#                                parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>#}
+{#                        </div>#}
+{#                        <dl class="article-info">#}
+{#                            <dd class="writer">#}
+{#                                <a href="">作者</a>#}
+{#                            </dd>#}
+{#                            <dd class="article-time">#}
+{#                                <span>2018-06-11</span>#}
+{#                            </dd>#}
+{#                            <div class="comment">#}
+{#                                <dd class="support">#}
+{#                                    <a title="点赞" ><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>#}
+{#                                </dd>#}
+{#                                <dd class="refute">#}
+{#                                    <a title="没帮助"><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>#}
+{#                                </dd>#}
+{#                                <dd class="read">#}
+{#                                    <a title="浏览"><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>#}
+{#                                </dd>#}
+{#                                <dd class="comment-num">#}
+{#                                    <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>#}
+{#                                </dd>#}
+{#                            </div>#}
+{#                        </dl>#}
+{#                    </div>#}
 
                 </div>
             </div>

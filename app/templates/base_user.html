@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}{{ UserName }}{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="../static/css/user.css">
-    <script src="../static/js/user/deletenotice.js"></script>
-    <script src="../static/js/user/checknotice.js"></script>
-    <script src="../static/js/user/focus.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/user/deletenotice.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/user/checknotice.js') }}" type="text/javascript"></script>
+    <script src="{{ url_for('static', filename='js/user/focus.js') }}" type="text/javascript"></script>
 {% endblock %}
 {% block content %}
         <div class="usercontent">
-            <img src="../static/image/touxiang.jpg" height="100" width="100" />
+            <img src="{{ url_for('static', filename='image/touxiang.jpg') }}" height="100" width="100" />
             <div class="userintroduction">
                 <p>
                     <b>{{UserName}}</b>
