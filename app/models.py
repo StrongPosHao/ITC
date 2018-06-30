@@ -1,8 +1,15 @@
+from flask import current_app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
+
 from app.exts import db
 from datetime import datetime
 from flask_login import UserMixin
 from app.exts import login_manager
 from sqlalchemy.orm import class_mapper
+
+from sqlalchemy.exc import IntegrityError
+from random import seed, randint
+import forgery_py
 
 
 class Follow(db.Model):
@@ -49,7 +56,7 @@ class FavoriteQuestion(db.Model):
 
 class User(UserMixin, db.Model):
     __tablename__ = 'User'
-    id = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.Unicode(20), nullable=False)
     email = db.Column(db.Unicode(64), nullable=False)
     phone = db.Column(db.CHAR(11), nullable=False)
@@ -57,6 +64,7 @@ class User(UserMixin, db.Model):
     headImage = db.Column(db.Unicode(256), default='static/image/defaultImage.jpg', nullable=False)
     permission = db.Column(db.CHAR(1), default=0, nullable=False)
     introduction = db.Column(db.Text, default='这家伙很懒，什么也没有写~', nullable=False)
+    confirmed = db.Column(db.Boolean, default=False)
     tags = db.relationship('UserTag', backref=db.backref('tags'), lazy='dynamic')
     articles = db.relationship('Article', backref=db.backref('articles'), lazy='dynamic')
     questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic')
@@ -74,10 +82,59 @@ class User(UserMixin, db.Model):
     favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
     notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
 
+    def generate_confirmation_token(self, expiration=3600):
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
+        return s.dumps({'confirm': self.id})
+
+    def confirm(self, token):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except:
+            return False
+        if data.get('confirm') != self.id:
+            return False
+        self.confirmed = True
+        db.session.add(self)
+        # db.session.commit()
+        return True
+
+    def generate_reset_token(self, expiration=3600):
+        s = Serializer(current_app.config['SECRET_KEY'], expiration)
+        return s.dumps({'reset': self.id})
+
+    def reset_password(self, token, new_password):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            data = s.loads(token)
+        except:
+            return False
+        if data.get('reset') != self.id:
+            return False
+        self.password = new_password
+        db.session.add(self)
+        return True
+
+    @staticmethod
+    def generate_fake(count=100):
+        seed()
+        for i in range(count):
+            u = User(email=forgery_py.internet.email_address(),
+                     phone="18787053797",
+                     username=forgery_py.internet.user_name(True),
+                     password=forgery_py.lorem_ipsum.word(),
+                     introduction=forgery_py.lorem_ipsum.sentence(),
+                     confirmed=True)
+            db.session.add(u)
+            try:
+                db.session.commit()
+            except IntegrityError:
+                db.session.rollback()
+
 
 @login_manager.user_loader
-def load_user(userid):
-    return User.query.get(userid)
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 
 class Admin(db.Model):
@@ -121,6 +178,28 @@ class Article(db.Model):
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     tags = db.relationship('ArticleTag', backref=db.backref('tags'), lazy='dynamic')
     favoriteUsers = db.relationship('FavoriteArticle', backref=db.backref('favoriteUsers'), lazy='dynamic')
+
+    @staticmethod
+    def generate_fake(count=100):
+        seed()
+        user_count = User.query.count()
+        for i in range(count):
+            user = User.query.offset(randint(0, user_count - 1)).first()
+            title = forgery_py.lorem_ipsum.sentence()
+            if len(title) > 50:
+                title = title[:20]
+            print(len(title))
+            article = Article(userId=user.id, title=title,
+                              content=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
+                              publicTime=forgery_py.date.date(True))
+            db.session.add(article)
+            try:
+                db.session.commit()
+            except:
+                db.session.rollback()
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().username
 
 
 class Draft(db.Model):

@@ -1,0 +1,6 @@
+{{ user.username }}, 您好!
+    欢迎加入IT Community!
+    请点击下面的链接来确认您的账户注册:
+    {{ url_for('auth.confirm', token=token, _external=True) }}
+    我们真诚地欢迎您的到来!
+                                                 The ITC Team

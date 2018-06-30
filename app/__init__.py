@@ -6,9 +6,6 @@ from .exts import login_manager
 from .models import *
 from flask_login import LoginManager
 
-# login_manager初始化
-
-
 
 def create_app():
     r"""
@@ -32,6 +29,9 @@ def create_app():
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/admin')
 
+    from .user import user as user_blueprint
+    app.register_blueprint(user_blueprint, url_prefix='/user')
+
     from .article import article as article_blueprint
     app.register_blueprint(article_blueprint, url_prefix='/article')
 
@@ -39,6 +39,6 @@ def create_app():
     app.register_blueprint(auth_blueprint, url_prefix='/auth')
 
     from .question import question as question_blueprint
-    app.register_blueprint(question_blueprint, url_prefix='question')
+    app.register_blueprint(question_blueprint, url_prefix='/question')
 
     return app
