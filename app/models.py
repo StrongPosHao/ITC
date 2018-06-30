@@ -5,6 +5,7 @@ from app.exts import db
 from datetime import datetime
 from flask_login import UserMixin
 from app.exts import login_manager
+from sqlalchemy.orm import class_mapper
 
 from sqlalchemy.exc import IntegrityError
 from random import seed, randint
@@ -220,7 +221,10 @@ class Tag(db.Model):
     tagUsers = db.relationship('UserTag', backref=db.backref('users'), lazy='dynamic')
     articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic')
     problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic')
-
+    #将类转为字典，然后响应json
+    def as_dict(obj):
+        return dict((col.name, getattr(obj, col.name)) \
+                    for col in class_mapper(obj.__class__).mapped_table.c)
 
 class ArticleComment(db.Model):
     __tablename__ = 'ArticleComment'

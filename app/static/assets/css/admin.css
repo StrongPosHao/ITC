@@ -1,0 +1,18 @@
+.admin_btn{
+    display: flex;
+    margin-left: 90%;
+}
+.disabled{
+    pointer-events:none;
+}
+/*.dele_btn {*/
+    /*margin-left: 100%;*/
+/*}*/
+
+/*标签设置添加*/
+.tag_not_add{
+    color: #cc9540;
+}
+.tag_added{
+    color: #6cb859;
+}
