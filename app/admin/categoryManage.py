@@ -33,3 +33,28 @@ def batchdeletecategory():
         db.session.commit()
     return redirect(url_for('admin.categorylist'))
 
+#处理新增
+@admin.route('/category/add', methods=['GET','POST'])
+def AddCategory():
+    categoryName = request.form['categoryName']
+    categoryDescription = request.form['categoryDescription']
+    print(categoryName)
+    print(categoryDescription)
+    category = Tag(None,categoryName,categoryDescription,0)
+    db.session.add(category)
+    db.session.commit()
+    return redirect(url_for('admin.categorylist'))
+
+#处理编辑
+@admin.route('/category/edit', methods=['GET','POST'])
+def editCategory():
+    categoryId = request.form['categoryId']
+    categoryName = request.form['categoryName']
+    categoryDescription = request.form['categoryDescription']
+
+    currentCategory = Tag.query.filter_by(tagId=int(categoryId)).first()
+    currentCategory.name = categoryName
+    currentCategory.description = categoryDescription
+    db.session.commit()
+
+    return redirect(url_for('admin.categorylist'))

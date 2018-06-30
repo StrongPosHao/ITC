@@ -12,3 +12,4 @@ from . import AnswerManage
 from . import categoryManage
 from . import TagManage
 from . import ArticleTagManage
+from . import QuestionTagManage

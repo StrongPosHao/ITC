@@ -60,3 +60,55 @@ function send_to_back2(categoryIds) {
     });
 }
 
+//添加
+function add(){
+    console.debug($('#a-CATEGORY').val())
+    console.debug($('#a-DESCRIPTION').val())
+    var categoryName = $('#a-CATEGORY').val()
+    var categoryDescription = $('#a-DESCRIPTION').val()
+    send_to_back3(categoryName,categoryDescription)
+    toastr.success("新增类别成功!")
+    $('#a-CATEGORY').val("")
+    $('#a-DESCRIPTION').val("")
+}
+//向后台发送Ajax请求,新增类别
+function send_to_back3(categoryName,categoryDescription) {
+    $.ajax({
+        url: '/admin/category/add',
+        type: 'POST',
+        data: 'categoryName=' + categoryName + '&categoryDescription=' + categoryDescription,
+        success: function (data) {
+            window.location.reload();
+        }
+    });
+}
+var id
+//编辑
+function edit(categoryId,categoryName,categoryDescription){
+    id = categoryId
+    console.log(categoryId)
+    console.log(categoryName)
+    console.log(categoryDescription)
+    $('#e-CATEGORY').val(categoryName)
+    $('#e-DESCRIPTION').val(categoryDescription)
+}
+//确认编辑
+function confirmEdit(){
+    var categoryName = $('#e-CATEGORY').val()
+    var categoryDescription = $('#e-DESCRIPTION').val()
+    send_to_back4(id,categoryName,categoryDescription)
+    toastr.success("修改类别成功!")
+    $('#e-CATEGORY').val("")
+    $('#e-DESCRIPTION').val("")
+}
+//向后台发送Ajax请求,修改类别
+function send_to_back4(categoryId,categoryName,categoryDescription) {
+    $.ajax({
+        url: '/admin/category/edit',
+        type: 'POST',
+        data: 'categoryId=' + categoryId + '&categoryName=' + categoryName + '&categoryDescription=' + categoryDescription,
+        success: function (data) {
+            window.location.reload();
+        }
+    });
+}

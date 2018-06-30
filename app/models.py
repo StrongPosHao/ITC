@@ -32,12 +32,31 @@ class ArticleTag(db.Model):
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
+    def __init__(self,articleId,tagId,time):
+        self.articleId = articleId
+        self.tagId = tagId
+        self.time = time
+
+    # 将类转为字典，然后响应json
+    def as_dict(obj):
+        return dict((col.name, getattr(obj, col.name)) \
+                    for col in class_mapper(obj.__class__).mapped_table.c)
+
 
 class QuestionTag(db.Model):
     __tablename__ = 'QuestionTag'
     questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), primary_key=True, nullable=False)
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self,questionId,tagId,time):
+        self.questionId = questionId
+        self.tagId = tagId
+        self.time = time
+    # 将类转为字典，然后响应json
+    def as_dict(obj):
+        return dict((col.name, getattr(obj, col.name)) \
+                    for col in class_mapper(obj.__class__).mapped_table.c)
 
 
 class FavoriteArticle(db.Model):
@@ -221,6 +240,13 @@ class Tag(db.Model):
     tagUsers = db.relationship('UserTag', backref=db.backref('users'), lazy='dynamic')
     articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic')
     problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic')
+
+    def __init__(self,parentId,name,description,popularity):
+        self.parentId = parentId
+        self.name = name
+        self.description = description
+        self.popularity = popularity
+
     #将类转为字典，然后响应json
     def as_dict(obj):
         return dict((col.name, getattr(obj, col.name)) \
