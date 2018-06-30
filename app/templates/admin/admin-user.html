@@ -4,28 +4,31 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.css')}}" type="text/css">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.css')}}"
+          type="text/css">
     <script src="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.js')}}"></script>
     <script type="text/javascript">
         toastr.options.positionClass = 'toast-top-center';
         toastr.options.timeOut = "1000";
+
     </script>
 
     <script src="{{ url_for('static', filename='js/admin/delete.js')}}"></script>
 
 
-	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.ico')}}">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta charset="utf-8"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.ico')}}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 
-	<title>管理员|ITC</title>
+    <title>管理员|ITC</title>
 
-	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
+    <meta name="viewport" content="width=device-width"/>
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
 
     <!-- Animation library for notifications   -->
     <link href="{{ url_for('static', filename='assets/css/animate.min.css')}}" rel="stylesheet"/>
@@ -34,12 +37,12 @@
     <link href="{{ url_for('static', filename='assets/css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ url_for('static', filename='assets/css/demo.css')}}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/css/demo.css')}}" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="{{ url_for('static', filename='assets/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/css/pe-icon-7-stroke.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/admin.css')}}">
 
 </head>
@@ -47,10 +50,10 @@
 <div class="wrapper">
     <div class="sidebar" data-color="orange" data-image="assets/img/sidebar-4.jpg">
 
-    <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+        <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
 
 
-    	<div class="sidebar-wrapper">
+        <div class="sidebar-wrapper">
             <div class="logo">
                 <a href="#" class="simple-text">
                     administrator
@@ -59,43 +62,49 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="admin-user.html">
+                    <a href="{{ url_for('admin.index') }}">
                         <i class="pe-7s-user"></i>
                         <p>用户管理</p>
                     </a>
                 </li>
-                <li >
-                    <a href="admin-comment.html">
+                <li>
+                    <a href="{{ url_for('admin.aclist') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>评论管理</p>
+                        <p>文章评论管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-article.html">
+                    <a href="{{ url_for('admin.sclist') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>回答评论管理</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin.articlelist') }}">
                         <i class="pe-7s-news-paper"></i>
                         <p>文章管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-question.html">
+                    <a href="{{ url_for('admin.questionlist') }}">
                         <i class="pe-7s-pen"></i>
                         <p>问题管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-answer.html">
+                    <a href="{{ url_for('admin.answerlist') }}">
                         <i class="pe-7s-notebook"></i>
                         <p>回答管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-category.html">
+                    <a href="{{ url_for('admin.categorylist') }}">
                         <i class="pe-7s-graph"></i>
                         <p>类目管理</p>
                     </a>
                 </li>
                 <li class="disabled">
-                    <a href="admin-tag.html">
+                    <a href="{{ url_for('admin.taglist') }}">
                         <i class="pe-7s-science"></i>
                         <p>标签管理</p>
                     </a>
@@ -103,11 +112,10 @@
 
 
             </ul>
-    	</div>
+        </div>
     </div>
 
     <div class="main-panel">
-
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -120,38 +128,63 @@
 
 
                             <div class="content table-responsive table-full-width">
-                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del" onclick="batchdelete()">批量删除</button>
+                                <button class="btn btn-danger dele_btn" data-toggle="modal" data-target="#modal_del"
+                                        onclick="batchdelete()">批量删除
+                                </button>
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                        <th><input type="checkbox" class="user-group" onchange="checkChange(this)"/></th>
-                                        <th>ID</th>
-                                    	<th>Name</th>
-                                    	<th>e-mail</th>
-                                    	<th>Phone</th>
-                                    	<th>Authority</th>
-                                        <th>Operation</th>
+                                    <th><input type="checkbox" class="user-group" onchange="checkChange(this)"/></th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>E-mail</th>
+                                    <th>Phone</th>
+                                    <th>Authority</th>
+                                    <th>Operation</th>
                                     </thead>
                                     <tbody>
-                                        {% for r in users %}
-                                            <tr>
-                                                <td><input type="checkbox" class="user"/></td>
-                                                <td>{{r.id}}</td>
-                                                <td>{{r.username}}</td>
-                                                <td>{{r.email}}</td>
-                                                <td>{{r.phone}}</td>
-                                                <td>{{r.permission}}</td>
-                                                <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del" onclick="singledelete({{r.id}},'{{r.username}}')">删除</button></td>
-                                            </tr>
-                                        {% endfor %}
+                                    {% for r in users %}
+                                    <tr>
+                                        <td><input type="checkbox" class="user"/></td>
+                                        <td>{{r.id}}</td>
+                                        <td>{{r.username}}</td>
+                                        <td>{{r.email}}</td>
+                                        <td>{{r.phone}}</td>
+                                        <td>{{r.permission}}</td>
+                                        <td>
+                                            <button class="btn btn-danger btn-sm" data-toggle="modal"
+                                                    data-target="#modal_del"
+                                                    onclick="singledelete({{r.id}},'{{r.username}}')">删除
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
                                     </tbody>
                                 </table>
+
+                                <!--分页条-->
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination pagination-lg">
+                                        <li class="disabled">
+                                            <a href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="active"><a href="#">1</a></li>
+                                        <li><a href="#">2</a></li>
+                                        <li><a href="#">3</a></li>
+                                        <li><a href="#">4</a></li>
+                                        <li><a href="#">5</a></li>
+                                        <li>
+                                            <a href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
 
                             </div>
                         </div>
                     </div>
-
-
-
 
                 </div>
             </div>
@@ -167,7 +200,8 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
             </div>
             <div class="modal-body">
                 确定删除XXX吗？

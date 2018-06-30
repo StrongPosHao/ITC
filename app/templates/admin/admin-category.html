@@ -12,6 +12,7 @@
         toastr.options.timeOut = "1000";
     </script>
 
+    <script src="{{ url_for('static', filename='js/admin/category.js')}}"></script>
 
 	<meta charset="utf-8" />
 	<link rel="icon" type="image/png" href="../../static/assets/img/favicon.ico">
@@ -59,44 +60,50 @@
             </div>
 
             <ul class="nav">
-                <li >
-                    <a href="admin-user.html">
+                <li>
+                    <a href="{{ url_for('admin.index') }}">
                         <i class="pe-7s-user"></i>
                         <p>用户管理</p>
                     </a>
                 </li>
-                <li >
-                    <a href="admin-comment.html">
+                <li>
+                    <a href="{{ url_for('admin.aclist') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>评论管理</p>
+                        <p>文章评论管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-article.html">
+                    <a href="{{ url_for('admin.answerlist') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>回答评论管理</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin.articlelist') }}">
                         <i class="pe-7s-news-paper"></i>
                         <p>文章管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-question.html">
+                    <a href="{{ url_for('admin.questionlist') }}">
                         <i class="pe-7s-pen"></i>
                         <p>问题管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-answer.html">
+                    <a href="{{ url_for('admin.answerlist') }}">
                         <i class="pe-7s-notebook"></i>
                         <p>回答管理</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="admin-category.html">
+                    <a href="{{ url_for('admin.categorylist') }}">
                         <i class="pe-7s-graph"></i>
                         <p>类目管理</p>
                     </a>
                 </li>
                 <li class="disabled">
-                    <a href="admin-tag.html">
+                    <a href="{{ url_for('admin.taglist') }}">
                         <i class="pe-7s-science"></i>
                         <p>标签管理</p>
                     </a>
@@ -121,10 +128,10 @@
                             </div>
 
                             <div class="content table-responsive table-full-width">
-                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del">批量删除</button>
+                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del" onclick="batchdelete()">批量删除</button>
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                    <th><input type="checkbox" class="category-group" /></th>
+                                    <th><input type="checkbox" class="category-group" onchange="checkChange(this)" /></th>
                                     <th>ID</th>
                                     <th>Category</th>
                                     <th>Description</th>
@@ -133,66 +140,18 @@
                                     </thead>
 
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" class="category"/></td>
-                                        <td>1</td>
-                                        <td>前端</td>
-                                        <td>html, css, javascript, .......</td>
-                                        <td>9527</td>
-                                        <td><a href="admin-tag.html"><button class="btn btn-default btn-sm">标签查看</button></a></td>
-                                        <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit">编辑</button></td>
-                                        <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="category"/></td>
-                                        <td>1</td>
-                                        <td>前端</td>
-                                        <td>html, css, javascript, .......</td>
-                                        <td>9527</td>
-                                        <td><a href="admin-tag.html"><button class="btn btn-default btn-sm">标签查看</button></a></td>
-                                        <td><button class="btn btn-primary btn-sm">编辑</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="category"/></td>
-                                        <td>1</td>
-                                        <td>前端</td>
-                                        <td>html, css, javascript, .......</td>
-                                        <td>9527</td>
-                                        <td><a href="admin-tag.html"><button class="btn btn-default btn-sm">标签查看</button></a></td>
-                                        <td><button class="btn btn-primary btn-sm">编辑</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="category"/></td>
-                                        <td>1</td>
-                                        <td>前端</td>
-                                        <td>html, css, javascript, .......</td>
-                                        <td>9527</td>
-                                        <td><a href="admin-tag.html"><a href="admin-tag.html"><button class="btn btn-default btn-sm">标签查看</button></a></a></td>
-                                        <td><button class="btn btn-primary btn-sm">编辑</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="category"/></td>
-                                        <td>1</td>
-                                        <td>前端</td>
-                                        <td>html, css, javascript, .......</td>
-                                        <td>9527</td>
-                                        <td><a href="admin-tag.html"><button class="btn btn-default btn-sm">标签查看</button></a></td>
-                                        <td><button class="btn btn-primary btn-sm">编辑</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="category"/></td>
-                                        <td>1</td>
-                                        <td>前端</td>
-                                        <td>html, css, javascript, .......</td>
-                                        <td>9527</td>
-                                        <td><a href="admin-tag.html"><button class="btn btn-default btn-sm">标签查看</button></a></td>
-                                        <td><button class="btn btn-primary btn-sm">编辑</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
+                                        {% for c in categorys %}
+                                            <tr>
+                                                <td><input type="checkbox" class="category"/></td>
+                                                <td>{{c.tagId}}</td>
+                                                <td>{{c.name}}</td>
+                                                <td>{{c.description}}</td>
+                                                <td>{{c.popularity}}</td>
+                                                <td><a href="{{ url_for('admin.taglist',categoryId = c.tagId)}}"><button class="btn btn-default btn-sm">标签查看</button></a></td>
+                                                <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit">编辑</button></td>
+                                                <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del" onclick="singledelete({{c.tagId}})">删除</button></td>
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
                                 <button class="btn btn-info admin_btn" data-toggle="modal" data-target="#modal_add">新增</button>
@@ -224,7 +183,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="truedelete()">确认</button>
             </div>
         </div>
     </div>

@@ -2,19 +2,22 @@
 <html lang="en">
 <head>
 
-   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../static/assets/CodeSeven-toastr-50092cc/build/toastr.min.css" type="text/css">
-    <script src="../../static/assets/CodeSeven-toastr-50092cc/build/toastr.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.css')}}" type="text/css">
+    <script src="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.js')}}"></script>
     <script type="text/javascript">
         toastr.options.positionClass = 'toast-top-center';
         toastr.options.timeOut = "1000";
     </script>
 
+    <script src="{{ url_for('static', filename='js/admin/question.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/admin/select.js')}}"></script>
+
 
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="../../static/assets/img/favicon.ico">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.ico')}}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>管理员|ITC</title>
@@ -24,24 +27,22 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="../../static/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="../../static/assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='assets/css/animate.min.css')}}" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="../../static/assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-
+    <link href="{{ url_for('static', filename='assets/css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../static/assets/css/demo.css" rel="stylesheet" />
-
+    <link href="{{ url_for('static', filename='assets/css/demo.css')}}" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="../../static/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../static/assets/css/admin.css">
+    <link href="{{ url_for('static', filename='assets/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/admin.css')}}">
 </head>
 <body>
 
@@ -59,44 +60,50 @@
             </div>
 
             <ul class="nav">
-                <li >
-                    <a href="admin-user.html">
+                <li>
+                    <a href="{{ url_for('admin.index') }}">
                         <i class="pe-7s-user"></i>
                         <p>用户管理</p>
                     </a>
                 </li>
-                <li >
-                    <a href="admin-comment.html">
+                <li>
+                    <a href="{{ url_for('admin.aclist') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>评论管理</p>
+                        <p>文章评论管理</p>
                     </a>
                 </li>
-                <li >
-                    <a href="admin-article.html">
+                <li>
+                    <a href="{{ url_for('admin.sclist') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>回答评论管理</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin.articlelist') }}">
                         <i class="pe-7s-news-paper"></i>
                         <p>文章管理</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="admin-question.html">
+                    <a href="{{ url_for('admin.questionlist') }}">
                         <i class="pe-7s-pen"></i>
                         <p>问题管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-answer.html">
+                    <a href="{{ url_for('admin.answerlist') }}">
                         <i class="pe-7s-notebook"></i>
                         <p>回答管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-category.html">
+                    <a href="{{ url_for('admin.categorylist') }}">
                         <i class="pe-7s-graph"></i>
                         <p>类目管理</p>
                     </a>
                 </li>
                 <li class="disabled">
-                    <a href="admin-tag.html">
+                    <a href="{{ url_for('admin.taglist') }}">
                         <i class="pe-7s-science"></i>
                         <p>标签管理</p>
                     </a>
@@ -119,71 +126,28 @@
                                 <!--<p class="category">Here is a subtitle for this table</p>-->
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del">批量删除</button>
+                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del" onclick="batchdelete()">批量删除</button>
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                    <th><input type="checkbox" class="question-group" /></th>
-                                    <th>ID</th>
-                                    <th>Quizzer</th>
-                                    <th>Title</th>
-                                    <th>Time</th>
-                                    <th>Operation</th>
+                                        <th><input type="checkbox" class="question-group" onchange="checkChange(this)"/></th>
+                                        <th>ID</th>
+                                        <th>Quizzer</th>
+                                    	<th>Title</th>
+                                        <th>Time</th>
+                                        <th>Operation</th>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" class="question"/></td>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>怎么训练神经网络才能跳出局部最优解的问题呢?</td>
-                                        <td>2018-6-26 12:00:00</td>
-                                        <td><button class="btn btn-default btn-sm">标签设置</button></td>
-                                        <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="question"/></td>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>为什么这个css没有成功应用到html标签上?</td>
-                                        <td>2018-6-26 12:00:00</td>
-                                        <td><button class="btn btn-default btn-sm">标签设置</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="question"/></td>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>神经网络概述</td>
-                                        <td>2018-6-26 12:00:00</td>
-                                        <td><button class="btn btn-default btn-sm">标签设置</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="question"/></td>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>神经网络概述</td>
-                                        <td>2018-6-26 12:00:00</td>
-                                        <td><button class="btn btn-default btn-sm">标签设置</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="question"/></td>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>神经网络概述</td>
-                                        <td>2018-6-26 12:00:00</td>
-                                        <td><button class="btn btn-default btn-sm">标签设置</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="question"/></td>
-                                        <td>1</td>
-                                        <td>Dakota Rice</td>
-                                        <td>神经网络概述</td>
-                                        <td>2018-6-26 12:00:00</td>
-                                        <td><button class="btn btn-default btn-sm">标签设置</button></td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
+                                        {% for q in questions %}
+                                            <tr>
+                                                <td><input type="checkbox" class="question"/></td>
+                                                <td>{{q[0].questionId}}</td>
+                                                <td>{{q[1].username}}</td>
+                                                <td>{{q[0].title}}</td>
+                                                <td>{{q[0].publicTime}}</td>
+                                                <td><button class="btn btn-default btn-sm" data-toggle="modal" data-target="#modal_tag">标签设置</button></td>
+                                                <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del" onclick="singledelete({{q[0].questionId}})">删除</button></td>
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
 
@@ -202,7 +166,6 @@
     </div>
 </div>
 
-
 <!-- Modal -->
 <div class="modal fade" id="modal_del" tabindex="-1" role="dialog" aria-labelledby="modal_del">
     <div class="modal-dialog" role="document">
@@ -215,10 +178,57 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="truedelete()">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<!--标签设置添加-->
+<div class="modal fade" id="modal_tag" tabindex="-1" role="dialog" aria-labelledby="modal_tag">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <table  class="table table-bordered">
+                    <tr>
+                        <td class="warning">
+                            <p>其他标签</p>
+                            <select id="select1" style="width:100px" size="10" multiple="multiple" class="tag_not_add">
+                                <option value="选项1">选项1</option>
+                                <option value="选项2">选项2</option>
+                                <option value="选项3">选项3</option>
+                                <option value="选项4">选项4</option>
+                                <option value="选项5">选项5</option>
+                                <option value="选项6">选项6</option>
+                                <option value="选项7">选项7</option>
+                                <option value="选项8">选项8</option>
+                                <option value="选项9">选项9</option>
+                            </select>
+                        </td>
+                        <td align="center" >
+                            <input type="button" class="btn btn-success" onclick="sel1AddTosel2('select1','select2')" value="->"/><br/>
+                            <input type="button" class="btn btn-success" onclick="sel1AddAllTosel2('select1','select2')" value="=>"/><br/>
+                            <input type="button" class="btn btn-warning" onclick="sel1AddTosel2('select2','select1')" value="<-"/><br/>
+                            <input type="button" class="btn btn-warning" onclick="sel1AddAllTosel2('select2','select1')" value="<="/>
+                        </td>
+                        <td class="success">
+                            <p>已添加标签</p>
+                            <select id="select2" style="width:100px" size="10" multiple="multiple" class="tag_added"></select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
             </div>
         </div>
     </div>
 </div>
+
 </body>
 </html>

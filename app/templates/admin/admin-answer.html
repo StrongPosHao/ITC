@@ -2,19 +2,21 @@
 <html lang="en">
 <head>
 
-   <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="../../static/assets/CodeSeven-toastr-50092cc/build/toastr.min.css" type="text/css">
-    <script src="../../static/assets/CodeSeven-toastr-50092cc/build/toastr.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.css')}}" type="text/css">
+    <script src="{{ url_for('static', filename='assets/CodeSeven-toastr-50092cc/build/toastr.min.js')}}"></script>
     <script type="text/javascript">
         toastr.options.positionClass = 'toast-top-center';
         toastr.options.timeOut = "1000";
     </script>
 
+    <script src="{{ url_for('static', filename='js/admin/answer.js')}}"></script>
+
 
 	<meta charset="utf-8" />
-	<link rel="icon" type="image/png" href="../../static/assets/img/favicon.ico">
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/img/favicon.ico')}}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 	<title>管理员|ITC</title>
@@ -24,24 +26,22 @@
 
 
     <!-- Bootstrap core CSS     -->
-    <link href="../../static/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="../../static/assets/css/animate.min.css" rel="stylesheet"/>
+    <link href="{{ url_for('static', filename='assets/css/animate.min.css')}}" rel="stylesheet"/>
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="../../static/assets/css/light-bootstrap-dashboard.css" rel="stylesheet"/>
-
+    <link href="{{ url_for('static', filename='assets/css/light-bootstrap-dashboard.css')}}" rel="stylesheet"/>
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="../../static/assets/css/demo.css" rel="stylesheet" />
-
+    <link href="{{ url_for('static', filename='assets/css/demo.css')}}" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="../../static/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <link rel="stylesheet" href="../../static/assets/css/admin.css">
+    <link href="{{ url_for('static', filename='assets/css/pe-icon-7-stroke.css')}}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/admin.css')}}">
 </head>
 <body>
 
@@ -59,44 +59,50 @@
             </div>
 
             <ul class="nav">
-                <li >
-                    <a href="admin-user.html">
+                <li>
+                    <a href="{{ url_for('admin.index') }}">
                         <i class="pe-7s-user"></i>
                         <p>用户管理</p>
                     </a>
                 </li>
-                <li >
-                    <a href="admin-comment.html">
+                <li>
+                    <a href="{{ url_for('admin.aclist') }}">
                         <i class="pe-7s-note2"></i>
-                        <p>评论管理</p>
+                        <p>文章评论管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-article.html">
+                    <a href="{{ url_for('admin.sclist') }}">
+                        <i class="pe-7s-note2"></i>
+                        <p>回答评论管理</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('admin.articlelist') }}">
                         <i class="pe-7s-news-paper"></i>
                         <p>文章管理</p>
                     </a>
                 </li>
-                <li >
-                    <a href="admin-question.html">
+                <li>
+                    <a href="{{ url_for('admin.questionlist') }}">
                         <i class="pe-7s-pen"></i>
                         <p>问题管理</p>
                     </a>
                 </li>
                 <li class="active">
-                    <a href="admin-answer.html">
+                    <a href="{{ url_for('admin.answerlist') }}">
                         <i class="pe-7s-notebook"></i>
                         <p>回答管理</p>
                     </a>
                 </li>
                 <li>
-                    <a href="admin-category.html">
+                    <a href="{{ url_for('admin.categorylist') }}">
                         <i class="pe-7s-graph"></i>
                         <p>类目管理</p>
                     </a>
                 </li>
                 <li class="disabled">
-                    <a href="admin-tag.html">
+                    <a href="{{ url_for('admin.taglist') }}">
                         <i class="pe-7s-science"></i>
                         <p>标签管理</p>
                     </a>
@@ -119,65 +125,27 @@
                                 <!--<p class="category">Here is a subtitle for this table</p>-->
                             </div>
                             <div class="content table-responsive table-full-width">
-                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del">批量删除</button>
+                                <button class="btn btn-danger dele_btn"  data-toggle="modal" data-target="#modal_del" onclick="batchdelete()">批量删除</button>
                                 <table class="table table-hover table-striped">
                                     <thead>
-                                    <th><input type="checkbox" class="answer-group" /></th>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>time</th>
-                                    <th>content</th>
-                                    <th>Operation</th>
+                                        <th><input type="checkbox" class="question-group" onchange="checkChange(this)"/></th>
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th>Content</th>
+                                        <th>Time</th>
+                                        <th>Operation</th>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td><input type="checkbox" class="answer"/></td>
-                                        <td>1</td>
-                                        <td>WuKangjun</td>
-                                        <td>2018年6-26 17:20:15</td>
-                                        <td>飞机飞得我哈德的的发热凡人发热过热革命军人特过古天村沟通外侧层次感日出万绸如此房产市场发热猜测出人吃饭扯格村房地产完成如果趁热吃水果是如此愚蠢公馆村沟通次日头昏</td>
-                                        <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="answer"/></td>
-                                        <td>1</td>
-                                        <td>WuKangjun</td>
-                                        <td>2018年6-26 17:20:15</td>
-                                        <td>这个问题非常有趣balabalbalbalbalbalbalbabalbalbalbalbalbal</td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="answer"/></td>
-                                        <td>1</td>
-                                        <td>WuKangjun</td>
-                                        <td>2018年6-26 17:20:15</td>
-                                        <td>飞机飞得我哈德的的发热凡人发热过热革命军人特过古天村沟通外侧层次感日出万绸如此房产市场发热猜测出人吃饭扯格村房地产完成如果趁热吃水果是如此愚蠢公馆村沟通次日头昏</td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="answer"/></td>
-                                        <td>1</td>
-                                        <td>WuKangjun</td>
-                                        <td>2018年6-26 17:20:15</td>
-                                        <td>飞机飞得我哈德的的发热凡人发热过热革命军人特过古天村沟通外侧层次感日出万绸如此房产市场发热猜测出人吃饭扯格村房地产完成如果趁热吃水果是如此愚蠢公馆村沟通次日头昏</td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="answer"/></td>
-                                        <td>1</td>
-                                        <td>WuKangjun</td>
-                                        <td>2018年6-26 17:20:15</td>
-                                        <td>飞机飞得我哈德的此房产市场发热猜测出人吃饭扯格村房地产完成如果趁热吃水果是如此愚蠢公馆村沟通次日头昏</td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><input type="checkbox" class="answer"/></td>
-                                        <td>1</td>
-                                        <td>WuKangjun</td>
-                                        <td>2018年6-26 17:20:15</td>
-                                        <td>飞机飞得我哈德的的发热凡人发热过热革命军人特过古天村沟那一天牛肉汤vghostly而日vhev阿胶异瞳vescvecytrvc 让出vgrervgtrgvrtshfhceaf华北油田vcrgvh通外侧层次感日出万绸如此房产市场发热猜测出人吃饭扯格村房地产完成如果趁热吃水果是如此愚蠢公馆村沟通次日头昏</td>
-                                        <td><button class="btn btn-danger btn-sm">删除</button></td>
-                                    </tr>
+                                        {% for q in answers %}
+                                            <tr>
+                                                <td><input type="checkbox" class="question"/></td>
+                                                <td>{{q[0].questionId}}</td>
+                                                <td>{{q[1].username}}</td>
+                                                <td>{{q[0].content}}</td>
+                                                <td>{{q[0].answerTime}}</td>
+                                                <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del" onclick="singledelete({{q[0].answerId}})">删除</button></td>
+                                            </tr>
+                                        {% endfor %}
                                     </tbody>
                                 </table>
 
@@ -208,7 +176,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="truedelete()">确认</button>
             </div>
         </div>
     </div>
