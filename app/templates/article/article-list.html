@@ -50,14 +50,15 @@
                             <div class="content-title">
                                 <h4><a href="">{{ article.title }}</a></h4>
                             </div>
+                            <div class="content">
+                                <p>{{ article.content }}</p>
+                            </div>
                                 {% for tag in article.tags %}
                                     <div class="content-tag">
                                         <a title="该文章的标签">tag</a>
                                     </div>
                                 {% endfor %}
-                            <div class="content">
-                                <p>{{ article.content }}</p>
-                            </div>
+
                             <dl class="article-info">
                                 <dd class="writer">
                                     <a href="">{{ article.get_user() }}</a>
