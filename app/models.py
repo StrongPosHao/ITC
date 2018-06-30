@@ -8,7 +8,7 @@ from app.exts import login_manager
 
 from sqlalchemy.exc import IntegrityError
 from random import seed, randint
-import forgery_py
+# import forgery_py
 
 
 class Follow(db.Model):
