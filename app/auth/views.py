@@ -1,4 +1,3 @@
-import flask
 from flask import render_template, redirect, url_for, request, session, g, flash
 from app.email import send_mail
 from . import auth
@@ -123,7 +122,7 @@ def forget_password():
         if email != user.email or phone != user.phone:
             return '用户邮箱或手机号输入有误'
         token = user.generate_reset_token()
-        send_mail(user.email, 'Reset Your Password', 'auth/email/reset_password' , user=user, token=token, next=request.args.get('next'))
+        send_mail(user.email, 'Reset Your Password', 'auth/email/reset_password', user=user, token=token, next=request.args.get('next'))
         return '一封确认和指导您重置密码的邮件已发往您的邮箱中!'
 
 
