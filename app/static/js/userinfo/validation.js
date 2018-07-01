@@ -34,30 +34,30 @@ $(function () {
             //校验的错误提示信息，应与校验规则一一对应
             messages: {
                 username: {
-                    required: "亲爱的用户:用户名不能为空!",
-                    minlength: "亲爱的用户:用户名长度至少2位!"
+                    required: "用户名不能为空!",
+                    minlength: "用户名长度至少2位!"
                 },
                 introduction: {
-                    required: "亲爱的用户:介绍不能为空!",
-                    minlength: "亲爱的用户:请输入至少10个字符的自我介绍!"
+                    required: "介绍不能为空!",
+                    minlength: "请输入至少10个字符的自我介绍!"
                 },  
                 email: {
-                    required: "亲爱的用户:Email地址不能为空!",
-                    email: "亲爱的用户:请输入正确的email地址!"
+                    required: "Email地址不能为空!",
+                    email: "请输入正确的email地址!"
                 },
                 phone: {
-                    required: "亲爱的用户:手机号不能为空!",
-                    number: "亲爱的用户:手机号必须为数字!",
-                    rangelength: "亲爱的用户:请输入正确的手机位数!"
+                    required: "手机号不能为空!",
+                    number: "手机号必须为数字!",
+                    rangelength: "请输入正确的手机位数!"
                 },
                 password: {
-                    required: "亲爱的用户:密码不能为空!",
-                    minlength: jQuery.format("亲爱的用户:密码不能小于{0}个字符!")
+                    required: "密码不能为空!",
+                    minlength: jQuery.format("密码不能小于{0}个字符!")
                 },
                 confirm: {
-                    required: "亲爱的用户:确认密码不能为空!",
-                    minlength: "亲爱的用户:确认密码不能小于7个字符!",
-                    equalTo: "亲爱的用户:两次输入密码不一致!"
+                    required: "确认密码不能为空!",
+                    minlength: "确认密码不能小于7个字符!",
+                    equalTo: "两次输入密码不一致!"
                 }
             }
         });

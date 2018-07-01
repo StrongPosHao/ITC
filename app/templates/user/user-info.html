@@ -1,14 +1,14 @@
 {% extends "base.html" %}
 {% block title %}编辑个人资料{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/userinfo.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/userinfo.css') }}">
 
-    <script src="../../static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
-    <script src="../../static/js/userinfo/showedit.js"></script>
-    <script src="../../static/js/userinfo/validation.js"></script>
-    <script src="../../static/js/userinfo/userinfo.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.validate.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/userinfo/showedit.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/userinfo/validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/userinfo/userinfo.js') }}"></script>
 {% endblock %}
 {% block content %}
     <!--content-->
@@ -33,12 +33,12 @@
                             <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
                             <p>
                                 <button class="btn btn-primary">确认</button>
-                                <button class="btn btn-default">取消</button>
+                                <button class="btn btn-default" onclick="hideForm('name',1)">取消</button>
                             </p>
                         </div>
                         <!--name_1-->
-                        <p id='name_p_1'>
-                            <b onmouseover="showEdit('name',1)">UserName</b>
+                        <p onmouseover="showEdit('name',1)" onmouseout="hideEdit('name',1)" id='name_p_1'>
+                            <b >UserName</b>
                             <span class="change_info">
                                 <button class="btn img_btn" id="name_1" style="visibility:hidden" onclick="showForm('name',1)">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button>
@@ -50,12 +50,12 @@
                             <input type="text" id="introduction" name="introduction" class="form-control" placeholder="Introduction" aria-describedby="basic-addon1">
                             <p>
                                 <button class="btn btn-primary">确认</button>
-                                <button class="btn btn-default">取消</button>
+                                <button class="btn btn-default" onclick="hideForm('intro',1)">取消</button>
                             </p>
                         </div>
                         <!-- <p>Introduction<span class="change_info"><button class="btn img_btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button></span></p> -->
-                        <p id='intro_p_1'>
-                            <b onmouseover="showEdit('intro',1)">Introduction</b>
+                        <p onmouseover="showEdit('intro',1)" onmouseout="hideEdit('intro',1)" id='intro_p_1'>
+                            <b >Introduction</b>
                             <span class="change_info">
                                 <button class="btn img_btn" id="intro_1" style="visibility:hidden" onclick="showForm('intro',1)">
                                     <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> 修改</button>
@@ -69,24 +69,25 @@
                 </div>
             </div>
 
+
             <div class="userInfo_item2">
                 <div>
                     <p>
                         <b>邮箱</b>
                     </p>
-                    <p>atKsOption@163.com<span class="change_info"><button class="btn img_btn" >编辑</button></span></p>
+                    <p id="email_p_1">atKsOption@163.com<span class="change_info"><button class="btn img_btn" onclick="showForm('email',1)" >编辑</button></span></p>
 
                     <!--点击编辑之后显示-->
-{#                    <div>#}
-{#                        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码进行验证" aria-describedby="basic-addon1"/>#}
-{#                        <br>#}
-{#                        <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">#}
-{#                        <br>#}
-{#                        <p>#}
-{#                            <button class="btn btn-primary">确认</button>#}
-{#                            <button class="btn btn-default">取消</button>#}
-{#                        </p>#}
-{#                    </div>#}
+                    <div id="email_div_1" style="display: none">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码进行验证" aria-describedby="basic-addon1"/>
+                        <br>
+                        <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">
+                        <br>
+                        <p>
+                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-default" onclick="hideForm('email',1)">取消</button>
+                        </p>
+                    </div>
 
 
                 </div>
@@ -97,51 +98,52 @@
                     <p>
                         <b>手机号</b>
                     </p>
-                    <p>
-                        已设置
+                    <p id="phone_p_1">
+                        +86151****5202
                         <span class="change_info">
-                            <button class="btn img_btn" >编辑</button>
+                            <button class="btn img_btn" onclick="showForm('phone',1)">编辑</button>
                         </span>
                     </p>
 
                     <!--点击编辑之后显示-->
-{#                    <div>#}
-{#                        <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">#}
-{#                        <br>#}
-{#                        <p>#}
-{#                            <button class="btn btn-primary">确认</button>#}
-{#                            <button class="btn btn-default">取消</button>#}
-{#                        </p>#}
-{#                    </div>#}
+                    <div id="phone_div_1" style="display: none">
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">
+                        <br>
+                        <p>
+                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-default" onclick="hideForm('phone',1)">取消</button>
+                        </p>
+                    </div>
 
                 </div>
                 <div>
                     <p>
                         <b>密码</b>
                     </p>
-                    <p>已设置
+                    <p id="passwd_p_1">已设置
                         <span class="change_info">
-                            <button class="btn img_btn" >编辑</button>
+                            <button class="btn img_btn" onclick="showForm('passwd',1)">编辑</button>
                         </span>
                     </p>
 
                     <!--点击编辑之后显示-->
-{#                    <div>#}
-{#                        <input type="password" id="password" name="password" class="form-control" placeholder="新的密码" aria-describedby="basic-addon1"#}
-{#                        />#}
-{#                        <br>#}
-{#                        <input type="password" id="confirm" name="confirm" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1"#}
-{#                        />#}
-{#                        <br>#}
-{#                        <p>#}
-{#                            <button class="btn btn-primary">确认</button>#}
-{#                            <button class="btn btn-default">取消</button>#}
-{#                        </p>#}
-{#                    </div>#}
+                    <div id="passwd_div_1" style="display: none">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="新的密码" aria-describedby="basic-addon1"
+                        />
+                        <br>
+                        <input type="password" id="confirm" name="confirm" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1"
+                        />
+                        <br>
+                        <p>
+                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-default" onclick="hideForm('passwd',1)">取消</button>
+                        </p>
+                    </div>
 
 
                 </div>
             </div>
+
         </form>
 
 
