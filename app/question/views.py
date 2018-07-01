@@ -34,7 +34,6 @@ def content(question_id):
 @question.route('/comment_answer', methods=['POST'])
 def comment_answer():
     data = json.loads(request.form.get('data'))
-    print(data)
     user_id = current_user.id
     comment_content = data['content']
     answer_id = data['answerId']
