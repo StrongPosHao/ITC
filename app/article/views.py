@@ -6,13 +6,14 @@ from datetime import datetime
 from app.exts import db
 
 
-@article.route('/')
-def content():
+@article.route('/<article_id>', methods=['GET', 'POST'])
+def content(article_id):
     r"""
     文章内容页面
     :return:
     """
-    return render_template('article/article-content.html')
+    if request.method == 'GET':
+        return render_template('article/article-content.html')
 
 
 @article.route('/publish', methods=['GET', 'POST'])

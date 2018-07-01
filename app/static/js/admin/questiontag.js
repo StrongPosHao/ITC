@@ -1,16 +1,16 @@
-var aid
-function listTag(articleId){
-    console.debug(articleId)
-    send_to_back(articleId)
+var qid
+function listTag(questionId){
+    console.debug(questionId)
+    send_to_back(questionId)
     send_to_back1()
 }
 //向后台发送Ajax请求,获得已分配标签
-function send_to_back(articleId) {
-    aid = articleId
+function send_to_back(questionId) {
+    qid = questionId
     $.ajax({
-        url: '/admin/articletag',
+        url: '/admin/questiontag',
         type: 'POST',
-        data: 'articleId=' + articleId,
+        data: 'questionId=' + questionId,
         success: function (data) {
             $('#select2').html("")
             //将获取的字符串变为json对象
@@ -24,9 +24,9 @@ function send_to_back(articleId) {
     });
 }
 //向后台发送Ajax请求,获得所有标签
-function send_to_back1(articleId) {
+function send_to_back1(questionId) {
     $.ajax({
-        url: '/admin/articletag/all',
+        url: '/admin/questiontag/all',
         type: 'POST',
         success: function (data) {
             $('#select1').html("")
@@ -70,9 +70,9 @@ function confirmtag(){
 //向后台发送Ajax请求,获得已分配标签
 function send_to_back3(tagIds) {
     $.ajax({
-        url: '/admin/articletag/changetag',
+        url: '/admin/questiontag/changetag',
         type: 'POST',
-        data: 'tagIds=' + tagIds + '&articleId=' + aid,
+        data: 'tagIds=' + tagIds + '&questionId=' + qid,
         success: function (data) {
             window.location.reload();
         }

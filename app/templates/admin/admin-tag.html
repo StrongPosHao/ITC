@@ -130,7 +130,7 @@
                                     <thead>
                                     <th><input type="checkbox" class="category-group" onchange="checkChange(this)" /></th>
                                     <th>ID</th>
-                                    <th>Category</th>
+                                    <th>Tag</th>
                                     <th>Description</th>
                                     <th>Popularity</th>
                                     <th>Operation</th>
@@ -144,7 +144,7 @@
                                                 <td>{{c.name}}</td>
                                                 <td>{{c.description}}</td>
                                                 <td>{{c.popularity}}</td>
-                                                <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit">编辑</button></td>
+                                                <td><button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modal_edit" onclick="edit({{c.tagId}},'{{c.name}}','{{c.description}}')">编辑</button></td>
                                                 <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del" onclick="singledelete({{c.tagId}})">删除</button></td>
                                             </tr>
                                         {% endfor %}
@@ -191,12 +191,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">编辑XXX</h4>
+                <h4 class="modal-title">编辑子标签</h4>
             </div>
             <div class="modal-body">
                 <form >
                     <div class="form-group">
-                        <label for="e-CATEGORY">CATEGORY</label>
+                        <label for="e-CATEGORY">TAG</label>
                         <input type="text" class="form-control" id="e-CATEGORY" >
                     </div>
                     <div class="form-group">
@@ -207,7 +207,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="confirmEdit()">确认</button>
             </div>
         </div>
     </div>
@@ -220,7 +220,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">新增XXX</h4>
+                <h4 class="modal-title">新增子标签</h4>
             </div>
             <div class="modal-body">
                 <form >
@@ -236,7 +236,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="add()">确认</button>
             </div>
         </div>
     </div>

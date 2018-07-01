@@ -1,14 +1,17 @@
 {% extends "base.html" %}
 {% block title %}文章-ITC技术社区{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="../../static/css/index.css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/index(nl).css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/navbar(nl).css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/articles-index.css" type="text/css">
-    <script src="../../static/js/jquery.min.js"></script>
-    <script src="../../static/js/article/support.js"></script>
-    <script src="../../static/js/article/article-list.js"></script>
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index(nl).css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar(nl).css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/articles-index.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/article/support.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/article/article-list.js') }}"></script>
+
 {% endblock %}
 {% block content %}
 <div style="margin-top: 7.5em">
@@ -46,10 +49,9 @@
             <div class="col-md-offset-2 col-xs-offset-2 col-md-7 col-xs-8">
                 <div class="article-panel">
                     {% for article in articles %}
-    {#                    content-box内容for循环生成 #}
                         <div class="content-box" id='1'>
                             <div class="content-title">
-                                <h4><a href="">{{ article.title }}</a></h4>
+                                <h4><a href="{{ url_for('article.content', article_id=) }}">{{ article.title }}</a></h4>
                             </div>
                             <div class="content">
                                 <p>{{ article.content }}</p>

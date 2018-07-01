@@ -9,7 +9,7 @@ from sqlalchemy.orm import class_mapper
 
 from sqlalchemy.exc import IntegrityError
 from random import seed, randint
-# import forgery_py
+import forgery_py
 
 
 class Follow(db.Model):
@@ -32,12 +32,31 @@ class ArticleTag(db.Model):
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
+    def __init__(self,articleId,tagId,time):
+        self.articleId = articleId
+        self.tagId = tagId
+        self.time = time
+
+    # 将类转为字典，然后响应json
+    def as_dict(obj):
+        return dict((col.name, getattr(obj, col.name)) \
+                    for col in class_mapper(obj.__class__).mapped_table.c)
+
 
 class QuestionTag(db.Model):
     __tablename__ = 'QuestionTag'
     questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), primary_key=True, nullable=False)
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def __init__(self,questionId,tagId,time):
+        self.questionId = questionId
+        self.tagId = tagId
+        self.time = time
+    # 将类转为字典，然后响应json
+    def as_dict(obj):
+        return dict((col.name, getattr(obj, col.name)) \
+                    for col in class_mapper(obj.__class__).mapped_table.c)
 
 
 class FavoriteArticle(db.Model):
@@ -159,6 +178,27 @@ class Question(db.Model):
     tags = db.relationship('QuestionTag', backref=db.backref('tags'), lazy='dynamic')
     favoriteUsers = db.relationship('FavoriteQuestion', lazy='dynamic')
 
+    @staticmethod
+    def generate_fake(count=100):
+        seed()
+        user_count = User.query.count()
+        for i in range(count):
+            user = User.query.offset(randint(0, user_count - 1)).first()
+            title = forgery_py.lorem_ipsum.sentence()
+            if len(title) > 50:
+                title = title[:20]
+            question = Question(userId=user.id, title=title,
+                                content=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
+                                publicTime=forgery_py.date.date(True))
+            db.session.add(question)
+            try:
+                db.session.commit()
+            except:
+                db.session.rollback()
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().username
+
 
 class Answer(db.Model):
     __tablename__ = 'Answer'
@@ -167,6 +207,10 @@ class Answer(db.Model):
     questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     answerTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    answerComments = db.relationship('AnswerComment', backref=db.backref('comments'), lazy='dynamic')
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().username
 
 
 class Article(db.Model):
@@ -221,14 +265,23 @@ class Tag(db.Model):
     tagUsers = db.relationship('UserTag', backref=db.backref('users'), lazy='dynamic')
     articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic')
     problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic')
+
+    def __init__(self,parentId,name,description,popularity):
+        self.parentId = parentId
+        self.name = name
+        self.description = description
+        self.popularity = popularity
+
     #将类转为字典，然后响应json
     def as_dict(obj):
         return dict((col.name, getattr(obj, col.name)) \
                     for col in class_mapper(obj.__class__).mapped_table.c)
 
+
 class ArticleComment(db.Model):
     __tablename__ = 'ArticleComment'
     commentId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     parentId = db.Column(db.BigInteger, db.ForeignKey('ArticleComment.commentId'), nullable=True)
     articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -241,9 +294,13 @@ class AnswerComment(db.Model):
     commentId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
     parentId = db.Column(db.BigInteger, db.ForeignKey('AnswerComment.commentId'), nullable=True)
     userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
+    answerId = db.Column(db.BigInteger, db.ForeignKey('Answer.answerId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
     # answerChildComments = db.relationship('AnswerComment', backref=db.backref('answerChildComments'))
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().username
 
 
 class Notification(db.Model):
