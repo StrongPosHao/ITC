@@ -9,3 +9,23 @@ function saycomment(commentId){
     console.debug($('#comment_'+commentId+' + div .' + 'write-comment'));
     $('#comment_'+commentId+' + div .' + 'write-comment').css({ display:'inline' });
 }
+
+function post_child_comment(commentId, articleId) {
+    var content = $('#after_comment_' + commentId).val();
+    alert(content);
+    var data = {
+        data: JSON.stringify({
+            'content': content,
+            'parentId': commentId,
+            'articleId': articleId
+        })
+    };
+    $.ajax({
+        url: '/article/comment',
+        type: 'POST',
+        data: data,
+        success: function (res) {
+            window.location.reload();
+        },
+    });
+}

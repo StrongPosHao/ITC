@@ -32,7 +32,7 @@ class ArticleTag(db.Model):
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
-    def __init__(self,articleId,tagId,time):
+    def __init__(self, articleId, tagId, time):
         self.articleId = articleId
         self.tagId = tagId
         self.time = time
@@ -49,10 +49,11 @@ class QuestionTag(db.Model):
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
-    def __init__(self,questionId,tagId,time):
+    def __init__(self, questionId, tagId, time):
         self.questionId = questionId
         self.tagId = tagId
         self.time = time
+
     # 将类转为字典，然后响应json
     def as_dict(obj):
         return dict((col.name, getattr(obj, col.name)) \
@@ -220,6 +221,7 @@ class Article(db.Model):
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+    articleComments = db.relationship('ArticleComment', backref=db.backref('comments'), lazy='dynamic')
     tags = db.relationship('ArticleTag', backref=db.backref('tags'), lazy='dynamic')
     favoriteUsers = db.relationship('FavoriteArticle', backref=db.backref('favoriteUsers'), lazy='dynamic')
 
@@ -245,6 +247,10 @@ class Article(db.Model):
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
 
+    def get_article_comments(self):
+        return ArticleComment.query.filter(ArticleComment.articleId == self.articleId,
+                                           ArticleComment.parentId == None).all()
+
 
 class Draft(db.Model):
     __tablename__ = 'Draft'
@@ -266,13 +272,13 @@ class Tag(db.Model):
     articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic')
     problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic')
 
-    def __init__(self,parentId,name,description,popularity):
+    def __init__(self, parentId, name, description, popularity):
         self.parentId = parentId
         self.name = name
         self.description = description
         self.popularity = popularity
 
-    #将类转为字典，然后响应json
+    # 将类转为字典，然后响应json
     def as_dict(obj):
         return dict((col.name, getattr(obj, col.name)) \
                     for col in class_mapper(obj.__class__).mapped_table.c)
@@ -286,7 +292,17 @@ class ArticleComment(db.Model):
     articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
     # articleChildComments = db.relationship('ArticleComment', backref=db.backref('articleChildComments'))
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().username
+
+    def get_parent_comments(self):
+        return ArticleComment.query.filter(ArticleComment.parentId is None).all()
+
+    def get_child_comments(self):
+        return ArticleComment.query.filter(ArticleComment.parentId == self.commentId).all()
 
 
 class AnswerComment(db.Model):
@@ -297,6 +313,7 @@ class AnswerComment(db.Model):
     answerId = db.Column(db.BigInteger, db.ForeignKey('Answer.answerId'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
     # answerChildComments = db.relationship('AnswerComment', backref=db.backref('answerChildComments'))
 
     def get_user(self):

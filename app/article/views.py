@@ -1,9 +1,10 @@
 from flask import render_template, request, redirect, url_for, current_app
 from . import article
 from flask_login import current_user
-from ..models import User, Article, ArticleTag, Tag, Draft
+from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment
 from datetime import datetime
 from app.exts import db
+import json
 
 
 @article.route('/<article_id>', methods=['GET', 'POST'])
@@ -12,8 +13,34 @@ def content(article_id):
     文章内容页面
     :return:
     """
+    article1 = Article.query.filter(Article.articleId == article_id).first()
+
     if request.method == 'GET':
-        return render_template('article/article-content.html')
+        return render_template('article/article-content.html', article=article1)
+    else:
+        comment_content = request.form.get('comment_area')
+        comment_time = datetime.now()
+        article_comment = ArticleComment(articleId=article_id, content=comment_content, commentTime=comment_time,
+                                         userId=current_user.id)
+        db.session.add(article_comment)
+        db.session.commit()
+        return redirect(url_for('article.content', article_id=article_id, _external=True))
+
+
+@article.route('/comment', methods=['POST'])
+def comment():
+    data = json.loads(request.form.get('data'))
+    print(data)
+    user_id = current_user.id
+    comment_content = data['content']
+    article_id = data['articleId']
+    comment_time = datetime.now()
+    parent_id = data['parentId']
+    article_comment = ArticleComment(parentId=parent_id, articleId=article_id, content=comment_content,
+                                     commentTime=comment_time, userId=user_id)
+    db.session.add(article_comment)
+    db.session.commit()
+    return redirect(url_for('article.content', article_id=article_id, _external=True))
 
 
 @article.route('/publish', methods=['GET', 'POST'])
