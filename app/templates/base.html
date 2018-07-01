@@ -18,7 +18,12 @@
         toastr.options.positionClass = 'toast-top-center';
         toastr.options.timeOut = "2000";
 
+
     </script>
+    <!-- 配置文件 -->
+    <script type="text/javascript" src="{{ url_for('static', filename='ueditor/ueditor.config.pro.js') }}"></script>
+                <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="{{ url_for('static', filename='ueditor/ueditor.all.js') }}"></script>
 
     {% block head %}
     <title>{% block title %}{% endblock %}</title>
@@ -146,7 +151,7 @@
 {% block content %}{% endblock %}
 
 {% if True %}
-{# 如果已登录#}
+ 如果已登录
 <div class="write-question-box" style="display:none">
     <div class="question-container">
         <div class="box-title">
@@ -158,10 +163,10 @@
             </div>
             <div class="write-question">
                 <!--加载编辑器的容器-->
-                <script id="myEditor" type="text/plain" style="width: 100%;overflow: auto;
+                <script id="questionEditor" type="text/plain" name="questionEditor" style="width: 100%;overflow: auto;
     height:252px;z-index: -1;"></script>
+                </div>
 
-                    </div>
                     <div class="write-tag-box">
                     <div class="write-tag">
                     <div class="tag">
@@ -178,18 +183,13 @@
                     <button type="button" class="btn return-pro" onclick = "cancel()">取消</button>
                     </div>
                     </form>
-                    <!-- 配置文件 -->
-                    <script type="text/javascript" src="../static/ueditor/ueditor.config.pro.js"></script>
-                <!-- 编辑器源码文件 -->
-                <script type="text/javascript" src="../static/ueditor/ueditor.all.js"></script>
-                <!-- 实例化编辑器 -->
+
                 <script type="text/javascript">
-        var ue = UE.getEditor('myEditor',{
+        var ue = UE.getEditor('questionEditor',{
         toolbar:
         ['bold italic underline fullscreen', 'link unlink','insertcode',
         '| justifyleft justifycenter justifyright justifyjustify |', 'emotion image video  | map']
         });
-
                 </script>
             </div>
     </div>
