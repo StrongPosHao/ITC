@@ -56,9 +56,12 @@
                 </div>
                 <div class="collapse navbar-collapse" id="col-navbar">
                     <ul class="nav navbar-nav f-left-o">
-                        <li class="active"><a href="{{ url_for('main.index') }}">主页</a></li>
-                        <li><a href="{{ url_for('article.list_article') }}">文章</a></li>
-                        <li><a href="{{ url_for('question.list_question') }}">问答</a></li>
+
+
+
+                        <li id="nav_1" ><a href="{{ url_for('main.index') }}">主页</a></li>
+                        <li id="nav_2"><a  href="{{ url_for('article.list_article') }}">文章</a></li>
+                        <li id="nav_3"><a  href="{{ url_for('question.list_question') }}">问答</a></li>
                     </ul>
                     <form class="nav navbar-form f-left-t" role="search" action="" method="post" name="searchForm">
                         <div class="form-group input-box">
@@ -69,11 +72,11 @@
                         </div>
                     </form>
                     <ul class="nav navbar-nav f-left-th">
-                        <li><a href="{{ url_for('article.publish') }}">发文章</a></li>
+                        <li id="nav_4"><a href="{{ url_for('article.publish') }}">发文章</a></li>
                         <li><a href="{{ url_for('question.publish') }}">提问</a></li>
-                        <li><a title="消息通知" href="{{ url_for('user.notification', user_id = current_user.id, _external = True) }}"><span
+                        <li id="nav_5"><a title="消息通知" href="{{ url_for('user.notification', user_id = current_user.id, _external = True) }}"><span
                                 class="glyphicon glyphicon-envelope"></span><sup>1</sup></a></li>
-                        <li role="presentation" class="dropdown">
+                        <li  id="nav_6" role="presentation" class="dropdown">
                             <a title="个人中心" href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}"
                                target="_blank" class="dropdown-toggle head-img-box" data-toggle="dropdown" role="button"
                                aria-haspopup="true" aria-expanded="false"><img src="../../static/image/head.jpg"
