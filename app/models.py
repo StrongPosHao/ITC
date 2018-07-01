@@ -300,7 +300,7 @@ class AnswerComment(db.Model):
     # answerChildComments = db.relationship('AnswerComment', backref=db.backref('answerChildComments'))
 
     def get_user(self):
-        return User.query.filter(User.id == self.userId).first()
+        return User.query.filter(User.id == self.userId).first().username
 
 
 class Notification(db.Model):

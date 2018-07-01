@@ -10,24 +10,15 @@ import json
 @question.route('/<question_id>', methods=['GET', 'POST'])
 def content(question_id):
     ques = Question.query.filter(Question.questionId == question_id).first()
-    answers = Answer.query.all()
+    answers = ques.answers
     answer_comments_list = []
     for answer in answers:
         answer_comments = answer.answerComments
         answer_comments_list.append(answer_comments)
     if request.method == 'GET':
         return render_template('question/question-content.html', question=ques, question_id=question_id,
-                               answers=answers, answer_comments_list=answer_comments_list)
+                           answers=answers, answer_comments_list=answer_comments_list)
     else:
-        #     if request.form.get('comment', None) == 'comment':
-        #         comment_content = request.form.get('comment_content')
-        #         user_id = current_user.id
-        #         comment_time = datetime.now()
-        #         answer_id = request.form.get('answerId')
-        #         print(answer_id)
-        #         answer_comment = AnswerComment(userId=user_id, content=comment_content, commentTime=comment_time,
-        #                                        answerId=answer_id)
-        #         db.session.add(answer_comment)
         if request.form.get('answer', None) == 'answer':
             answer_content = request.form.get('answer_content')
             user_id = current_user.id
@@ -36,7 +27,7 @@ def content(question_id):
             answer = Answer(userId=user_id, questionId=question_id, content=answer_content,
                             answerTime=answer_time)
             db.session.add(answer)
-        db.session.commit()
+            db.session.commit()
         return redirect(url_for('question.content', question_id=question_id, _external=True))
 
 
@@ -46,9 +37,9 @@ def comment_answer():
     print(data)
     user_id = current_user.id
     comment_content = data['content']
-    answer_id = data['answer_id']
+    answer_id = data['answerId']
     comment_time = datetime.now()
-    question_id = data['question_id']
+    question_id = data['questionId']
     answer_comment = AnswerComment(userId=user_id, content=comment_content, answerId=answer_id,
                                    commentTime=comment_time)
     db.session.add(answer_comment)
