@@ -9,7 +9,7 @@ from sqlalchemy.orm import class_mapper
 
 from sqlalchemy.exc import IntegrityError
 from random import seed, randint
-import forgery_py
+# import forgery_py
 
 
 class Follow(db.Model):

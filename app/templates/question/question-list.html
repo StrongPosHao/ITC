@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}问答-ITC技术社区{% endblock %}
 {% block head %}
+    <link rel="stylesheet" href="../../static/css/index.css" type="text/css">
     <link rel="stylesheet" href="../../static/css/QA(nl).css" type="text/css">
     <link rel="stylesheet" href="../../static/css/navbar(nl).css" type="text/css">
     <link rel="stylesheet" href="../../static/css/QA.css" type="text/css">
@@ -44,20 +45,22 @@
                         <div class="content-title">
                             <h4><a href="">python datetime模块基本操作？</a></h4>
                         </div>
-                        <div class="writer">
-                            <a href="">作者</a>
-                            <span>2018-06-11</span>
-                        </div>
-
                         <div class="content">
                             <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
                                 parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
                         </div>
-                        <dl class="article-info">
-                            <div class="content-tag">
+                        <div class="content-tag">
                                 <a title="该问题的标签">标签1</a>
                                 <a title="该问题的标签">标签2</a>
                             </div>
+
+                        <dl class="article-info">
+                            <dd class="writer">
+                                <a href="">作者</a>
+                            </dd>
+                            <dd class="article-time">
+                                <span>2018-06-11</span>
+                            </dd>
                             <div class="comment">
                                 <dd class="support">
                                     <a title="点赞"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
@@ -73,6 +76,7 @@
                                 </dd>
                             </div>
                         </dl>
+
                     </div>
                     <div class="content-box">
                         <div class="content-title">
@@ -110,6 +114,25 @@
                     </div>
 
                 </div>
+                 <nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
             </div>
         </div>
     </div>
