@@ -14,6 +14,8 @@
 
     </script>
 
+
+
     <script src="{{ url_for('static', filename='js/admin/delete.js')}}"></script>
 
 
@@ -44,6 +46,150 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="{{ url_for('static', filename='assets/css/pe-icon-7-stroke.css')}}" rel="stylesheet"/>
     <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/admin.css')}}">
+
+    <!--分页-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='page/css/simplePaging.css')}}">
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script src="{{ url_for('static', filename='page/js/simplePaging.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/admin/page.js')}}"></script>
+    <style>
+        /*当前页面样式*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            position: relative;
+            font: 14px/1.42857143 'Microsoft YaHei', '微软雅黑', '宋体';
+            color: #333;
+            background-color: #fff;
+            min-width: 1220px;
+            max-width: 1920px;
+            margin: 0 auto;
+        }
+
+        .instructions {
+            position: absolute;
+            right: 0;
+            top: 50px;
+            margin: 20px;
+            width: 700px;
+        }
+
+        .instructions table {
+            width: 100%;
+        }
+
+        .instructions table th,
+        .instructions table td {
+            width: 15%;
+            text-align: center;
+            border: 1px solid #ccc;
+        }
+
+        .instructions table th:last-child,
+        .instructions table td:last-child {
+            width: 55%;
+            padding-left: 5px;
+            text-align: left;
+        }
+
+        .part {
+            width: 480px;
+            margin: 10px;
+            padding: 10px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        .part p {
+            padding-left: 2px;
+        }
+        .red{
+            color: red;
+        }
+        .page{
+            height: 20px;
+            line-height: 20px;
+        }
+        .page:before{
+            content: "回调显示页码：";
+            color: red;
+        }
+        pre{
+            display: block;
+            background-color: #ececec;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+        .title{
+            color: #f90;
+            margin-bottom: 2px;
+        }
+        .showPage{
+            border: 1px solid #333;
+        }
+        .showPage div{
+            background-color: #ccc;
+            margin-top: 2px;
+        }
+        .showPage div:first-child{
+            margin-top: 0;
+        }
+
+        .showPage2{
+            border: 1px solid #333;
+        }
+        .showPage2 div{
+            background-color: #ccc;
+            margin-top: 2px;
+        }
+        .showPage2 div:first-child{
+            margin-top: 0;
+        }
+        .reward{
+            position: fixed;
+            bottom: 0;
+            right: 0;
+        }
+        .reward button{
+            padding: 5px;
+            font-size: 16px;
+            border: none;
+            background-color: #9bf49f;
+            cursor: pointer;
+        }
+        .erweima {
+            position: absolute;
+            display: none;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 130px;
+            margin: -135px 0 0 -205px;
+            border: 1px solid #ccc;
+            background-color: #fff;
+        }
+        .erweima div{
+            float: left;
+            width: 100px;
+            height: 100px;
+            line-height: 220px;
+            text-align: center;
+        }
+        .erweima .alipay{
+            background: url("img/alipay.png") no-repeat center;
+            background-size:90px 90px;
+        }
+        .erweima .wx{
+            background: url("img/wx.png") no-repeat center;
+            background-size:90px 90px;
+        }
+        .reward:hover .erweima{
+            display: block;
+        }
+    </style>
 
 </head>
 <body>
@@ -162,26 +308,9 @@
                                 </table>
 
                                 <!--分页条-->
-                                <nav aria-label="Page navigation">
-                                    <ul class="pagination pagination-lg">
-                                        <li class="disabled">
-                                            <a href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                            </a>
-                                        </li>
-                                        <li class="active"><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
-                                        <li><a href="#">3</a></li>
-                                        <li><a href="#">4</a></li>
-                                        <li><a href="#">5</a></li>
-                                        <li>
-                                            <a href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-
+                                <div class="part part2" style="margin-left:30%;">
+                                    <div class="simplePaging2" style="padding-left:15%;"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -204,7 +333,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                确定删除XXX吗？
+                确定删除选中的用户吗？
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>

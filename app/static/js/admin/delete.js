@@ -9,17 +9,11 @@ function checkChange(input){
 //此页面用于删除与批量删除
 function singledelete(userId,username){
     uid = userId
-    //console.debug(username)
     var info = "确定要删除用户:[ "+username+" ]吗?"
     $('.modal.fade .modal-body').text(info)
 }
 //批量删除
 function batchdelete(){
-    //console.debug($(".table.table-hover.table-striped tbody td input[checked='true']"))
-    //console.debug($(".sidebar[data-color='orange']"))
-    /*$(".table.table-hover.table-striped tbody td input").each(function(index,ele){
-        console.debug($(ele).is(':checked'))
-    });*/
     $(".table.table-hover.table-striped tbody td input:checked").each(function(index,ele){
         //console.debug($(ele).parent().next().next().text())
         uids.push($(ele).parent().next().text())
@@ -36,14 +30,16 @@ function batchdelete(){
 
 //真正执行删除的那一步
 function truedelete(){
+    console.debug("uid:"+uid)
+    console.debug("uids:"+uids)
     //此处需判断是单个删除还是批量删除
     if(uid){
-        send_to_back(uid)
+        send_to_back8(uid)
         toastr.success('删除成功!')
     }
     else if(uids){
         if(uids.length > 0){
-            send_to_back2(uids)
+            send_to_back9(uids)
         toastr.success('删除成功!')
         //一次请求之后及时清理数据
         uids = []
@@ -53,7 +49,7 @@ function truedelete(){
 }
 
 //向后台发送Ajax请求,删除单个
-function send_to_back(userId) {
+function send_to_back8(userId) {
     $.ajax({
         url: '/admin/user/delete',
         type: 'POST',
@@ -64,7 +60,7 @@ function send_to_back(userId) {
     });
 }
 //向后台发送Ajax请求,删除多个
-function send_to_back2(userIds) {
+function send_to_back9(userIds) {
     $.ajax({
         url: '/admin/user/batchdelete',
         type: 'POST',

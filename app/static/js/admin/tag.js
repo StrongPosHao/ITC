@@ -9,7 +9,7 @@ function checkChange(input){
 function singledelete(tagId){
     tid = tagId
     var info = "确定要删除选中的子标签吗?"
-    $('.modal.fade .modal-body').text(info)
+    $('#modal_del .modal-body').text(info)
 }
 //批量删除
 function batchdelete(){
@@ -17,7 +17,7 @@ function batchdelete(){
         tids.push($(ele).parent().next().text())
     });
     var info = "确定要删除选中的子标签吗?"
-    $('.modal.fade .modal-body').text(info)
+    $('#modal_del .modal-body').text(info)
 }
 
 //真正执行删除的那一步
