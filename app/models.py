@@ -89,7 +89,7 @@ class User(UserMixin, db.Model):
     articles = db.relationship('Article', backref=db.backref('articles'), lazy='dynamic')
     questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic')
     drafts = db.relationship('Draft', backref=db.backref('drafts'), lazy='dynamic')
-    user_answers = db.relationship('Answer', backref=db.backref('user_answers'))
+    user_answers = db.relationship('Answer', backref=db.backref('user_answers'), lazy='dynamic')
     followed = db.relationship('Follow', foreign_keys=[Follow.followerId],
                                backref=db.backref('follower', lazy='joined'),
                                lazy='dynamic',
@@ -101,6 +101,7 @@ class User(UserMixin, db.Model):
     favoriteArticles = db.relationship('FavoriteArticle', backref=db.backref('articles'), lazy='dynamic')
     favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
     notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
+
 
     # 将类转为字典，然后响应json
     def as_dict(obj):
@@ -331,6 +332,7 @@ class AnswerComment(db.Model):
 class Notification(db.Model):
     __tablename__ = 'Notification'
     notificationId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
+    title = db.Column(db.Unicode(200), nullable=False)
     userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     isRead = db.Column(db.Boolean, default=False, nullable=False)

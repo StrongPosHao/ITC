@@ -8,100 +8,100 @@
 
             <ul class="nav nav-tabs bar-item">
                 <li role="presentation" class="active">
-                    <a href="#">通知
-                        <span class="badge">4</span>
+                    <a href="{{ url_for('user.notification', user_id=current_user.id, _external=True) }}">通知
+                        <span class="badge">{{ current_user.notifications.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="#">回答
-                        <span class="badge">4</span>
+                    <a href="{{ url_for('user.answers', user_id=current_user.id, _external=True) }}">回答
+                        <span class="badge">{{ current_user.user_answers.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="#">提问
-                        <span class="badge">4</span>
+                    <a href="{{ url_for('user.questions', user_id=current_user.id, _external=True) }}">提问
+                        <span class="badge">{{ current_user.questions.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="#">文章
-                        <span class="badge">4</span>
+                    <a href="{{ url_for('user.articles', user_id=current_user.id, _external=True) }}">文章
+                        <span class="badge">{{ current_user.articles.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="#">收藏
-                        <span class="badge">4</span>
+                    <a href="{{ url_for('user.favorites', user_id=current_user.id, _external=True) }}">收藏
+                        <span class="badge">{{ current_user.favoriteArticles.all()|length + current_user.favoriteQuestions.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="#">关注
-                        <span class="badge">4</span>
+                    <a href="{{ url_for('user.followers', user_id=current_user.id, _external=True) }}">关注
+                        <span class="badge">{{ current_user.followed.all()|length }}</span>
                     </a>
                 </li>
             </ul>
         </div>
 
 
-        <!-- 通知 -->
-        <div class="notification-box">
-            <div class="notification-title">
+        {% for notifaction in notifactions %}
+            <!-- 通知 -->
+            <div class="notification-box">
+                <div class="notification-title">
 
-                <button type="button" data-toggle="modal" data-target="#notify">
-                    <h4 class="red-point">通知balbalbalba</h4>
-                </button>
-            </div>
-            <div class="notification-content">
-                <p>通知内容balabalabalabala.....................</p>
-            </div>
-            <dl>
-                <dd class="notification-time">
-                    <span>2018-06-11</span>
-                    <button class="delete-btn btn " type="button" data-toggle="modal" data-target="#confirm_delete">删除
+                    <button type="button" data-toggle="modal" data-target="#notify">
+                        <h4 class="red-point">{{ notifaction.title }}</h4>
                     </button>
-                </dd>
-            </dl>
+                </div>
+                <div class="notification-content">
+                    <p>{{ notifaction.content }}</p>
+                </div>
+                <dl>
+                    <dd class="notification-time">
+                        <span>{{ notifaction.notifyTime }}</span>
+                        <button class="delete-btn btn " type="button" data-toggle="modal" data-target="#confirm_delete">删除
+                        </button>
+                    </dd>
+                </dl>
 
-            <!--</div>-->
-            <!-- Modal -->
-            <div class="modal fade" id="notify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                                    onclick="checknotice(1,1)">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">通知标题</h4>
+                <!--</div>-->
+                <!-- Modal -->
+                <div class="modal fade" id="notify" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                        onclick="checknotice(1,1)">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">通知标题</h4>
+                            </div>
+                            <div class="modal-body">
+                                通知内容
+                            </div>
                         </div>
-                        <div class="modal-body">
-                            通知内容
+                    </div>
+                </div>
+
+
+                <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <h4 class="modal-title">确认删除XXX吗？</h4>
+                            </div>
+                            <div class="modal-body">
+                                <button type="button" class="btn btn-default" data-dismiss="modal"
+                                        onclick="canceldeletenotice()">取消
+                                </button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                                        onclick="deletenotice(1,1)">确定
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-            <div class="modal fade" id="confirm_delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                            <h4 class="modal-title">确认删除XXX吗？</h4>
-                        </div>
-                        <div class="modal-body">
-                            <button type="button" class="btn btn-default" data-dismiss="modal"
-                                    onclick="canceldeletenotice()">取消
-                            </button>
-                            <button type="button" class="btn btn-primary" data-dismiss="modal"
-                                    onclick="deletenotice(1,1)">确定
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}

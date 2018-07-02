@@ -14,6 +14,7 @@
 
     <link rel="stylesheet" href="{{ url_for('static', filename='CodeSeven-toastr-50092cc/build/toastr.min.css')}}" type="text/css">
     <script src="{{ url_for('static', filename='CodeSeven-toastr-50092cc/build/toastr.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/base/base.js') }}"></script>
     <script type="text/javascript">
         toastr.options.positionClass = 'toast-top-center';
         toastr.options.timeOut = "2000";
@@ -91,14 +92,13 @@
                                                                                class="img-circle"></a>
                             <ul class="dropdown-menu" aria-labelledby="center">
                                 <li>
-                                    <a href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}">个人中心</a>
+                                    <a href="{{ url_for('user.notification', user_id = current_user.id, _external = True) }}">个人中心</a>
                                 </li>
-                                <li><a>设置</a></li>
+                                <li><a href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}">设置</a></li>
                                 <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
                             </ul>
                         </li>
                     </ul>
-
             </div>
         </div>
     </nav>
@@ -158,7 +158,7 @@
         </div>
         <form action="" method="post">
             <div class="question-title">
-                <textarea row="2" type="text" class="form-control" placeholder="输入问题的标题"></textarea>
+                <textarea row="2" name="question_title" type="text" class="form-control" placeholder="输入问题的标题"></textarea>
             </div>
             <div class="write-question">
                 <!--加载编辑器的容器-->
@@ -173,8 +173,14 @@
                     </div>
                     </div>
                     <div class="rcm-tag">
-                    <span>推荐标签：</span>
-                    <a>javascript<span class="glyphicon glyphicon-plus"></span></a>
+                    <select class="form-control" name="tag">
+                        <option>人工智能</option>
+                        <option>大数据</option>
+                        <option>前端</option>
+                        <option>后端</option>
+                        <option>移动应用</option>
+                        <option>数据库</option>
+                    </select>
                     </div>
                     </div>
                     <div class="write-btn">

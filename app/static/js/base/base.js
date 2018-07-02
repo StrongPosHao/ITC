@@ -1,6 +1,6 @@
 //提问的显示
 function putquestion(){
-    console.debug(1)
+    console.debug(1);
   if($('.write-question-box').css('display') == 'none'){
      $('.write-question-box').css({display:'inline'})
   }else{

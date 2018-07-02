@@ -4,83 +4,84 @@
         <div class="bar-cate">
 
 
-                    <p>我的文章</p>
+            <p>我的文章</p>
 
 
-                    <ul class="nav nav-tabs bar-item">
-                        <li role="presentation" >
-                            <a href="#">通知
-                                <span class="badge">4</span>
-                            </a>
-                        </li>
-                        <li role="presentation" >
-                            <a href="#">回答
-                                <span class="badge">4</span>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#">提问
-                                <span class="badge">4</span>
-                            </a>
-                        </li>
-                        <li role="presentation" class="active">
-                            <a href="#">文章
-                                <span class="badge">4</span>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#">收藏
-                                <span class="badge">4</span>
-                            </a>
-                        </li>
-                        <li role="presentation">
-                            <a href="#">关注
-                                <span class="badge">4</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <ul class="nav nav-tabs bar-item">
+                <li role="presentation">
+                    <a href="{{ url_for('user.notification', user_id=current_user.id, _external=True) }}">通知
+                        <span class="badge">{{ current_user.notifications.all()|length }}</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="{{ url_for('user.answers', user_id=current_user.id, _external=True) }}">回答
+                        <span class="badge">{{ current_user.user_answers.all()|length }}</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="{{ url_for('user.questions', user_id=current_user.id, _external=True) }}">提问
+                        <span class="badge">{{ current_user.questions.all()|length }}</span>
+                    </a>
+                </li>
+                <li role="presentation" class="active">
+                    <a href="{{ url_for('user.articles', user_id=current_user.id, _external=True) }}">文章
+                        <span class="badge">{{ current_user.articles.all()|length }}</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="{{ url_for('user.favorites', user_id=current_user.id, _external=True) }}">收藏
+                        <span class="badge">{{ current_user.favoriteArticles.all()|length + current_user.favoriteQuestions.all()|length }}</span>
+                    </a>
+                </li>
+                <li role="presentation">
+                    <a href="{{ url_for('user.followers', user_id=current_user.id, _external=True) }}">关注
+                        <span class="badge">{{ current_user.followed.all()|length }}</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <!--回答，提问，文章，收藏-->
-{#        for loop#}
+        {#        for loop#}
         <div class="content-box">
-                <div class="content-title">
+            <div class="content-title">
                 <h4><a href="">python datetime模块基本操作</a></h4>
-                </div>
-                <div class="content-tag">
+            </div>
+            <div class="content-tag">
                 <a>标签1</a>
                 <a>标签2</a>
-                </div>
-                <div class="content">
+            </div>
+            <div class="content">
                 <p>Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis
-                parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
-                </div>
-                <dl class="article-info">
+                    parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh ultricies vehicula.</p>
+            </div>
+            <dl class="article-info">
                 <dd class="writer">
-                <a href="">作者</a>
+                    <a href="">作者</a>
                 </dd>
                 <dd class="article-time">
-                <span>2018-06-11</span>
+                    <span>2018-06-11</span>
                 </dd>
                 <dd class="article-time">
-                <button  class="delete-btn btn " type="button" data-toggle="modal" data-target="#confirm_delete">删除</button>
+                    <button class="delete-btn btn " type="button" data-toggle="modal" data-target="#confirm_delete">删除
+                    </button>
                 </dd>
                 <div class="comment">
-                <dd class="support">
-                <a><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
-                </dd>
-                <dd class="refute">
-                <a><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
-                </dd>
-                <dd class="read">
-                <a><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
-                </dd>
-                <dd class="comment-num">
-                <a><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
-                </dd>
+                    <dd class="support">
+                        <a><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                    </dd>
+                    <dd class="refute">
+                        <a><span class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                    </dd>
+                    <dd class="read">
+                        <a><span class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
+                    </dd>
+                    <dd class="comment-num">
+                        <a><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
+                    </dd>
                 </div>
-                </dl>
+            </dl>
 
-                </div>
+        </div>
     </div>
 {% endblock %}

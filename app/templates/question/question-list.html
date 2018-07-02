@@ -2,11 +2,11 @@
 {% import "_macros.html" as macros %}
 {% block title %}问答-ITC技术社区{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="../../static/css/QA(nl).css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/navbar(nl).css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/QA.css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
-    <script src="../../static/js/question/question-list.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/QA(nl).css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar(nl).css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/QA.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/question/question-list.js') }}"></script>
 {% endblock %}
 {% block content %}
     <div style="margin-top: 7.5em">
@@ -57,10 +57,11 @@
                                     <p>{{ question.content }}</p>
                                 </div>
                                 <dl class="article-info">
-                                    <div class="content-tag">
-                                        <a title="该问题的标签">标签1</a>
-                                        <a title="该问题的标签">标签2</a>
-                                    </div>
+                                    {% for tag in question.tags.all() %}
+                                        <div class="content-tag">
+                                            <a title="该问题的标签">{{ tag.name }}</a>
+                                        </div>
+                                    {% endfor %}
                                     <div class="comment">
                                         <dd class="support">
                                             <a title="点赞"><span
