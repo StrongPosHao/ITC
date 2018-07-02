@@ -13,6 +13,9 @@
 {% block content %}
     <!--content-->
     <div class="userInfo_content">
+        <form class="uploadimg" action="xxx" method="post" enctype="multipart/form-data">
+            <input id="file" type="file" style="display:none">
+        </form>
         <form class="userinfo-form" action="" method="post" name="userinfoForm">
             <div class="userInfo_item1">
                 <div class="userInfo_imgandintro">
@@ -25,14 +28,13 @@
                             <label for="file" class="btn img_btn">
                                 <span class="camera_svg glyphicon glyphicon-camera" aria-hidden="true"></span>修改头像</label>
                         </p>
-                        <form action="xxx" method="post" enctype="multipart/form-data">
-                            <input id="file" type="file" style="display:none">
-                        </form>
+
+
                         <!--点击修改之后显示-->
                         <div style="display: none;" id='name_div_1'>
                             <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
                             <p>
-                                <button class="btn btn-primary">确认</button>
+                                <button class="btn btn-primary" onclick="send_to_back_userName({{ current_user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('name',1)">取消</button>
                             </p>
                         </div>
@@ -49,7 +51,7 @@
                         <div style="display: none;" id='intro_div_1'>
                             <input type="text" id="introduction" name="introduction" class="form-control" placeholder="Introduction" aria-describedby="basic-addon1">
                             <p>
-                                <button class="btn btn-primary">确认</button>
+                                <button class="btn btn-primary" onclick="send_to_back_userIntro({{ current_user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('intro',1)">取消</button>
                             </p>
                         </div>
@@ -70,6 +72,7 @@
             </div>
 
 
+
             <div class="userInfo_item2">
                 <div>
                     <p>
@@ -79,12 +82,12 @@
 
                     <!--点击编辑之后显示-->
                     <div id="email_div_1" style="display: none">
-                        <input type="password" id="password" name="password" class="form-control" placeholder="请输入密码进行验证" aria-describedby="basic-addon1"/>
+                        <input type="password" id="passwordr" name="password" class="form-control" placeholder="请输入密码进行验证" aria-describedby="basic-addon1"/>
                         <br>
                         <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">
                         <br>
                         <p>
-                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-primary" onclick="send_to_back_userEmail({{ current_user }})">确认</button>
                             <button class="btn btn-default" onclick="hideForm('email',1)">取消</button>
                         </p>
                     </div>
@@ -110,7 +113,7 @@
                         <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">
                         <br>
                         <p>
-                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-primary" onclick="send_to_back_userPhone({{ current_user }})">确认</button>
                             <button class="btn btn-default" onclick="hideForm('phone',1)">取消</button>
                         </p>
                     </div>
@@ -135,7 +138,7 @@
                         />
                         <br>
                         <p>
-                            <button class="btn btn-primary">确认</button>
+                            <button class="btn btn-primary" onclick="send_to_back_userPasswd({{ current_user }})">确认</button>
                             <button class="btn btn-default" onclick="hideForm('passwd',1)">取消</button>
                         </p>
                     </div>
@@ -143,8 +146,8 @@
 
                 </div>
             </div>
-
         </form>
+
 
 
     </div>
