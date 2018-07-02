@@ -9,7 +9,8 @@ function checkChange(input){
 function singledelete(categoryId){
     cid = categoryId
     var info = "确定要删除选中的标签分类吗?"
-    $('.modal.fade .modal-body').text(info)
+    console.debug($('#modal_del .modal-body'))
+    $('#modal_del .modal-body').text(info)
 }
 //批量删除
 function batchdelete(){
@@ -17,7 +18,7 @@ function batchdelete(){
         cids.push($(ele).parent().next().text())
     });
     var info = "确定要删除选中的标签分类吗?"
-    $('.modal.fade .modal-body').text(info)
+    $('#modal_del .modal-body').text(info)
 }
 
 //真正执行删除的那一步

@@ -101,6 +101,11 @@ class User(UserMixin, db.Model):
     favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
     notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
 
+    # 将类转为字典，然后响应json
+    def as_dict(obj):
+        return dict((col.name, getattr(obj, col.name)) \
+                    for col in class_mapper(obj.__class__).mapped_table.c)
+
     def generate_confirmation_token(self, expiration=3600):
         s = Serializer(current_app.config['SECRET_KEY'], expiration)
         return s.dumps({'confirm': self.id})
