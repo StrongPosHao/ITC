@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, current_app
 from . import article
 from flask_login import current_user
-from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment
+from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle
 from datetime import datetime
 from app.exts import db
 import json
@@ -41,6 +41,23 @@ def comment():
     article_comment = ArticleComment(parentId=parent_id, articleId=article_id, content=comment_content,
                                      commentTime=comment_time, userId=user_id)
     db.session.add(article_comment)
+    db.session.commit()
+    return redirect(url_for('article.content', article_id=article_id, _external=True))
+
+
+@article.route('/favorite', methods=['POST'])
+def favorite():
+    r"""
+    用户收藏路由
+    :return:
+    """
+    article_id = request.form.get('article_id')
+    user_id = request.form.get('user_id')
+    print(article_id)
+    print(user_id)
+    time = datetime.now()
+    favorite_article = FavoriteArticle(articleId=article_id, userId=user_id, time=time)
+    db.session.add(favorite_article)
     db.session.commit()
     return redirect(url_for('article.content', article_id=article_id, _external=True))
 

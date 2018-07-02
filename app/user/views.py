@@ -1,4 +1,6 @@
 from flask import render_template, request
+from flask_login import current_user
+
 from . import user
 from .. models import *
 
@@ -64,14 +66,31 @@ def favorites(user_id):
     :param user_id:
     :return:
     """
-    return render_template('user/user-collection.html')
+    questions = current_user.favoriteQuestions.order_by(FavoriteQuestion.time.desc()).all()
+    articles= current_user.favoriteArticles.order_by(FavoriteArticle.time.desc()).all()
+    print(articles)
+    print(questions)
+    favorites_list = questions + articles
+    favorites_list = sorted(key=lambda x: x.time)
+    print(favorites_list)
+    return render_template('user/user-collection.html', favorites=favorites_list)
 
 
 @user.route('followers/<user_id>')
 def followers(user_id):
     r"""
-    用户
+    用户关注的用户
     :param user_id:
     :return:
     """
     return render_template('user/user-concern-me.html')
+
+
+@user.route('followed/<user_id>')
+def followed(user_id):
+    r"""
+    关注用户的用户
+    :param user_id:
+    :return:
+    """
+    return render_template('user/user-my-concern.html')

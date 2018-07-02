@@ -181,7 +181,7 @@ class Question(db.Model):
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    answers = db.relationship('Answer', backref=db.backref('answers'))
+    answers = db.relationship('Answer', backref=db.backref('answers'), lazy='dynamic')
     tags = db.relationship('QuestionTag', backref=db.backref('tags'), lazy='dynamic')
     favoriteUsers = db.relationship('FavoriteQuestion', lazy='dynamic')
 
@@ -218,6 +218,9 @@ class Answer(db.Model):
 
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
+
+    def get_question(self):
+        return Question.query.filter(Question.questionId == self.questionId).first()
 
 
 class Article(db.Model):
