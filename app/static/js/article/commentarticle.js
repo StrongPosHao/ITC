@@ -29,3 +29,7 @@ function post_child_comment(commentId, articleId) {
         },
     });
 }
+
+function delete_comment() {
+    
+}

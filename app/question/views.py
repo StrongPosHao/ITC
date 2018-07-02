@@ -66,3 +66,17 @@ def list_question():
     )
     questions = pagination.items
     return render_template('question/question-list.html', questions=questions, pagination=pagination)
+
+
+@question.route('/list/<user_id>')
+def list_user_question(user_id):
+    r"""
+    用户问题列表页面
+    :param user_id:
+    :return:
+    """
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter(User.id == user_id).first()
+    pagination = user.questions.paginate(page, per_page=current_app.config['ITC_PER_PAGE'], error_out=False)
+    questions = pagination.items
+    return render_template('question/question-list.html', questions=questions, pagination=pagination)

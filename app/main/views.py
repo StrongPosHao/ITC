@@ -6,9 +6,12 @@ from flask_login import login_required
 @main.route('/')
 @login_required
 def index():
-
     return render_template('main/index.html')
 
 
+@main.route('/test')
+def test():
+    # return render_template('tag/tag-index.html')
+    return render_template('tag/tag-list.html')
 
 

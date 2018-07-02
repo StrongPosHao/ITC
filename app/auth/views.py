@@ -81,7 +81,12 @@ def confirm(token):
         db.session.commit()
     else:
         flash('确认链接无效或已过期！')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('auth.choose_tag'))
+
+
+@auth.route('/choose-tag')
+def choose_tag():
+    return render_template('tag/tag-index.html')
 
 
 @auth.route('/confirm')
@@ -142,6 +147,7 @@ def password_reset(token):
             return redirect(url_for('auth.login'))
         else:
             return redirect(url_for('main.index'))
+
 
 
 # @auth.before_app_request

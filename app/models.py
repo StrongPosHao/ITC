@@ -247,6 +247,9 @@ class Article(db.Model):
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
 
+    def get_user_object(self):
+        return User.query.filter(User.id == self.userId).first()
+
     def get_article_comments(self):
         return ArticleComment.query.filter(ArticleComment.articleId == self.articleId,
                                            ArticleComment.parentId == None).all()
