@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div class="content">
-                                {{ article.content }}
+                                {{ article.content | safe }}
                             </div>
                             <div>
                                 <dl class="answer-info">
@@ -118,7 +118,7 @@
                                             </div>
                                             <div class="answer">
                                                 <p>
-                                                    {{ comment.content }}
+                                                    {{ comment.content | safe }}
                                                 </p>
                                             </div>
                                             <!-- 参数为titile,commentId,userId-->
@@ -153,7 +153,7 @@
                                                 {% for child_comment in comment.get_child_comments() %}
                                                     <div class="answer-comment">
                                                         <div class="answer-comment-head">
-                                                            <a>{{ child_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ child_comment.content }}</span>
+                                                            <a>{{ child_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ child_comment.content | safe }}</span>
                                                         </div>
                                                         <div class="answer-comment-tail">
                                                             <a>评论</a>

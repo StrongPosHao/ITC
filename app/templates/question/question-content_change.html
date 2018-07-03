@@ -73,7 +73,7 @@
                             </div>
                         </div>
                         <div class="pro-content">
-                            <p>{{ question.content }}</p>
+                            <p>{{ question.content | safe }}</p>
                         </div>
                         <dl class="answer-info">
                             <div class="answer-head">
@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="answer">
                                         <p>
-                                            {{ answer.content }}
+                                            {{ answer.content | safe}}
                                         </p>
                                     </div>
                                 {% for answer_comment in answer.answerComments %}
@@ -123,7 +123,7 @@
                                         </div>
                                         <div class="answer-comment">
                                             <div class="answer-comment-head">
-                                                <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content }}</span>
+                                                <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe}}</span>
                                             </div>
                                             <div class="answer-comment-tail">
                                                 <a>评论</a>

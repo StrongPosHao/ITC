@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="pro-content">
-                            <p>{{ question.content }}</p>
+                            <p>{{ question.content | safe}}</p>
                         </div>
                         <dl class="answer-info">
                             <div class="answer-head">
@@ -89,10 +89,12 @@
                                         <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
                                         <a class="del-comment" onclick="delete_answer({{ answer.answerId }})" data-toggle="modal" data-target="#modal_del">删除</a>
                                     </div>
+
                                     <div class="answer">
                                         <p>
-                                            {{ answer.content }}
+                                            {{ answer.content | safe}}
                                         </p>
+
                                     </div>
 
                                     <div class="answer-tail" id='answer_{{ answer.answerId }}'>
@@ -117,7 +119,7 @@
                                         {% for answer_comment in answer.answerComments %}
                                         <div class="answer-comment">
                                             <div class="answer-comment-head">
-                                                <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content }}</span>
+                                                <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
                                             </div>
                                             <div class="answer-comment-tail">
                                                 <a>评论</a>

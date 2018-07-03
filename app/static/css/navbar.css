@@ -379,7 +379,7 @@ a{
 }
 
 .write-question-box{
-    z-index: 10000;
+    z-index: 10;
     position: fixed;
     background: #a2855242;
     top: 0;

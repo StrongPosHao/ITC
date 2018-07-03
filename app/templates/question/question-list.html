@@ -51,7 +51,7 @@
 
 
                                 <div class="content">
-                                    <p>{{ question.content }}</p>
+                                    <p>{{ question.content | safe }}</p>
                                 </div>
                                  {% for tag in question.tags.all() %}
                                         <div class="content-tag">
