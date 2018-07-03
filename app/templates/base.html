@@ -156,7 +156,7 @@
         <div class="box-title">
             <h4>提问</h4>
         </div>
-        <form action="" method="post">
+        <form action="{{ url_for('question.publish_question') }}" method="post">
             <div class="question-title">
                 <textarea row="2" name="question_title" type="text" class="form-control" placeholder="输入问题的标题"></textarea>
             </div>

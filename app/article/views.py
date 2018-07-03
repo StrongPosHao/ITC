@@ -1,10 +1,9 @@
-from flask import render_template, request, redirect, url_for, current_app
+from flask import render_template, request, redirect, url_for, current_app, json, jsonify
 from . import article
 from flask_login import current_user
 from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle
 from datetime import datetime
 from app.exts import db
-import json
 
 
 @article.route('/<article_id>', methods=['GET', 'POST'])
@@ -48,18 +47,26 @@ def comment():
 @article.route('/favorite', methods=['POST'])
 def favorite():
     r"""
-    用户收藏路由
+    用户收藏文章处理
     :return:
     """
+    is_checked = request.form.get('ischecked')
     article_id = request.form.get('article_id')
     user_id = request.form.get('user_id')
-    print(article_id)
-    print(user_id)
-    time = datetime.now()
-    favorite_article = FavoriteArticle(articleId=article_id, userId=user_id, time=time)
-    db.session.add(favorite_article)
-    db.session.commit()
-    return redirect(url_for('article.content', article_id=article_id, _external=True))
+    if is_checked == 'true':
+        time = datetime.now()
+        favorite_article = FavoriteArticle(articleId=article_id, userId=user_id, time=time)
+        db.session.add(favorite_article)
+        db.session.commit()
+    elif is_checked == 'false':
+        favorite_article = FavoriteArticle.query.filter(FavoriteArticle.articleId == article_id,
+                                                        FavoriteArticle.userId == user_id).first()
+        db.session.delete(favorite_article)
+        db.session.commit()
+    current_article = Article.query.filter(Article.articleId == article_id).first()
+    data = {'favorite_user_num': len(current_article.favoriteUsers.all())}
+    return jsonify(data)
+    # return redirect(url_for('article.content', article_id=article_id, _external=True))
 
 
 @article.route('/delete/<comment_id>', methods=['GET', 'POST'])
@@ -86,19 +93,19 @@ def publish():
     :return:
     """
     if request.method == 'GET':
-        return render_template('article/article-publish.html')
+        tags = Tag.query.filter(Tag.parentId == None).all()
+        return render_template('article/article-publish.html', tags=tags)
     else:
         user_id = current_user.id
         title = request.form.get('title')
         article_content = request.form.get('content')
-        tag_name = request.form.get('tag')
+        tag_id = request.form.get('tag')
         public_time = datetime.now()
         if request.form.get('publish', None) == '发表':
             article = Article(userId=user_id, title=title, content=article_content, publicTime=public_time)
             db.session.add(article)
             db.session.commit()
-            tag = Tag.query.filter(Tag.name == tag_name).first()
-            article_tag = ArticleTag(articleId=article.articleId, tagId=tag.tagId, time=datetime.now())
+            article_tag = ArticleTag(articleId=article.articleId, tagId=tag_id, time=datetime.now())
             db.session.add(article_tag)
             db.session.commit()
             return redirect(url_for('article.list_article'))

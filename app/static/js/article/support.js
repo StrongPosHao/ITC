@@ -54,11 +54,10 @@ function support(title, user_id, article_id) {
 //向后台发送Ajax请求
 function sendSupport(title, user_id, article_id, ischecked) {
     $.ajax({
-        url: '/question/favorite',
+        url: '/article/favorite',
         type: 'POST',
-        data: 'title=' + title + '&user_id=' + user_id + '&article_id=' + article_id + '&ischecked' + ischecked,
+        data: 'title=' + title + '&user_id=' + user_id + '&article_id=' + article_id + '&ischecked=' + ischecked,
         success: function (data) {
-            window.location.reload();
         }
     });
 }

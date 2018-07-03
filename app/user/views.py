@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, jsonify
 from flask_login import current_user
 
 from . import user
@@ -71,7 +71,7 @@ def favorites(user_id):
     print(articles)
     print(questions)
     favorites_list = questions + articles
-    favorites_list = sorted(key=lambda x: x.time)
+    favorites_list = sorted(favorites_list, key=lambda x: x.time)
     print(favorites_list)
     return render_template('user/user-collection.html', favorites=favorites_list)
 
@@ -94,3 +94,36 @@ def followed(user_id):
     :return:
     """
     return render_template('user/user-my-concern.html')
+
+
+@user.route('/choose-tag', methods=['POST'])
+def user_choose_tag():
+    r"""
+    用户选择标签
+    :return:
+    """
+    user_id = request.form.get('userId')
+    tag_id = request.form.get('tagId')
+    is_choosed = request.form.get('iscollected')
+    print(user_id)
+    print(tag_id)
+    print(is_choosed)
+    if is_choosed == 'true':
+        user_tag = UserTag(userId=user_id, tagId=tag_id, time=datetime.now())
+        db.session.add(user_tag)
+        db.session.commit()
+    elif is_choosed == 'false':
+        user_tag = UserTag.query.filter(UserTag.userId == user_id, UserTag.tagId == tag_id).first()
+        db.session.delete(user_tag)
+        db.session.commit()
+    data = {'info': 'Succeed'}
+    return jsonify(data)
+
+
+@user.route('/add-tag')
+def add_tag():
+    r"""
+    用户添加标签页面
+    :return:
+    """
+    return render_template('tag/tag-index.html')

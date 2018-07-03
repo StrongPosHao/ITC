@@ -25,6 +25,9 @@ class UserTag(db.Model):
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
+    def get_object(self):
+        return Tag.query.filter(Tag.tagId == self.tagId).first()
+
 
 class ArticleTag(db.Model):
     __tablename__ = 'ArticleTag'
@@ -101,7 +104,6 @@ class User(UserMixin, db.Model):
     favoriteArticles = db.relationship('FavoriteArticle', backref=db.backref('articles'), lazy='dynamic')
     favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
     notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
-
 
     # 将类转为字典，然后响应json
     def as_dict(obj):
@@ -289,6 +291,9 @@ class Tag(db.Model):
         self.name = name
         self.description = description
         self.popularity = popularity
+
+    def get_child_tags(self):
+        return Tag.query.filter(Tag.parentId == self.tagId).all()
 
     # 将类转为字典，然后响应json
     def as_dict(obj):

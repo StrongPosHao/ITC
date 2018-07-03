@@ -86,7 +86,10 @@
                                                     class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
                                         </dd>
                                         <dd class="comment-num">
-                                            <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
+                                            <a title="评论">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                <span>{{ article.articleComments.all()|length }}</span>
+                                            </a>
                                         </dd>
                                     </div>
                                 </dl>
