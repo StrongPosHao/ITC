@@ -94,10 +94,10 @@
                                             {{ answer.content }}
                                         </p>
                                     </div>
-                                {% for answer_comment in answer.answerComments %}
-                                    <div class="answer-tail" id='comment_1'>
+
+                                    <div class="answer-tail" id='answer_{{ answer.answerId }}'>
                                         <div class="support">
-                                            <a title="评论" href="javascript:saycomment({{ answer_comment.commentId }})"><span class="glyphicon glyphicon-edit"></span><span>3</span></a>
+                                            <a title="评论" href="javascript:saycomment({{ answer.answerId }})"><span class="glyphicon glyphicon-edit"></span><span>3</span></a>
                                         </div>
                                         <div class="support">
                                             <a title="点赞" href="javascript:commentsupport('点赞',1,1)"><span class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
@@ -114,6 +114,7 @@
                                                 <button name='comment' class="form-control btn" value="comment" onclick="post_answerId({{ answer.answerId }}, {{ question_id }})">评&nbsp;&nbsp;论</button>
                                             </div>
                                         </div>
+                                        {% for answer_comment in answer.answerComments %}
                                         <div class="answer-comment">
                                             <div class="answer-comment-head">
                                                 <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content }}</span>
@@ -125,8 +126,9 @@
                                                 <span>{{ answer_comment.commentTime }}</span>
                                             </div>
                                         </div>
+                                        {% endfor %}
                                     </div>
-                                {% endfor %}
+
                                 </div>
                             {% endfor %}
                             <div class="write-box">

@@ -18,7 +18,7 @@ function post_answerId(answerId, questionId) {
 }
 
 //点击评论他人，评论框显示出来
-function saycomment(commentId){
-    console.debug($('#comment_'+commentId+' + div .' + 'write-comment'));
-    $('#comment_'+commentId+' + div .' + 'write-comment').css({ display:'inline' });
+function saycomment(answerId){
+    console.debug($('#comment_'+answerId+' + div .' + 'write-comment'));
+    $('#comment_'+answerId+' + div .' + 'write-comment').css({ display:'inline' });
 }
