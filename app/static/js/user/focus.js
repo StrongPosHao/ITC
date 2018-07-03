@@ -3,12 +3,12 @@ function clickfocus(MyId,UserId){
     if($('#focus_'+UserId+" .btn").text() == '取消关注'){
         $('#focus_'+UserId+" .btn").text('关注他');
         toastr.info('取消关注作者成功');
-        send_to_back(MyId,UserId,false);
+        sendFocus(MyId,UserId,false);
         
     }else{
         $('#focus_'+UserId+" .btn").text('已关注');
         toastr.success('关注作者成功');
-        send_to_back(MyId,UserId,true);
+        sendFocus(MyId,UserId,true);
     }
     
 }
@@ -24,7 +24,7 @@ function moveout(UserId){
     }
 }
 //向后台发送Ajax请求
-function send_to_back(MyId,UserId,isFocused) {
+function sendFocus(MyId,UserId,isFocused) {
     $.ajax({
         url: '/XX',
         type: 'POST',
