@@ -21,40 +21,23 @@
     <div class="userblock row">
         {% block usercontent %}{% endblock %}
         <div class="tag col-lg-3 col-md-3 category-box">
-                    <div class="category">
-                        <p>我的标签</p>
-                    </div>
-                    <div class="category-tags">
-                        <div class="category-tag">
-                            <a>
-                                <span>mysql</span>×100</a>
-                        </div>
-                        <div class="category-tag">
-                            <a>
-                                <span>sql server</span>×10</a>
-                        </div>
-                        <div class="category-tag">
-                            <a>
-                                <span>jdbc</span>×1</a>
-                        </div>
-                        <div class="category-tag">
-                            <a>
-                                <span>oracle</span>×10</a>
-                        </div>
-                        <div class="category-tag">
-                            <a>
-                                <span>access</span>×10</a>
-                        </div>
-                        <div class="category-tag">
-                            <a>
-                                <span>sql</span>×60</a>
-                        </div>
-                    </div>
-                    <div class="add_tag_btn">
+            <div class="category">
+                <p>我的标签</p>
+            </div>
+            <div class="category-tags">
+                {% for tag in current_user.tags.all() %}
+                    <div class="category-tag">
                         <a>
-                            <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 添加标签</a>
+                            <span>{{ tag.get_object().name }}</span>
+                        </a>
                     </div>
-                </div>
+                {% endfor %}
+            </div>
+            <div class="add_tag_btn">
+                <a href="{{ url_for('auth.choose_tag') }}">
+                    <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> 添加标签</a>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

@@ -4,13 +4,13 @@
 // 4  toastr.info('info');
 function deletenotice(noticeId,userId){
     toastr.success('删除通知成功!');
-    send_to_back(noticeId,userId);
+    sendDeleteNotice(noticeId,userId);
 }
 function canceldeletenotice(){
     toastr.info('取消删除通知!');
 }
 //向后台发送Ajax请求
-function send_to_back(noticeId,userId) {
+function sendDeleteNotice(noticeId,userId) {
     $.ajax({
         url: '/XX',
         type: 'POST',

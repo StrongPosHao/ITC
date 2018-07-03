@@ -9,12 +9,12 @@ function delete_comment(commentId) {
 
 function true_delete() {
     if (comment_id) {
-        send_to_back(comment_id);
+        sendDelete(comment_id);
         toastr.success('删除成功!')
     }
 }
 
-function send_to_back(comment_id) {
+function sendDelete(comment_id) {
     $.ajax({
         url: '/question/content/delete',
         type: 'POST',

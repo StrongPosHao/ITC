@@ -48,15 +48,15 @@
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </div>
                                     <div class="support-num">
-                                        <span>10</span>
+                                        <span>{{ article.get_article_comments()|length   }}</span>
                                     </div>
                                 </button>
-                                <button class="btn support" title="收藏该问题" onclick="javascript:support('收藏该问题',1,1)">
+                                <button class="btn support" title="收藏该文章" onclick="javascript:support('收藏该文章', {{ current_user.id }}, {{ article.articleId }})">
                                     <div>
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </div>
                                     <div class="support-num">
-                                        <span>10</span>
+                                        <span>{{ article.favoriteUsers.all()|length }}</span>
                                     </div>
                                 </button>
                                 <button class="btn support" title="举报" onclick="javascript:support('举报',1,1)">

@@ -6,13 +6,13 @@
             <div class="collapse navbar-collapse my-bar">
                 <ul class="nav nav-pills bar-item" role="tablist">
                     <li role="presentation">
-                        <a href="#">我关注的
-                            <span class="badge">42</span>
+                        <a href="{{ url_for('user.followers', user_id=current_user.id, _external = True) }}">我关注的
+                            <span class="badge">{{ current_user.followers.all()|length }}</span>
                         </a>
                     </li>
                     <li role="presentation" class="active">
-                        <a href="#">关注我的
-                            <span class="badge">3</span>
+                        <a href="{{ url_for('user.followed', user_id=current_user.id, _external = True) }}">关注我的
+                            <span class="badge">{{ current_user.followed.all()|length }}</span>
                         </a>
                     </li>
                 </ul>
@@ -20,7 +20,9 @@
 
 
             <ul class="nav nav-tabs bar-item">
+
                 <li role="presentation" >
+
                     <a href="{{ url_for('user.notification', user_id=current_user.id, _external=True) }}">通知
                         <span class="badge">{{ current_user.notifications.all()|length }}</span>
                     </a>

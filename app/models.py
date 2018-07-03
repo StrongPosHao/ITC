@@ -25,6 +25,9 @@ class UserTag(db.Model):
     tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
+    def get_object(self):
+        return Tag.query.filter(Tag.tagId == self.tagId).first()
+
 
 class ArticleTag(db.Model):
     __tablename__ = 'ArticleTag'
@@ -101,7 +104,6 @@ class User(UserMixin, db.Model):
     favoriteArticles = db.relationship('FavoriteArticle', backref=db.backref('articles'), lazy='dynamic')
     favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
     notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
-
 
     # 将类转为字典，然后响应json
     def as_dict(obj):
@@ -181,7 +183,7 @@ class Question(db.Model):
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    answers = db.relationship('Answer', backref=db.backref('answers'))
+    answers = db.relationship('Answer', backref=db.backref('answers'), lazy='dynamic')
     tags = db.relationship('QuestionTag', backref=db.backref('tags'), lazy='dynamic')
     favoriteUsers = db.relationship('FavoriteQuestion', lazy='dynamic')
 
@@ -218,6 +220,9 @@ class Answer(db.Model):
 
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
+
+    def get_question(self):
+        return Question.query.filter(Question.questionId == self.questionId).first()
 
 
 class Article(db.Model):
@@ -286,6 +291,9 @@ class Tag(db.Model):
         self.name = name
         self.description = description
         self.popularity = popularity
+
+    def get_child_tags(self):
+        return Tag.query.filter(Tag.parentId == self.tagId).all()
 
     # 将类转为字典，然后响应json
     def as_dict(obj):

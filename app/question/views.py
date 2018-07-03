@@ -10,14 +10,14 @@ import json
 @question.route('/<question_id>', methods=['GET', 'POST'])
 def content(question_id):
     ques = Question.query.filter(Question.questionId == question_id).first()
-    answers = ques.answers
+    answers = ques.answers.all()
     answer_comments_list = []
     for answer in answers:
         answer_comments = answer.answerComments
         answer_comments_list.append(answer_comments)
     if request.method == 'GET':
         return render_template('question/question-content.html', question=ques, question_id=question_id,
-                           answers=answers, answer_comments_list=answer_comments_list)
+                               answers=answers, answer_comments_list=answer_comments_list)
     else:
         if request.form.get('answer', None) == 'answer':
             answer_content = request.form.get('answer_content')
@@ -80,3 +80,20 @@ def list_user_question(user_id):
     pagination = user.questions.paginate(page, per_page=current_app.config['ITC_PER_PAGE'], error_out=False)
     questions = pagination.items
     return render_template('question/question-list.html', questions=questions, pagination=pagination)
+
+
+@question.route('/publish-question', methods=['POST'])
+def publish_question():
+    r"""
+    发表问题
+    :return:
+    """
+    user_id = current_user.id
+    title = request.form['question_title']
+    content = request.form['questionEditor']
+    public_time = datetime.now()
+    question = Question(userId=user_id, title=title, content=content, publicTime=public_time)
+    db.session.add(question)
+    db.session.commit()
+    this_question = Question.query.filter(Question.userId == user_id, Question.title == title).first()
+    return redirect(url_for('question.content', question_id=this_question.questionId, _external=True))

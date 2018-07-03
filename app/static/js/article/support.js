@@ -22,7 +22,7 @@ function support(title, user_id, article_id) {
 
             toastr.success(title+'成功!');
             //向后台发送数据
-            send_to_back(title, user_id, article_id, true);
+            sendSupport(title, user_id, article_id, true);
         } else {
             console.debug(title);
             console.debug($(".btn.support[title=" + title + "] span"));
@@ -44,7 +44,7 @@ function support(title, user_id, article_id) {
             }
             toastr.info("取消"+title+'!');
             //向后台发送数据
-            send_to_back(title, user_id, article_id, false);
+            sendSupport(title, user_id, article_id, false);
         }
         console.debug('踩' + $(".btn.support[title='没帮助'] span").css('color'));
         console.debug('举报' + $(".btn.support[title='举报'] span").css('color'));
@@ -52,11 +52,11 @@ function support(title, user_id, article_id) {
 }
 
 //向后台发送Ajax请求
-function send_to_back(title, user_id, article_id, ischecked) {
+function sendSupport(title, user_id, article_id, ischecked) {
     $.ajax({
-        url: '/XX',
+        url: '/article/favorite',
         type: 'POST',
-        data: 'title=' + title + '&user_id=' + user_id + '&article_id=' + article_id + '&ischecked' + ischecked,
+        data: 'title=' + title + '&user_id=' + user_id + '&article_id=' + article_id + '&ischecked=' + ischecked,
         success: function (data) {
         }
     });

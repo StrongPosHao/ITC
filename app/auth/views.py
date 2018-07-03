@@ -86,7 +86,8 @@ def confirm(token):
 
 @auth.route('/choose-tag')
 def choose_tag():
-    return render_template('tag/tag-index.html')
+    root_tags = Tag.query.filter(Tag.parentId == None).all()
+    return render_template('tag/tag-index.html', root_tags=root_tags)
 
 
 @auth.route('/confirm')
@@ -147,37 +148,3 @@ def password_reset(token):
             return redirect(url_for('auth.login'))
         else:
             return redirect(url_for('main.index'))
-
-
-
-# @auth.before_app_request
-# def my_before_request():
-#     r"""
-#     请求上下文管理器
-#     :return:
-#     """
-#     user = session.get('user')
-#     admin = session.get('admin')
-#     if user:
-#         g.user = user
-#     if admin:
-#         g.admin = admin
-#
-#
-# @auth.context_processor
-# def my_context_processor():
-#     r"""
-#     上下文处理器->将用户设置为可以在所有模板中访问
-#     :return:
-#     """
-#     username = session.get('username')
-#     adminname = session.get('admin')
-#     if username:
-#         user = User.query.filter(User.username == username).first()
-#         g.user = user
-#         return {'user': user}
-#     elif adminname:
-#         admin = Admin.query.filter(Admin.adminName == adminname).first()
-#         g.admin = admin
-#         return {'admin': admin}
-#
