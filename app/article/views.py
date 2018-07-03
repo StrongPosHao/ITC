@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, current_app, json, jsonify
 from . import article
 from flask_login import current_user
-from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle
+from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle, Follow
 from datetime import datetime
 from app.exts import db
 
@@ -13,8 +13,9 @@ def content(article_id):
     :return:
     """
     article1 = Article.query.filter(Article.articleId == article_id).first()
+    is_follow = True if current_user.is_following(article1.get_user_object()) else False
     if request.method == 'GET':
-        return render_template('article/article-content.html', article=article1)
+        return render_template('article/article-content.html', article=article1, is_follow=is_follow)
     else:
         comment_content = request.form.get('comment_area')
         comment_time = datetime.now()
@@ -142,3 +143,25 @@ def list_user_article(user_id):
     pagination = user.articles.paginate(page, per_page=current_app.config['ITC_PER_PAGE'], error_out=False)
     articles = pagination.items
     return render_template('article/article-list.html', articles=articles, pagination=pagination)
+
+
+@article.route('/focus-author', methods=['POST'])
+def focus_author():
+    r"""
+    关注作者处理函数
+    :return:
+    """
+    follower_id = request.form.get('user_id')
+    followed_id = request.form.get('writer_id')
+    is_focused = request.form.get('ischecked')
+    if is_focused == 'true':
+        follow = Follow(followerId=follower_id, followedId=followed_id, followTime=datetime.now())
+        db.session.add(follow)
+        db.session.commit()
+    elif is_focused == 'false':
+        follow = Follow.query.filter(Follow.followerId == follower_id, Follow.followedId == followed_id).first()
+        db.session.delete(follow)
+        db.session.commit()
+    data = {'info': 'Succeed'}
+    return jsonify(data)
+

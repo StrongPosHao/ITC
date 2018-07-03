@@ -1,6 +1,6 @@
-from flask import render_template, request, current_app, redirect, url_for
+from flask import render_template, request, current_app, redirect, url_for, jsonify
 from . import question
-from ..models import Question, User, Answer, AnswerComment
+from ..models import Question, User, Answer, AnswerComment, QuestionTag
 from ..exts import db
 from datetime import datetime
 from flask_login import current_user
@@ -46,11 +46,20 @@ def comment_answer():
     return redirect(url_for('question.content', question_id=question_id, _external=True))
 
 
-@question.route('/delete', methods=['POST'])
-def delete():
-    # answer_id = request.form.get('answerId')
-    data = request.form.get('data')
-    print(data)
+# @question.route('/delete-comment', methods=['POST'])
+# def delete_comment():
+#     comment_id = request.form.get('comment_id')
+#
+
+
+@question.route('/delete-answer', methods=['POST'])
+def delete_answer():
+    answer_id = request.form.get('answer_id')
+    answer = Answer.query.filter(Answer.answerId == answer_id).first()
+    db.session.delete(answer)
+    db.session.commit()
+    info = {'info': 'Succeed'}
+    return jsonify(info)
 
 
 @question.route('/list')
@@ -90,10 +99,14 @@ def publish_question():
     """
     user_id = current_user.id
     title = request.form['question_title']
-    content = request.form['questionEditor']
+    ques_content = request.form['questionEditor']
+    tag_id = request.form['tag_id']
     public_time = datetime.now()
-    question = Question(userId=user_id, title=title, content=content, publicTime=public_time)
-    db.session.add(question)
+    ques = Question(userId=user_id, title=title, content=ques_content, publicTime=public_time)
+    db.session.add(ques)
     db.session.commit()
     this_question = Question.query.filter(Question.userId == user_id, Question.title == title).first()
+    ques_tag = QuestionTag(questionId=this_question.questionId, tagId=tag_id, time=datetime.now())
+    db.session.add(ques_tag)
+    db.session.commit()
     return redirect(url_for('question.content', question_id=this_question.questionId, _external=True))

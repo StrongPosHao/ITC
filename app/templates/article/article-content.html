@@ -78,8 +78,8 @@
                                 <h4><a href="">{{ article.title }}</a></h4>
                                 <div style="margin-bottom: 10px;">
                                     <div class="content-tag">
-                                        {% for tag in article.tags %}
-                                            <a title="该文章的标签">{{ tag }}</a>
+                                        {% for tag in article.tags.all() %}
+                                            <a title="该文章的标签">{{ tag.get_object().name }}</a>
                                         {% endfor %}
                                     </div>
                                     <span>发表时间&nbsp;&nbsp;<span>{{ article.publicTime }}</span></span>
@@ -193,24 +193,24 @@
                             <h4><span style="font-weight: bolder; color: orange;margin-right: 4px;">|</span>关于作者</h4>
                             <a title="作者" class="writer-name">{{ article.get_user() }}</a>
                             <!-- 参数user_id,writer_id) -->
-                            <a href="javascript:focus(1,1)" title="关注作者" class="plus"><span><span
-                                    class="glyphicon glyphicon-plus"></span>关注</span></a>
+                            <a href="javascript:focus_author({{ current_user.id }}, {{ article.get_user_object().id }})" title="关注作者" class="plus"><span><span
+                                    class="glyphicon glyphicon-plus"></span>{% if is_follow %}已关注{% else %}关注{% endif %}</span></a>
                         </div>
                         <div class="writer-content">
                             <a title="发表的文章"
-                               href="{{ url_for('article.list_user_article', user_id=current_user.id, _external=True) }}">
+                               href="{{ url_for('user.articles', user_id=article.get_user_object().id, _external=True) }}">
                                 <dl>
                                     <dd>文章</dd>
                                     <dt>{{ article.get_user_object().articles.all()|length }}</dt>
                                 </dl>
                             </a>
-                            <a title="提出的问题" href="{{ url_for('question.list_user_question', user_id=current_user.id, _external=True) }}">
+                            <a title="提出的问题" href="{{ url_for('user.questions', user_id=article.get_user_object().id, _external=True) }}">
                                 <dl>
                                     <dd>问题</dd>
                                     <dt>{{ article.get_user_object().questions.all()|length }}</dt>
                                 </dl>
                             </a>
-                            <a title="粉丝">
+                            <a title="粉丝" href="{{ url_for('user.followed', user_id=article.get_user_object().id, _external=True) }}">
                                 <dl>
                                     <dd>粉丝</dd>
                                     <dt>{{ article.get_user_object().followers.all()|length }}</dt>

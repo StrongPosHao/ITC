@@ -34,7 +34,7 @@
                         <div style="display: none;" id='name_div_1'>
                             <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
                             <p>
-                                <button class="btn btn-primary" onclick="send_to_back_userName({{ current_user }})">确认</button>
+                                <button class="btn btn-primary" onclick="send_to_back_userName({{ user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('name',1)">取消</button>
                             </p>
                         </div>
@@ -51,7 +51,7 @@
                         <div style="display: none;" id='intro_div_1'>
                             <input type="text" id="introduction" name="introduction" class="form-control" placeholder="Introduction" aria-describedby="basic-addon1">
                             <p>
-                                <button class="btn btn-primary" onclick="send_to_back_userIntro({{ current_user }})">确认</button>
+                                <button class="btn btn-primary" onclick="send_to_back_userIntro({{ user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('intro',1)">取消</button>
                             </p>
                         </div>
@@ -87,7 +87,7 @@
                         <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">
                         <br>
                         <p>
-                            <button class="btn btn-primary" onclick="send_to_back_userEmail({{ current_user }})">确认</button>
+                            <button class="btn btn-primary" onclick="send_to_back_userEmail({{ user }})">确认</button>
                             <button class="btn btn-default" onclick="hideForm('email',1)">取消</button>
                         </p>
                     </div>
@@ -113,7 +113,7 @@
                         <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">
                         <br>
                         <p>
-                            <button class="btn btn-primary" onclick="send_to_back_userPhone({{ current_user }})">确认</button>
+                            <button class="btn btn-primary" onclick="send_to_back_userPhone({{ user }})">确认</button>
                             <button class="btn btn-default" onclick="hideForm('phone',1)">取消</button>
                         </p>
                     </div>
@@ -138,7 +138,7 @@
                         />
                         <br>
                         <p>
-                            <button class="btn btn-primary" onclick="send_to_back_userPasswd({{ current_user }})">确认</button>
+                            <button class="btn btn-primary" onclick="send_to_back_userPasswd({{ user }})">确认</button>
                             <button class="btn btn-default" onclick="hideForm('passwd',1)">取消</button>
                         </p>
                     </div>

@@ -45,6 +45,9 @@ class ArticleTag(db.Model):
         return dict((col.name, getattr(obj, col.name)) \
                     for col in class_mapper(obj.__class__).mapped_table.c)
 
+    def get_object(self):
+        return Tag.query.filter(Tag.tagId == self.tagId).first()
+
 
 class QuestionTag(db.Model):
     __tablename__ = 'QuestionTag'
@@ -61,6 +64,9 @@ class QuestionTag(db.Model):
     def as_dict(obj):
         return dict((col.name, getattr(obj, col.name)) \
                     for col in class_mapper(obj.__class__).mapped_table.c)
+
+    def get_object(self):
+        return Tag.query.filter(Tag.tagId == self.tagId).first()
 
 
 class FavoriteArticle(db.Model):
@@ -93,8 +99,8 @@ class User(UserMixin, db.Model):
     questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic')
     drafts = db.relationship('Draft', backref=db.backref('drafts'), lazy='dynamic')
     user_answers = db.relationship('Answer', backref=db.backref('user_answers'), lazy='dynamic')
-    followed = db.relationship('Follow', foreign_keys=[Follow.followerId],
-                               backref=db.backref('follower', lazy='joined'),
+    followed = db.relationship('Follow', foreign_keys=[Follow.followerId],  # 用户关注的用户: user.followed
+                               backref=db.backref('follower', lazy='joined'),  # 关注用户的用户: user.follower
                                lazy='dynamic',
                                cascade='all, delete-orphan')
     followers = db.relationship('Follow', foreign_keys=[Follow.followedId],
@@ -158,6 +164,27 @@ class User(UserMixin, db.Model):
                 db.session.commit()
             except IntegrityError:
                 db.session.rollback()
+
+    def is_following(self, user):
+        return self.followed.filter_by(followedId=user.id).first() is not None
+
+    def is_followed_by(self, user):
+        return self.followers.filter_by(followerId=user.id).first() is not None
+
+    def follow(self, user):
+        if not self.is_following(user):
+            f = Follow(followerId=self.id, followedId=user.id)
+            db.session.add(f)
+            db.session.commit()
+
+    def unfollow(self, user):
+        f = self.followed.filter_by(followedId=user.id).first()
+        if f:
+            db.session.delete(f)
+            db.session.commit()
+
+    def get_all_tags(self):
+        return Tag.query.filter(Tag.parentId!=None).all()
 
 
 @login_manager.user_loader

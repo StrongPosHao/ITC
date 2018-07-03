@@ -173,13 +173,10 @@
                     </div>
                     </div>
                     <div class="rcm-tag">
-                    <select class="form-control" name="tag">
-                        <option>人工智能</option>
-                        <option>大数据</option>
-                        <option>前端</option>
-                        <option>后端</option>
-                        <option>移动应用</option>
-                        <option>数据库</option>
+                    <select class="form-control" name="tag_id">
+                        {% for tag in current_user.get_all_tags() %}
+                            <option value="{{ tag.tagId }}">{{ tag.name }}</option>
+                        {% endfor %}
                     </select>
                     </div>
                     </div>

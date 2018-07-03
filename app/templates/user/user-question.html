@@ -9,40 +9,40 @@
 
             <ul class="nav nav-tabs bar-item">
                 <li role="presentation">
-                    <a href="{{ url_for('user.notification', user_id=current_user.id, _external=True) }}">通知
-                        <span class="badge">{{ current_user.notifications.all()|length }}</span>
+                    <a href="{{ url_for('user.notification', user_id=user.id, _external=True) }}">通知
+                        <span class="badge">{{ user.notifications.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="{{ url_for('user.answers', user_id=current_user.id, _external=True) }}">回答
-                        <span class="badge">{{ current_user.user_answers.all()|length }}</span>
+                    <a href="{{ url_for('user.answers', user_id=user.id, _external=True) }}">回答
+                        <span class="badge">{{ user.user_answers.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation" class="active">
-                    <a href="{{ url_for('user.questions', user_id=current_user.id, _external=True) }}">提问
-                        <span class="badge">{{ current_user.questions.all()|length }}</span>
+                    <a href="{{ url_for('user.questions', user_id=user.id, _external=True) }}">提问
+                        <span class="badge">{{ user.questions.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="{{ url_for('user.articles', user_id=current_user.id, _external=True) }}">文章
-                        <span class="badge">{{ current_user.articles.all()|length }}</span>
+                    <a href="{{ url_for('user.articles', user_id=user.id, _external=True) }}">文章
+                        <span class="badge">{{ user.articles.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="{{ url_for('user.favorites', user_id=current_user.id, _external=True) }}">收藏
-                        <span class="badge">{{ current_user.favoriteArticles.all()|length + current_user.favoriteQuestions.all()|length }}</span>
+                    <a href="{{ url_for('user.favorites', user_id=user.id, _external=True) }}">收藏
+                        <span class="badge">{{ user.favoriteArticles.all()|length + user.favoriteQuestions.all()|length }}</span>
                     </a>
                 </li>
                 <li role="presentation">
-                    <a href="{{ url_for('user.followers', user_id=current_user.id, _external=True) }}">关注
-                        <span class="badge">{{ current_user.followed.all()|length }}</span>
+                    <a href="{{ url_for('user.followers', user_id=user.id, _external=True) }}">关注
+                        <span class="badge">{{ user.followed.all()|length }}</span>
                     </a>
                 </li>
             </ul>
         </div>
 
         <!--回答，提问，文章，收藏-->
-        {% for question in current_user.questions.all() %}
+        {% for question in user.questions.all() %}
             <div class="content-box">
                 <div class="content-title">
                     <h4>

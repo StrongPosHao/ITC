@@ -36,7 +36,8 @@ def answers(user_id):
     :param user_id:
     :return:
     """
-    return render_template('user/user-answer.html')
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-answer.html', user=usr)
 
 
 @user.route('questions/<user_id>')
@@ -46,7 +47,8 @@ def questions(user_id):
     :param user_id:
     :return:
     """
-    return render_template('user/user-question.html')
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-question.html', user=usr)
 
 
 @user.route('articles/<user_id>')
@@ -56,7 +58,8 @@ def articles(user_id):
     :param user_id:
     :return:
     """
-    return render_template('user/user-article.html')
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-article.html', user=usr)
 
 
 @user.route('favorites/<user_id>')
@@ -68,12 +71,10 @@ def favorites(user_id):
     """
     questions = current_user.favoriteQuestions.order_by(FavoriteQuestion.time.desc()).all()
     articles= current_user.favoriteArticles.order_by(FavoriteArticle.time.desc()).all()
-    print(articles)
-    print(questions)
     favorites_list = questions + articles
     favorites_list = sorted(favorites_list, key=lambda x: x.time)
-    print(favorites_list)
-    return render_template('user/user-collection.html', favorites=favorites_list)
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-collection.html', favorites=favorites_list, user=usr)
 
 
 @user.route('followers/<user_id>')
@@ -83,7 +84,8 @@ def followers(user_id):
     :param user_id:
     :return:
     """
-    return render_template('user/user-concern-me.html')
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-my-concern.html', user=usr)
 
 
 @user.route('followed/<user_id>')
@@ -93,7 +95,8 @@ def followed(user_id):
     :param user_id:
     :return:
     """
-    return render_template('user/user-my-concern.html')
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-concern-me.html', user=usr)
 
 
 @user.route('/choose-tag', methods=['POST'])
