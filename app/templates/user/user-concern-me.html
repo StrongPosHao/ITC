@@ -20,7 +20,9 @@
 
 
             <ul class="nav nav-tabs bar-item">
-                <li role="presentation">
+
+                <li role="presentation" >
+
                     <a href="{{ url_for('user.notification', user_id=current_user.id, _external=True) }}">通知
                         <span class="badge">{{ current_user.notifications.all()|length }}</span>
                     </a>
