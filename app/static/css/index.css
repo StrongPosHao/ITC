@@ -428,6 +428,13 @@ a{
     float: left;
 }
 
+.content>p {
+    width:54em;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
 @media (min-width: 1050px){
     .side{
         left: 12%;
@@ -466,4 +473,6 @@ a{
         float: left;
         margin-left: 9%;
     }
+
+
 }

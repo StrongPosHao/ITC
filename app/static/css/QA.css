@@ -93,3 +93,9 @@
 .qa-bar li>a.active{
     border-color: #deb88778;
 }
+.content>p {
+    width:54em;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}

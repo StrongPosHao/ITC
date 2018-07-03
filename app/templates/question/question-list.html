@@ -48,20 +48,23 @@
                                         <a href="{{ url_for('question.content', question_id=question.questionId, _external=True) }}">{{ question.title }}</a>
                                     </h4>
                                 </div>
-                                <div class="writer">
-                                    <a href="">{{ question.get_user() }}</a>
-                                    <span>{{ question.publicTime }}</span>
-                                </div>
+
 
                                 <div class="content">
                                     <p>{{ question.content }}</p>
                                 </div>
-                                <dl class="article-info">
-                                    {% for tag in question.tags.all() %}
+                                 {% for tag in question.tags.all() %}
                                         <div class="content-tag">
                                             <a title="该问题的标签">{{ tag.get_object().name }}</a>
                                         </div>
                                     {% endfor %}
+                                <dl class="article-info">
+                                    <dd class="writer">
+                                        <a href="">{{ question.get_user() }}</a>
+                                    </dd>
+                                    <dd class="article-time">
+                                        <span>{{ question.publicTime }}</span>
+                                    </dd>
                                     <div class="comment">
                                         <dd class="support">
                                             <a title="点赞"><span
