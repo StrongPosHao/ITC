@@ -1,5 +1,6 @@
 body{
-    background: url("../image/index.png") no-repeat fixed center;
+    background: url("../image/user.png") no-repeat fixed center;
+    /*filter: brightness(-2);*/
     background-size: cover;
     margin: 0;
     font-size: 1em;
