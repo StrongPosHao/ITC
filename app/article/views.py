@@ -114,21 +114,34 @@ def unlike():
     return jsonify(info)
 
 
-@article.route('/delete/<comment_id>', methods=['GET', 'POST'])
-def delete(comment_id):
+# @article.route('/delete/<comment_id>', methods=['GET', 'POST'])
+# def delete(comment_id):
+#     r"""
+#     用于删除评论的路由函数
+#     :return:
+#     """
+#     article_comment = ArticleComment.query.filter(ArticleComment.commentId == comment_id).first()
+#     if not article_comment.parentId:
+#         child_comments = article_comment.get_child_comments()
+#         for child_comment in child_comments:
+#             db.session.delete(child_comment)
+#             db.session.commit()
+#     db.session.delete(article_comment)
+#     db.session.commit()
+#     return redirect(url_for('article.content', article_id=article_comment.articleId, _external=True))
+
+@article.route('/delete-comment', methods=['POST'])
+def delete_comment():
     r"""
     用于删除评论的路由函数
     :return:
     """
-    article_comment = ArticleComment.query.filter(ArticleComment.commentId == comment_id).first()
-    if not article_comment.parentId:
-        child_comments = article_comment.get_child_comments()
-        for child_comment in child_comments:
-            db.session.delete(child_comment)
-            db.session.commit()
-    db.session.delete(article_comment)
+    comment_id = request.form.get('commentId')
+    comment = ArticleComment.query.filter(ArticleComment.commentId == comment_id).first()
+    db.session.delete(comment)
     db.session.commit()
-    return redirect(url_for('article.content', article_id=article_comment.articleId, _external=True))
+    info = {'info': 'Succeed'}
+    return jsonify(info)
 
 
 @article.route('/publish', methods=['GET', 'POST'])
@@ -138,7 +151,7 @@ def publish():
     :return:
     """
     if request.method == 'GET':
-        tags = Tag.query.filter(Tag.parentId == None).all()
+        tags = Tag.query.filter(Tag.parentId != None).all()
         return render_template('article/article-publish.html', tags=tags)
     else:
         user_id = current_user.id

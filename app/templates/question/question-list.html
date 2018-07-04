@@ -67,19 +67,11 @@
                                     </dd>
                                     <div class="comment">
                                         <dd class="support">
-                                            <a title="点赞"><span
-                                                    class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
-                                        </dd>
-                                        <dd class="refute">
-                                            <a title="没帮助"><span
-                                                    class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
-                                        </dd>
-                                        <dd class="read">
-                                            <a title="浏览"><span
-                                                    class="glyphicon glyphicon-eye-open"></span><span>30</span></a>
+                                            <a title="收藏"><span
+                                                    class="glyphicon glyphicon-plus"></span><span>{{ question.favoriteUsers.all()|length }}</span></a>
                                         </dd>
                                         <dd class="comment-num">
-                                            <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>3</span></a>
+                                            <a title="回答"><span class="glyphicon glyphicon-pencil"></span><span>{{ question.answers.all()|length }}</span></a>
                                         </dd>
                                     </div>
                                 </dl>

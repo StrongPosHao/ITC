@@ -51,6 +51,9 @@ class ArticleTag(db.Model):
     def get_object(self):
         return Tag.query.filter(Tag.tagId == self.tagId).first()
 
+    def get_item(self):
+        return Article.query.filter(Article.articleId == self.articleId).first()
+
 
 class QuestionTag(db.Model):
     __tablename__ = 'QuestionTag'
@@ -71,6 +74,9 @@ class QuestionTag(db.Model):
 
     def get_object(self):
         return Tag.query.filter(Tag.tagId == self.tagId).first()
+
+    def get_item(self):
+        return Question.query.filter(Question.questionId == self.questionId).first()
 
 
 class FavoriteArticle(db.Model):
@@ -274,6 +280,9 @@ class Question(db.Model):
     def is_user_favorite(self, user):
         return 'true' if self.questionId in map(lambda x: x.questionId, user.favoriteQuestions.all()) else 'false'
 
+    def get_type(self):
+        return 'question'
+
 
 class Answer(db.Model):
     __tablename__ = 'Answer'
@@ -354,6 +363,9 @@ class Article(db.Model):
 
     def is_user_unlike(self, user):
         return 'true' if self.articleId in map(lambda x: x.articleId, user.unlikeArticles.all()) else 'false'
+
+    def get_type(self):
+        return 'article'
 
 
 class Draft(db.Model):

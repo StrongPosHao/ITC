@@ -75,11 +75,11 @@
                                     <div class="comment">
                                         <dd class="support">
                                             <a title="点赞"><span
-                                                    class="glyphicon glyphicon-thumbs-up"></span><span>10</span></a>
+                                                    class="glyphicon glyphicon-thumbs-up"></span><span>{{ article.likeUsers.all()|length }}</span></a>
                                         </dd>
                                         <dd class="refute">
                                             <a title="没帮助"><span
-                                                    class="glyphicon glyphicon-thumbs-down"></span><span>5</span></a>
+                                                    class="glyphicon glyphicon-thumbs-down"></span><span>{{ article.unlikeUsers.all()|length }}</span></a>
                                         </dd>
                                         <dd class="comment-num">
                                             <a title="评论">

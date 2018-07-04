@@ -137,7 +137,8 @@
                                                 <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
                                                 {% if comment.userId == current_user.id %}
                                                     <a class="del-comment"
-                                                       href="{{ url_for('article.delete', comment_id=comment.commentId, _external=True) }}">删除</a>
+                                                       data-toggle="modal" data-target="#modal_del"
+                                                       onclick="delete_comment({{ comment.commentId }})">删除</a>
                                                 {% endif %}
                                             </div>
                                             <div class="answer">
@@ -184,7 +185,8 @@
                                                             <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
                                                             {% if child_comment.userId == current_user.id %}
                                                                 <a class="del-comment"
-                                                                   href="{{ url_for('article.delete', comment_id=child_comment.commentId, _external=True) }}">删除</a>
+                                                                   data-toggle="modal" data-target="#modal_del"
+                                                                   onclick="delete_comment({{ child_comment.commentId }})">删除</a>
                                                             {% endif %}
                                                             <span>{{ child_comment.commentTime }}</span>
                                                         </div>
@@ -245,6 +247,28 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="modal_del" tabindex="-1" role="dialog" aria-labelledby="modal_del">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    确定删除XXX吗？
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="true_delete()">确认
+                    </button>
                 </div>
             </div>
         </div>
