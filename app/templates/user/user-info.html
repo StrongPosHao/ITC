@@ -9,6 +9,7 @@
     <script src="{{ url_for('static', filename='js/userinfo/showedit.js') }}"></script>
     <script src="{{ url_for('static', filename='js/userinfo/validation.js') }}"></script>
     <script src="{{ url_for('static', filename='js/userinfo/userinfo.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/md5.js') }}" type="text/javascript"></script>
 {% endblock %}
 {% block content %}
     <!--content-->
@@ -27,7 +28,7 @@
 
                         <!--点击修改之后显示-->
                         <div style="display: none;" id='name_div_1'>
-                            <input type="text" id="username" name="username" class="form-control" placeholder="{{ user.username }}" aria-describedby="basic-addon1">
+                            <input type="text" id="username" name="username" class="form-control" placeholder="{{ user.username }}" aria-describedby="basic-addon1" minlength="4" maxlength="20">
                             <p>
                                 <button class="btn btn-primary" onclick="send_to_back_userName({{ user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('name',1)">取消</button>
@@ -44,7 +45,7 @@
 
                         <!--点击修改之后显示-->
                         <div style="display: none;" id='intro_div_1'>
-                            <input type="text" id="introduction" name="introduction" class="form-control" placeholder="{{ user.introduction }}" aria-describedby="basic-addon1">
+                            <input type="text" id="introduction" name="introduction" class="form-control" placeholder="{{ user.introduction }}" aria-describedby="basic-addon1" maxlength="35">
                             <p>
                                 <button class="btn btn-primary" onclick="send_to_back_userIntro({{ user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('intro',1)">取消</button>
@@ -77,9 +78,9 @@
 
                     <!--点击编辑之后显示-->
                     <div id="email_div_1" style="display: none">
-                        <input type="password" id="passwordr" name="password" class="form-control" placeholder="请输入密码进行验证" aria-describedby="basic-addon1"/>
+                        <input type="password" id="passwordr" name="password" class="form-control" placeholder="请输入密码进行验证" aria-describedby="basic-addon1" />
                         <br>
-                        <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1">
+                        <input type="text" id="email" name="email" class="form-control" placeholder="新的邮箱" aria-describedby="basic-addon1" maxlength="35">
                         <br>
                         <p>
                             <button class="btn btn-primary" onclick="send_to_back_userEmail({{ user }})">确认</button>
@@ -105,7 +106,7 @@
 
                     <!--点击编辑之后显示-->
                     <div id="phone_div_1" style="display: none">
-                        <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1">
+                        <input type="text" id="phone" name="phone" class="form-control" placeholder="新的手机号" aria-describedby="basic-addon1" maxlength="15">
                         <br>
                         <p>
                             <button class="btn btn-primary" onclick="send_to_back_userPhone({{ user }})">确认</button>
@@ -126,10 +127,10 @@
 
                     <!--点击编辑之后显示-->
                     <div id="passwd_div_1" style="display: none">
-                        <input type="password" id="password" name="password" class="form-control" placeholder="新的密码" aria-describedby="basic-addon1"
+                        <input type="password" id="password" name="password" class="form-control" placeholder="新的密码" aria-describedby="basic-addon1" minlength="7"
                         />
                         <br>
-                        <input type="password" id="confirm" name="confirm" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1"
+                        <input type="password" id="confirm" name="confirm" class="form-control" placeholder="再次输入密码" aria-describedby="basic-addon1" minlength="7"
                         />
                         <br>
                         <p>

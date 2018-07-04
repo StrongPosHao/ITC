@@ -30,7 +30,7 @@ function send_to_back_userIntro(userId) {
 }
 
 function send_to_back_userEmail(userId) {
-    var userPasswd = $("#passwordr").val();
+    var userPasswd = hex_md5($("#passwordr").val());
     var userEmail = $("#introduction").val();
     $.ajax({
         url: '/XX',
@@ -59,7 +59,7 @@ function send_to_back_userPhone(userId) {
 }
 
 function send_to_back_userPasswd(userId) {
-    var userPasswd = $("#password").val();
+    var userPasswd = hex_md5($("#passwordr").val());
 
     $.ajax({
         url: '/XX',

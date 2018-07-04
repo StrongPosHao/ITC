@@ -12,8 +12,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
 
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='CodeSeven-toastr-50092cc/build/toastr.min.css') }}"
-          type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CodeSeven-toastr-50092cc/build/toastr.min.css')}}" type="text/css">
     <script src="{{ url_for('static', filename='CodeSeven-toastr-50092cc/build/toastr.min.js') }}"></script>
     <script src="{{ url_for('static', filename='js/base/base.js') }}"></script>
     <script type="text/javascript">
@@ -24,11 +23,11 @@
     </script>
     <!-- 配置文件 -->
     <script type="text/javascript" src="{{ url_for('static', filename='ueditor/ueditor.config.pro.js') }}"></script>
-    <!-- 编辑器源码文件 -->
+                <!-- 编辑器源码文件 -->
     <script type="text/javascript" src="{{ url_for('static', filename='ueditor/ueditor.all.js') }}"></script>
 
     {% block head %}
-        <title>{% block title %}{% endblock %}</title>
+    <title>{% block title %}{% endblock %}</title>
     {% endblock %}
 
 
@@ -68,9 +67,10 @@
                     <ul class="nav navbar-nav f-left-o">
 
 
-                        <li id="nav_1"><a href="{{ url_for('main.index') }}">主页</a></li>
-                        <li id="nav_2"><a href="{{ url_for('article.list_article') }}">文章</a></li>
-                        <li id="nav_3"><a href="{{ url_for('question.list_question') }}">问答</a></li>
+
+                        <li id="nav_1" ><a href="{{ url_for('main.index') }}">主页</a></li>
+                        <li id="nav_2"><a  href="{{ url_for('article.list_article') }}">文章</a></li>
+                        <li id="nav_3"><a  href="{{ url_for('question.list_question') }}">问答</a></li>
                     </ul>
                     <form class="nav navbar-form f-left-t" role="search" action="{{ url_for('main.search') }}" method="post" name="searchForm">
                         <div class="form-group input-box">
@@ -83,152 +83,121 @@
                     <ul class="nav navbar-nav f-left-th">
                         <li id="nav_4"><a href="{{ url_for('article.publish') }}">发文章</a></li>
                         <li><a href="javascript:putquestion()">提问</a></li>
-                        <li id="nav_5"><a title="消息通知"
-                                          href="{{ url_for('user.notification', user_id = current_user.id, _external = True) }}"><span
-                                class="glyphicon glyphicon-envelope"></span><sup>1</sup></a></li>
-                        <li id="nav_6" role="presentation" class="dropdown">
-                            <a title="个人中心"
-                               href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}"
+                                     <li id="nav_5"><a title="消息通知" href="{{ url_for('user.notification', user_id = current_user.id, _external = True) }}">
+                            <span  class="glyphicon glyphicon-envelope"></span><sup>1</sup></a></li>
+                        <li  id="nav_6" role="presentation" class="dropdown">
+                            <a title="个人中心" href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}"
                                target="_blank" class="dropdown-toggle head-img-box" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false"><img
-                                    src="{{ current_user.gravatar(size=256) }}"
-                                    class="img-circle"></a>
+                               aria-haspopup="true" aria-expanded="false"><img src="{{ current_user.gravatar(size=256) }}"
+                                                                               class="img-circle"></a>
                             <ul class="dropdown-menu" aria-labelledby="center">
                                 <li>
                                     <a href="{{ url_for('user.notification', user_id = current_user.id, _external = True) }}">个人中心</a>
                                 </li>
-                                <li>
-                                    <a href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}">设置</a>
-                                </li>
+                                <li><a href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}">设置</a></li>
                                 <li><a href="{{ url_for('auth.logout') }}">退出</a></li>
                             </ul>
                         </li>
                     </ul>
-                </div>
             </div>
-        </nav>
-    </div>
+        </div>
+    </nav>
+</div>
 
 {% else %}
 
-    {#未登录header#}
-    <div class="nav-box">
-        <nav class="navbar navbar-default" role="navigation">
-            <div class="container-fluid">
-                <div class="navbar-header" style="margin-left: 3%;margin-right: 7%;">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse"
-                            data-target="#col-navbar">
-                        <span class="sr-only">toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <div class="logo">
-                        <h1><a title="ITC技术社区" href="{{ url_for('main.index') }}">ITC</a></h1>
-                    </div>
-                </div>
-                <div class="collapse navbar-collapse" id="col-navbar">
-                    <ul class="nav navbar-nav f-left-o">
-                        <li class="active"><a href="{{ url_for('main.index') }}">主页</a></li>
-                        <li><a href="{{ url_for('article.list_article') }}">文章</a></li>
-                        <li><a href="{{ url_for('question.list_question') }}">问答</a></li>
-                        <li><a href="{{ url_for('article.publish') }}">发文章</a></li>
-                        <li><a href="{{ url_for('question.publish') }}">提问</a></li>
-                    </ul>
-                    <form class="nav navbar-form f-left-t" role="search" action="" method="post" name="searchForm">
-                        <div class="form-group input-box">
-                            <input type="text" class="form-control" placeholder="搜索...">
-                            <button type="submit" class="serach-btn">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </button>
-                        </div>
-                    </form>
-                    <ul class="nav navbar-nav f-left-th">
-                        <li><a href="{{ url_for('auth.register') }}">注册</a></li>
-                        <li><a href="{{ url_for('auth.login') }}">登录</a></li>
-                    </ul>
+{#未登录header#}
+<div class="nav-box">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header" style="margin-left: 3%;margin-right: 7%;">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#col-navbar">
+                    <span class="sr-only">toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo">
+                    <h1><a title="ITC技术社区" href="{{ url_for('main.index') }}">ITC</a></h1>
                 </div>
             </div>
-        </nav>
-    </div>
+            <div class="collapse navbar-collapse" id="col-navbar">
+                <ul class="nav navbar-nav f-left-o">
+                    <li class="active"><a href="{{ url_for('main.index') }}">主页</a></li>
+                    <li><a href="{{ url_for('article.list_article') }}">文章</a></li>
+                    <li><a href="{{ url_for('question.list_question') }}">问答</a></li>
+                    <li><a href="{{ url_for('article.publish') }}">发文章</a></li>
+                    <li><a href="{{ url_for('question.publish') }}">提问</a></li>
+                </ul>
+                <form class="nav navbar-form f-left-t" role="search" action="" method="post" name="searchForm">
+                    <div class="form-group input-box">
+                        <input type="text" class="form-control" placeholder="搜索...">
+                        <button type="submit" class="serach-btn">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
+                </form>
+                <ul class="nav navbar-nav f-left-th">
+                    <li><a href="{{ url_for('auth.register') }}">注册</a></li>
+                    <li><a href="{{ url_for('auth.login') }}">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
 {% endif %}
 
 {% block content %}{% endblock %}
 
 {% if True %}
-    <div class="write-question-box" style="display:none">
+<div class="write-question-box" style="display:none">
     <div class="question-container">
         <div class="box-title">
             <h4>提问</h4>
         </div>
         <form action="{{ url_for('question.publish_question') }}" method="post">
             <div class="question-title">
-                <textarea row="2" name="question_title" type="text" class="form-control"
-                          placeholder="输入问题的标题"></textarea>
+                <textarea row="2" name="question_title" type="text" class="form-control" placeholder="输入问题的标题"></textarea>
             </div>
             <div class="write-question">
                 <!--加载编辑器的容器-->
                 <script id="questionEditor" type="text/plain" name="questionEditor" style="width: 100%;overflow: auto;
     height:252px;z-index: -1;"></script>
-                <
-                /div>
+                </div>
 
-                < div
-                class
-                = "write-tag-box" >
-                    < div
-                class
-                = "write-tag" >
-                    < div
-                class
-                = "tag" >
-                    < span > javascript < a > < span
-                class
-                = "glyphicon glyphicon-remove" > < /span></
-                a > < /span>
-                < /div>
-                < /div>
-                < div
-                class
-                = "rcm-tag" >
-                    < select
-                class
-                = "form-control"
-                name = "tag_id" >
-                    {% for tag in current_user.get_all_tags() %}
-                        <option value="{{ tag.tagId }}">{{ tag.name }}</option>
-                    {% endfor %}
-                    < /select>
-                    < /div>
-                    < /div>
-                    < div
-                class
-                = "write-btn" >
-                    < button
-                type = "submit"
-                class
-                = "btn submit-pro" > 提交 < /button>
-                    < button
-                type = "button"
-                class
-                = "btn return-pro"
-                onclick = "cancel()" > 取消 < /button>
-                    < /div>
-                    < /form>
+                    <div class="write-tag-box">
+                    <div class="write-tag">
+                    <div class="tag">
+                    <span>javascript<a><span class="glyphicon glyphicon-remove"></span></a></span>
+                    </div>
+                    </div>
+                    <div class="rcm-tag">
+                    <select class="form-control" name="tag_id">
+                        {% for tag in current_user.get_all_tags() %}
+                            <option value="{{ tag.tagId }}">{{ tag.name }}</option>
+                        {% endfor %}
+                    </select>
+                    </div>
+                    </div>
+                    <div class="write-btn">
+                    <button type="submit" class="btn submit-pro">提交</button>
+                    <button type="button" class="btn return-pro" onclick = "cancel()">取消</button>
+                    </div>
+                    </form>
 
-                    < script
-                type = "text/javascript" >
-                var ue = UE.getEditor('questionEditor', {
-                    toolbar:
-                        ['bold italic underline fullscreen', 'link unlink', 'insertcode',
-                            '| justifyleft justifycenter justifyright justifyjustify |', 'emotion image video  | map']
-                });
+                <script type="text/javascript">
+        var ue = UE.getEditor('questionEditor',{
+        toolbar:
+        ['bold italic underline fullscreen', 'link unlink','insertcode',
+        '| justifyleft justifycenter justifyright justifyjustify |', 'emotion image video  | map']
+        });
                 </script>
             </div>
     </div>
 
 
-{% endif %}
+    {% endif %}
 
 
 </body>
