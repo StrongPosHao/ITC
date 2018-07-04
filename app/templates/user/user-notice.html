@@ -33,8 +33,8 @@
                     </a>
                 </li>
                 <li role="presentation" >
-                    <a href="{{ url_for('user.favorites', user_id=user.id, _external=True) }}">草稿
-                        <span class="badge"> 12 </span>
+                    <a href="{{ url_for('user.drafts', user_id=user.id, _external=True) }}">草稿
+                        <span class="badge{{ user.drafts.all()|length }}">  </span>
                     </a>
                 </li>
                 <li role="presentation">

@@ -178,7 +178,7 @@
                                                 {% for child_comment in comment.get_child_comments() %}
                                                     <div class="answer-comment" id='com_{{child_comment.commentId}}'>
                                                         <div class="answer-comment-head">
-                                                            <a>{{ child_comment.get_user() }}->{{ child_comment.get_parent_comment_user() }}</a>:&nbsp;&nbsp;<span>{{ child_comment.content | safe }}</span>
+                                                            <a>{{ child_comment.get_user() }} 回复 {{ child_comment.get_parent_comment_user() }}</a>:&nbsp;&nbsp;<span>{{ child_comment.content | safe }}</span>
                                                         </div>
                                                         <div class="answer-comment-tail">
                                                             <a onclick="javascript:saycomment1({{child_comment.commentId}})">评论</a>

@@ -445,6 +445,9 @@ class AnswerComment(db.Model):
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
 
+    def get_parent_comment(self):
+        return AnswerComment.query.filter(self.parentId == AnswerComment.commentId).first()
+
     def get_parent_comment_user(self):
         return AnswerComment.query.filter(self.parentId == AnswerComment.commentId).first().get_user()
 

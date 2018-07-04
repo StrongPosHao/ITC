@@ -64,23 +64,23 @@
                                     <dd class="article-time">
                                         <span>{{ item.publicTime }}</span>
                                     </dd>
-                                    <div class="comment">
-                                        <dd class="support">
-                                            <a title="收藏"><span
-                                                    class="glyphicon glyphicon-plus"></span><span>{{ item.favoriteUsers.all()|length }}</span></a>
-                                        </dd>
-                                        {% if item.get_type() == 'question' %}
-                                        <dd class="comment-num">
-                                            <a title="回答"><span
-                                                    class="glyphicon glyphicon-pencil"></span><span>{{ item.answers.all()|length }}</span></a>
-                                        </dd>
-                                        {% else %}
-                                        <dd class="comment-num">
-                                            <a title="评论"><span
-                                                    class="glyphicon glyphicon-pencil"></span><span>{{ item.articleComments.all()|length }}</span></a>
-                                        </dd>
-                                        {% endif %}
-                                    </div>
+{#                                    <div class="comment">#}
+{#                                        <dd class="support">#}
+{#                                            <a title="收藏"><span#}
+{#                                                    class="glyphicon glyphicon-plus"></span><span>{{ item.favoriteUsers.all()|length }}</span></a>#}
+{#                                        </dd>#}
+{#                                        {% if item.get_type() == 'question' %}#}
+{#                                        <dd class="comment-num">#}
+{#                                            <a title="回答"><span#}
+{#                                                    class="glyphicon glyphicon-pencil"></span><span>{{ item.answers.all()|length }}</span></a>#}
+{#                                        </dd>#}
+{#                                        {% else %}#}
+{#                                        <dd class="comment-num">#}
+{#                                            <a title="评论"><span#}
+{#                                                    class="glyphicon glyphicon-pencil"></span><span>{{ item.articleComments.all()|length }}</span></a>#}
+{#                                        </dd>#}
+{#                                        {% endif %}#}
+{#                                    </div>#}
                                 </dl>
                             </div>
                         {% endfor %}

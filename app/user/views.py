@@ -108,9 +108,6 @@ def user_choose_tag():
     user_id = request.form.get('userId')
     tag_id = request.form.get('tagId')
     is_choosed = request.form.get('iscollected')
-    print(user_id)
-    print(tag_id)
-    print(is_choosed)
     if is_choosed == 'true':
         user_tag = UserTag(userId=user_id, tagId=tag_id, time=datetime.now())
         db.session.add(user_tag)

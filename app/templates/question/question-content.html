@@ -119,7 +119,11 @@
                                         {% for answer_comment in answer.answerComments.all() %}
                                             <div class="answer-comment" id='com_{{answer_comment.commentId}}'>
                                                 <div class="answer-comment-head">
-                                                    <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
+                                                    {% if answer_comment.get_parent_comment() %}
+                                                        <a>{{ answer_comment.get_user() }} 回复 {{ answer_comment.get_parent_comment_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
+                                                    {% else %}
+                                                        <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
+                                                    {% endif %}
                                                 </div>
                                                 <div class="answer-comment-tail">
                                                     <a onclick="javascript:saycomment1({{answer_comment.commentId}})">评论</a>
@@ -128,7 +132,7 @@
                                                     <span>{{ answer_comment.commentTime }}</span>
                                                 </div>
                                                 <div class="comment-comment" style="display: none;">
-                                                    <form action="{{ url_for('question.after_comment', answer_id=answer.answerId, parent_id=answer_comment.commentId, _external=True) }}" method="post">
+                                                    <form action="{{ url_for('question.after_comment', question_id=question_id, answer_id=answer.answerId, parent_id=answer_comment.commentId, _external=True) }}" method="post">
                                                         <div class="form-group">
                                                             <input type="text" name='after-comment' class="form-control" placeholder="评论...">
                                                         <div class="comment-comment-btn">
