@@ -74,12 +74,12 @@
                     <div class="form-group input-box">
                         <span class="glyphicon glyphicon-lock"></span>
                         <input type="password" class="form-control" id="password" name="password" placeholder="请输入密码,7-30个字符,不含-和_以为的特殊字符"
-                               maxlength="30">
+                               >
                     </div>
                     <div class="form-group input-box">
                         <span class="glyphicon glyphicon-lock"></span>
                         <input type="password" class="form-control" id="confirm" name="confirm" placeholder="再次输入，确认密码"
-                               maxlength="30">
+                               >
                     </div>
                     <!--<div  class="tip_div" align="center">-->
                         <!--<div id="loginTip" class="tip" align="center"></div>-->
@@ -99,7 +99,9 @@
 <script language="JavaScript">
     var loginForm = document.getElementById('loginForm');
     $("#login").click(function () {
+
         document.getElementById("password").value = hex_md5(document.getElementById("password").value);
+        document.getElementById("confirm").value = hex_md5(document.getElementById("confirm").value);
         loginForm.submit();
         window.location.href="index.html";
     });
