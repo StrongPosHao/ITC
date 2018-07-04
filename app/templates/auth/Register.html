@@ -12,6 +12,7 @@
     <script src="../../static/js/jquery.min.js"></script>
     <script type="text/javascript" src="../../static/js/jquery.validate.min.js"></script>
     <script src="../../static/js/register/validation.js"></script>
+    <script src="../../static/js/md5.js" type="text/javascript"></script>
     <title>注册账号|ITC技术社区</title>
 </head>
 <body>
@@ -98,7 +99,7 @@
 <script language="JavaScript">
     var loginForm = document.getElementById('loginForm');
     $("#login").click(function () {
-        document.getElementById("password").value = md5(document.getElementById("password").value);
+        document.getElementById("password").value = hex_md5(document.getElementById("password").value);
         loginForm.submit();
         window.location.href="index.html";
     });
