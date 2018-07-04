@@ -4,7 +4,7 @@
         <div class="bar-cate">
 
 
-            <p>我的文章</p>
+            <p>我的草稿</p>
 
 
             <ul class="nav nav-tabs bar-item">
@@ -23,7 +23,7 @@
                         <span class="badge">{{ user.questions.all()|length }}</span>
                     </a>
                 </li>
-                <li role="presentation" class="active">
+                <li role="presentation">
                     <a href="{{ url_for('user.articles', user_id=user.id, _external=True) }}">文章
                         <span class="badge">{{ user.articles.all()|length }}</span>
                     </a>
@@ -33,7 +33,8 @@
                         <span class="badge">{{ user.favoriteArticles.all()|length + user.favoriteQuestions.all()|length }}</span>
                     </a>
                 </li>
-                <li role="presentation" >
+
+                <li role="presentation" class="active">
                     <a href="{{ url_for('user.favorites', user_id=user.id, _external=True) }}">草稿
                         <span class="badge"> 12 </span>
                     </a>
@@ -47,8 +48,7 @@
         </div>
 
         <!--回答，提问，文章，收藏-->
-        {#        for loop#}
-        {% for article in user.articles.all() %}
+     {% for article in user.articles.all() %}
             <div class="content-box">
                 <div class="content-title">
                     <h4>
