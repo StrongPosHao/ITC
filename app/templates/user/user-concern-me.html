@@ -18,11 +18,8 @@
                 </ul>
             </div>
 
-
             <ul class="nav nav-tabs bar-item">
-
-                <li role="presentation" >
-
+                <li role="presentation">
                     <a href="{{ url_for('user.notification', user_id=user.id, _external=True) }}">通知
                         <span class="badge">{{ user.notifications.all()|length }}</span>
                     </a>
@@ -79,5 +76,6 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
     </div>
 {% endblock %}

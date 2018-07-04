@@ -91,7 +91,7 @@ input::-ms-input-placeholder { /* Internet Explorer 10-11 */
 
 .userInfo_intro{
     font-size: large;
-    margin: 0 5%;
+    margin: 4% 5%;
     width: 650px;
 }
 .userInfo_intro p{

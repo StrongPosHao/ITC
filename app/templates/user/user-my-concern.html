@@ -64,7 +64,9 @@
                                 <b>{{ followed.username }}</b>
                             </p>
                             <p>UserIntroduction</p>
-                            <p class="otherintor">{{ followed.user_answers|length }}回答·{{ followed.articles|length }}文章·{{ followed.followers|length }}关注者</p>
+                            <p class="otherintor">
+                                {{ followed.user_answers|length }}回答·{{ followed.articles|length }}文章·{{ followed.followers|length }}关注者
+                            </p>
                         </div>
                     </div>
                     <!--1为当前关注用户的id-->
