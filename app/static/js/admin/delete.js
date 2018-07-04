@@ -71,3 +71,9 @@ function send_to_back9(userIds) {
     });
 }
 
+//取消删除
+function canceldelete_user(){
+    uid = undefined
+    uids = []
+    unames = []
+}

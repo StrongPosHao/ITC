@@ -1,11 +1,11 @@
 var qid
 function listTag(questionId){
     console.debug(questionId)
-    send_to_back(questionId)
-    send_to_back1()
+    send_to_backs(questionId)
+    send_to_backs1()
 }
 //向后台发送Ajax请求,获得已分配标签
-function send_to_back(questionId) {
+function send_to_backs(questionId) {
     qid = questionId
     $.ajax({
         url: '/admin/questiontag',
@@ -24,7 +24,7 @@ function send_to_back(questionId) {
     });
 }
 //向后台发送Ajax请求,获得所有标签
-function send_to_back1(questionId) {
+function send_to_backs1(questionId) {
     $.ajax({
         url: '/admin/questiontag/all',
         type: 'POST',
@@ -64,11 +64,11 @@ function confirmtag(){
         console.log(item.value);
         tagIds.push(item.value);
      });
-     send_to_back3(tagIds)
+     send_to_backs3(tagIds)
      toastr.success("修改标签成功!")
 }
 //向后台发送Ajax请求,获得已分配标签
-function send_to_back3(tagIds) {
+function send_to_backs3(tagIds) {
     $.ajax({
         url: '/admin/questiontag/changetag',
         type: 'POST',

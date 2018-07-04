@@ -139,7 +139,7 @@
                                         {% for q in answers %}
                                             <tr>
                                                 <td><input type="checkbox" class="question"/></td>
-                                                <td>{{q[0].questionId}}</td>
+                                                <td>{{q[0].answerId}}</td>
                                                 <td>{{q[1].username}}</td>
                                                 <td>{{q[0].content}}</td>
                                                 <td>{{q[0].answerTime}}</td>
@@ -175,7 +175,7 @@
                 确定删除XXX吗？
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="canceldelete_amswer()">取消</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="truedelete()">确认</button>
             </div>
         </div>

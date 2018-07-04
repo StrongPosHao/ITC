@@ -60,3 +60,10 @@ function send_to_back2(answerIds) {
     });
 }
 
+//取消删除
+function canceldelete_amswer(){
+    aid = undefined
+    aids = []
+}
+
+

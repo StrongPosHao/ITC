@@ -112,3 +112,8 @@ function send_to_back4(tagId,tagName,tagDescription) {
         }
     });
 }
+//取消删除
+function canceldelete_tag(){
+    tid = undefined
+    tids = []
+}

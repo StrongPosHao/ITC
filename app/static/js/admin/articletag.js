@@ -1,11 +1,11 @@
 var aid
 function listTag(articleId){
     console.debug(articleId)
-    send_to_back(articleId)
-    send_to_back1()
+    sends_to_back(articleId)
+    sends_to_back1()
 }
 //向后台发送Ajax请求,获得已分配标签
-function send_to_back(articleId) {
+function sends_to_back(articleId) {
     aid = articleId
     $.ajax({
         url: '/admin/articletag',
@@ -24,7 +24,7 @@ function send_to_back(articleId) {
     });
 }
 //向后台发送Ajax请求,获得所有标签
-function send_to_back1(articleId) {
+function sends_to_back1(articleId) {
     $.ajax({
         url: '/admin/articletag/all',
         type: 'POST',
@@ -64,11 +64,11 @@ function confirmtag(){
         console.log(item.value);
         tagIds.push(item.value);
      });
-     send_to_back3(tagIds)
+     sends_to_back3(tagIds)
      toastr.success("修改标签成功!")
 }
 //向后台发送Ajax请求,获得已分配标签
-function send_to_back3(tagIds) {
+function sends_to_back3(tagIds) {
     $.ajax({
         url: '/admin/articletag/changetag',
         type: 'POST',

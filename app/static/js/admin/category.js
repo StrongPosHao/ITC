@@ -113,3 +113,8 @@ function send_to_back4(categoryId,categoryName,categoryDescription) {
         }
     });
 }
+//取消删除
+function canceldelete_category(){
+    cid = undefined
+    cids = []
+}

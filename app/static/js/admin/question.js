@@ -24,12 +24,12 @@ function batchdelete(){
 function truedelete(){
     //此处需判断是单个删除还是批量删除
     if(qid){
-        send_to_back(qid)
+        send_to_back_question(qid)
         toastr.success('删除成功!')
     }
     else if(qids){
         if(qids.length > 0){
-            send_to_back2(qids)
+            send_to_back2_question(qids)
         toastr.success('删除成功!')
         //一次请求之后及时清理数据
         qids = []
@@ -38,7 +38,7 @@ function truedelete(){
 }
 
 //向后台发送Ajax请求,删除单个
-function send_to_back(questionId) {
+function send_to_back_question(questionId) {
     $.ajax({
         url: '/admin/question/delete',
         type: 'POST',
@@ -49,7 +49,7 @@ function send_to_back(questionId) {
     });
 }
 //向后台发送Ajax请求,删除多个
-function send_to_back2(questionIds) {
+function send_to_back2_question(questionIds) {
     $.ajax({
         url: '/admin/question/batchdelete',
         type: 'POST',
@@ -59,4 +59,11 @@ function send_to_back2(questionIds) {
         }
     });
 }
+
+//取消删除
+function canceldelete_question(){
+    qid = undefined
+    qids = []
+}
+
 

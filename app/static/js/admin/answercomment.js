@@ -60,3 +60,8 @@ function send_to_back2(commentIds) {
     });
 }
 
+//取消删除
+function canceldelete_answercom(){
+    cid = undefined
+    cids = []
+}

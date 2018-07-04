@@ -97,7 +97,7 @@
 
                                     </div>
 
-                                    <div class="answer-tail" id='answer_{{ answer.answerId }}'>
+                                    <div class="answer-tail" id='comment_{{ answer.answerId }}'>
                                         <div class="support">
                                             <a title="评论" href="javascript:saycomment({{ answer.answerId }})"><span class="glyphicon glyphicon-edit"></span><span>3</span></a>
                                         </div>
@@ -110,22 +110,33 @@
                                     </div>
 
                                     <div class="answer-comment-box">
-                                        <div class="write-comment">
+                                        <div class="write-comment" style="display: none;">
                                             <div class="form-group">
                                                 <textarea row="1" id="content_{{ answer.answerId }}" name="comment_content" class="form-control" placeholder="评论..."></textarea>
                                                 <button name='comment' class="form-control btn" value="comment" onclick="post_answerId({{ answer.answerId }}, {{ question_id }})">评&nbsp;&nbsp;论</button>
                                             </div>
                                         </div>
                                         {% for answer_comment in answer.answerComments.all() %}
-                                            <div class="answer-comment">
+                                            <div class="answer-comment" id='com_{{answer_comment.commentId}}'>
                                                 <div class="answer-comment-head">
                                                     <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
                                                 </div>
                                                 <div class="answer-comment-tail">
-                                                    <a>评论</a>
+                                                    <a onclick="javascript:saycomment1({{answer_comment.commentId}})">评论</a>
                                                     <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
                                                     <a class="del-comment"  data-toggle="modal" data-target="#modal_del" onclick="delete_comment({{ answer_comment.commentId }})">删除</a>
                                                     <span>{{ answer_comment.commentTime }}</span>
+                                                </div>
+                                                <div class="comment-comment" style="display: none;">
+                                                    <form action="" method="post">
+                                                        <div class="form-group">
+                                                            <input type="text" class="form-control" placeholder="评论...">
+                                                        <div class="comment-comment-btn">
+                                                            <button type="button" class="btn" style="background: none;" value="取消">取消</button>
+                                                            <button type="submit" class="btn form-control" value="评论">评&nbsp;&nbsp;论</button>
+                                                        </div>
+                                                        </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         {% endfor %}
