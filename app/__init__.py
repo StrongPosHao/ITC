@@ -3,7 +3,6 @@ from config import Config
 from .exts import db
 from .exts import mail
 from .exts import login_manager
-from .exts import redis_store
 from .models import *
 from flask_login import LoginManager
 
@@ -22,7 +21,6 @@ def create_app():
     mail.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
-    redis_store.init_app(app)
 
     # Blueprint注册
     from .main import main as main_blueprint
