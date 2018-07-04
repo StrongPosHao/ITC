@@ -1,7 +1,8 @@
 from flask import render_template, request, redirect, url_for, current_app, json, jsonify
 from . import article
 from flask_login import current_user
-from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle, Follow
+from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle, Follow, LikeArticle, \
+    UnlikeArticle
 from datetime import datetime
 from app.exts import db
 
@@ -64,10 +65,53 @@ def favorite():
                                                         FavoriteArticle.userId == user_id).first()
         db.session.delete(favorite_article)
         db.session.commit()
-    current_article = Article.query.filter(Article.articleId == article_id).first()
-    data = {'favorite_user_num': len(current_article.favoriteUsers.all())}
-    return jsonify(data)
-    # return redirect(url_for('article.content', article_id=article_id, _external=True))
+    info = {'info': 'Succeed'}
+    return jsonify(info)
+
+
+@article.route('/like', methods=['POST'])
+def like():
+    r"""
+    用于处理用户点赞的路由函数
+    :return:
+    """
+    is_checked = request.form.get('ischecked')
+    article_id = request.form.get('article_id')
+    user_id = request.form.get('user_id')
+    if is_checked == 'true':
+        time = datetime.now()
+        like_article = LikeArticle(articleId=article_id, userId=user_id, time=time)
+        db.session.add(like_article)
+        db.session.commit()
+    elif is_checked == 'false':
+        like_article = LikeArticle.query.filter(LikeArticle.articleId == article_id,
+                                                LikeArticle.userId == user_id).first()
+        db.session.delete(like_article)
+        db.session.commit()
+    info = {'info:' 'Succeed'}
+    return jsonify(info)
+
+
+@article.route('/unlike', methods=['POST'])
+def unlike():
+    r"""
+    用于处理用户点踩的路由函数
+    :return:
+    """
+    is_checked = request.form.get('ischecked')
+    article_id = request.form.get('article_id')
+    user_id = request.form.get('user_id')
+    if is_checked == 'true':
+        time = datetime.now()
+        unlike_article = UnlikeArticle(articleId=article_id, userId=user_id, time=time)
+        db.session.add(unlike_article)
+        db.session.commit()
+    elif is_checked == 'false':
+        unlike_article = UnlikeArticle.query.filter(UnlikeArticle.articleId == article_id, UnlikeArticle.userId == user_id).first()
+        db.session.delete(unlike_article)
+        db.session.commit()
+    info = {'info': 'Succeed'}
+    return jsonify(info)
 
 
 @article.route('/delete/<comment_id>', methods=['GET', 'POST'])
@@ -164,4 +208,3 @@ def focus_author():
         db.session.commit()
     data = {'info': 'Succeed'}
     return jsonify(data)
-

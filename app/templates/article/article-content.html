@@ -8,6 +8,27 @@
     <script src="{{ url_for('static', filename='js/article/commentsupport.js') }}"></script>
     <script src="{{ url_for('static', filename='js/article/commentarticle.js') }}"></script>
     <script src="{{ url_for('static', filename='js/article/article-content.js') }}"></script>
+    {% if article.is_user_favorite(current_user) == 'true' %}
+        <script>
+            $(function () {
+                $(".btn.support[title='收藏该文章' ] span").css({color: '#ffa321'});
+            });
+        </script>
+    {% endif %}
+    {% if article.is_user_like(current_user) == 'true' %}
+        <script>
+            $(function () {
+                $(".btn.support[title='点赞' ] span").css({color: '#ffa321'});
+            })
+        </script>
+    {% endif %}
+    {% if article.is_user_unlike(current_user) == 'true' %}
+        <script>
+            $(function () {
+                $(".btn.support[title='没帮助' ] span").css({color: '#ffa321'});
+            })
+        </script>
+    {% endif %}
 {% endblock %}
 {% block content %}
     <div style="margin-top: 7.5em">
@@ -27,20 +48,22 @@
                         <div class="collapse navbar-collapse collapse-pad" id="side-collapse">
                             <!-- 参数:title,user_id,article_id -->
                             <div class="side-menu">
-                                <button class="btn support" title="点赞" onclick="javascript:support('点赞',1,1)">
+                                <button class="btn support" title="点赞"
+                                        onclick="javascript:support('点赞',{{ current_user.id }}, {{ article.articleId }})">
                                     <div>
                                         <span class="glyphicon glyphicon-thumbs-up"></span>
                                     </div>
                                     <div class="support-num">
-                                        <span>10</span>
+                                        <span>{{ article.likeUsers.all()|length }}</span>
                                     </div>
                                 </button>
-                                <button class="btn support" title="没帮助" onclick="javascript:support('没帮助',1,1)">
+                                <button class="btn support" title="没帮助"
+                                        onclick="javascript:support('没帮助',{{ current_user.id }}, {{ article.articleId }})">
                                     <div>
                                         <span class="glyphicon glyphicon-thumbs-down"></span>
                                     </div>
                                     <div class="support-num">
-                                        <span>10</span>
+                                        <span>{{ article.unlikeUsers.all()|length }}</span>
                                     </div>
                                 </button>
                                 <button class="btn support" title="评论" onclick="javascript:commentvisible()">
@@ -48,10 +71,11 @@
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </div>
                                     <div class="support-num">
-                                        <span>{{ article.get_article_comments()|length   }}</span>
+                                        <span>{{ article.get_article_comments()|length }}</span>
                                     </div>
                                 </button>
-                                <button class="btn support" title="收藏该文章" onclick="javascript:support('收藏该文章', {{ current_user.id }}, {{ article.articleId }})">
+                                <button class="btn support" title="收藏该文章"
+                                        onclick="javascript:support('收藏该文章', {{ current_user.id }}, {{ article.articleId }})">
                                     <div>
                                         <span class="glyphicon glyphicon-plus"></span>
                                     </div>
@@ -193,7 +217,8 @@
                             <h4><span style="font-weight: bolder; color: orange;margin-right: 4px;">|</span>关于作者</h4>
                             <a title="作者" class="writer-name">{{ article.get_user() }}</a>
                             <!-- 参数user_id,writer_id) -->
-                            <a href="javascript:focus_author({{ current_user.id }}, {{ article.get_user_object().id }})" title="关注作者" class="plus"><span><span
+                            <a href="javascript:focus_author({{ current_user.id }}, {{ article.get_user_object().id }})"
+                               title="关注作者" class="plus"><span><span
                                     class="glyphicon glyphicon-plus"></span>{% if is_follow %}已关注{% else %}关注{% endif %}</span></a>
                         </div>
                         <div class="writer-content">
@@ -204,13 +229,15 @@
                                     <dt>{{ article.get_user_object().articles.all()|length }}</dt>
                                 </dl>
                             </a>
-                            <a title="提出的问题" href="{{ url_for('user.questions', user_id=article.get_user_object().id, _external=True) }}">
+                            <a title="提出的问题"
+                               href="{{ url_for('user.questions', user_id=article.get_user_object().id, _external=True) }}">
                                 <dl>
                                     <dd>问题</dd>
                                     <dt>{{ article.get_user_object().questions.all()|length }}</dt>
                                 </dl>
                             </a>
-                            <a title="粉丝" href="{{ url_for('user.followed', user_id=article.get_user_object().id, _external=True) }}">
+                            <a title="粉丝"
+                               href="{{ url_for('user.followed', user_id=article.get_user_object().id, _external=True) }}">
                                 <dl>
                                     <dd>粉丝</dd>
                                     <dt>{{ article.get_user_object().followers.all()|length }}</dt>

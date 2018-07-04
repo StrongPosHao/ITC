@@ -45,8 +45,8 @@
                             <div class="content-title">
                                 <h4><a href="">{{ question.title }}</a></h4>
                                 <!--userId,problemId-->
-                                <button type="button" class="btn plus-pro" title="收藏该问题" onclick="collect(1,1)">
-                                    <span class="glyphicon glyphicon-plus">收藏</span>
+                                <button type="button" class="btn plus-pro" title="收藏该问题" onclick="collect({{ current_user.id }}, {{ question_id }})">
+                                    <span class="glyphicon glyphicon-plus">{% if question.is_user_favorite(current_user) %}已收藏{% else %}收藏{% endif %}</span>
                                 </button>
                             </div>
                             {% for tag in question.tags.all() %}
@@ -116,18 +116,18 @@
                                                 <button name='comment' class="form-control btn" value="comment" onclick="post_answerId({{ answer.answerId }}, {{ question_id }})">评&nbsp;&nbsp;论</button>
                                             </div>
                                         </div>
-                                        {% for answer_comment in answer.answerComments %}
-                                        <div class="answer-comment">
-                                            <div class="answer-comment-head">
-                                                <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
+                                        {% for answer_comment in answer.answerComments.all() %}
+                                            <div class="answer-comment">
+                                                <div class="answer-comment-head">
+                                                    <a>{{ answer_comment.get_user() }}</a>:&nbsp;&nbsp;<span>{{ answer_comment.content | safe }}</span>
+                                                </div>
+                                                <div class="answer-comment-tail">
+                                                    <a>评论</a>
+                                                    <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
+                                                    <a class="del-comment"  data-toggle="modal" data-target="#modal_del" onclick="delete_comment({{ answer_comment.commentId }})">删除</a>
+                                                    <span>{{ answer_comment.commentTime }}</span>
+                                                </div>
                                             </div>
-                                            <div class="answer-comment-tail">
-                                                <a>评论</a>
-                                                <!--在用户自己发表的评论处显示删除按钮，可以删除自己发表的评论-->
-                                                <a class="del-comment"  data-toggle="modal" data-target="#model_del" onclick="delete_comment({{ answer_comment.commentId }})">删除</a>
-                                                <span>{{ answer_comment.commentTime }}</span>
-                                            </div>
-                                        </div>
                                         {% endfor %}
                                     </div>
 

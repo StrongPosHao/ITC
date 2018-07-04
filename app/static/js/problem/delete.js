@@ -3,22 +3,16 @@ var answer_id;
 
 function delete_comment(commentId) {
     comment_id = commentId;
+    console.debug('The comment_id' + comment_id);
     var info = "确定要删除该评论吗?";
     $('.modal.fade .modal-body').text(info);
 }
 
-function true_delete_comment() {
-    if (comment_id) {
-        sendDeleteComment(comment_id);
-        toastr.success('删除成功!')
-    }
-}
-
-function sendDeleteComment(comment_id) {
+function sendDeleteComment() {
     $.ajax({
         url: '/question/delete-comment',
         type: 'POST',
-        data: 'comment_id=' + comment_id,
+        data: 'commentId=' + comment_id,
         success: function (data) {
             window.location.reload();
         }
@@ -44,7 +38,7 @@ function sendDeleteAnswer() {
     $.ajax({
         url: '/question/delete-answer',
         type: 'POST',
-        data: 'answer_id=' + answer_id,
+        data: 'answerId=' + answer_id,
         success: function (data) {
             window.location.reload();
         }

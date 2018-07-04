@@ -13,5 +13,3 @@ def index():
 def test():
     # return render_template('tag/tag-index.html')
     return render_template('tag/tag-list.html')
-
-

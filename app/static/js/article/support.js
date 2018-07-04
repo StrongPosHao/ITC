@@ -6,8 +6,8 @@ function support(title, user_id, article_id) {
         if ($(".btn.support[title=" + title + "] span").css('color') != 'rgb(255, 163, 33)') {
             console.debug(title);
             console.debug($(".btn.support[title=" + title + "] span"));
-            $(".btn.support[title=" + title + "] span").css({ color: '#ffa321' });
-            console.debug($(".btn.support[title=" + title + "] span").css('color') == 'rgb(255, 163, 33)');
+            $(".btn.support[title=" + title + "] span").css({color: '#ffa321'});
+            console.debug($(".btn.support[title=" + title + "] span"));
             support_point = $(".btn.support[title=" + title + "] .support-num span").text()
             console.debug($(".btn.support[title=" + title + "] .support-num span").text(parseInt(support_point) + 1));
 
@@ -20,13 +20,13 @@ function support(title, user_id, article_id) {
                 $(".btn.support[title='点赞']").attr('disabled', true);
             }
 
-            toastr.success(title+'成功!');
+            toastr.success(title + '成功!');
             //向后台发送数据
             sendSupport(title, user_id, article_id, true);
         } else {
             console.debug(title);
             console.debug($(".btn.support[title=" + title + "] span"));
-            $(".btn.support[title=" + title + "] span").css({ color: 'black' });
+            $(".btn.support[title=" + title + "] span").css({color: 'black'});
             console.debug($(".btn.support[title=" + title + "] span").css('color') == 'black');
             support_point = $(".btn.support[title=" + title + "] .support-num span").text()
             console.debug($(".btn.support[title=" + title + "] .support-num span").text(parseInt(support_point) - 1));
@@ -42,7 +42,7 @@ function support(title, user_id, article_id) {
             if ($(".btn.support[title='举报'] span").css('color') != 'rgb(255, 163, 33)' && ($(".btn.support[title='没帮助'] span").css('color') != 'rgb(255, 163, 33)')) {
                 $(".btn.support[title='点赞']").attr('disabled', false);
             }
-            toastr.info("取消"+title+'!');
+            toastr.info("取消" + title + '!');
             //向后台发送数据
             sendSupport(title, user_id, article_id, false);
         }
@@ -53,11 +53,20 @@ function support(title, user_id, article_id) {
 
 //向后台发送Ajax请求
 function sendSupport(title, user_id, article_id, ischecked) {
+    var url;
+    if (title === '收藏该文章') {
+        url = '/article/favorite';
+    } else if (title === '点赞') {
+        url = '/article/like';
+    } else if (title === '没帮助') {
+        url = '/article/unlike';
+    }
     $.ajax({
-        url: '/article/favorite',
+        url: url,
         type: 'POST',
         data: 'title=' + title + '&user_id=' + user_id + '&article_id=' + article_id + '&ischecked=' + ischecked,
         success: function (data) {
         }
     });
+
 }

@@ -20,19 +20,14 @@
             <div class="userInfo_item1">
                 <div class="userInfo_imgandintro">
                     <div class="usr_img">
-                        <img src="../../static/image/touxiang.jpg" height="200" width="200" />
+                        <img src="{{ user.gravatar(size=256) }}" height="200" width="200" />
                     </div>
 
                     <div class="userInfo_intro">
-                        <p>
-                            <label for="file" class="btn img_btn">
-                                <span class="camera_svg glyphicon glyphicon-camera" aria-hidden="true"></span>修改头像</label>
-                        </p>
-
 
                         <!--点击修改之后显示-->
                         <div style="display: none;" id='name_div_1'>
-                            <input type="text" id="username" name="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+                            <input type="text" id="username" name="username" class="form-control" placeholder="{{ user.username }}" aria-describedby="basic-addon1">
                             <p>
                                 <button class="btn btn-primary" onclick="send_to_back_userName({{ user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('name',1)">取消</button>
@@ -49,7 +44,7 @@
 
                         <!--点击修改之后显示-->
                         <div style="display: none;" id='intro_div_1'>
-                            <input type="text" id="introduction" name="introduction" class="form-control" placeholder="Introduction" aria-describedby="basic-addon1">
+                            <input type="text" id="introduction" name="introduction" class="form-control" placeholder="{{ user.introduction }}" aria-describedby="basic-addon1">
                             <p>
                                 <button class="btn btn-primary" onclick="send_to_back_userIntro({{ user }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('intro',1)">取消</button>
@@ -78,7 +73,7 @@
                     <p>
                         <b>邮箱</b>
                     </p>
-                    <p id="email_p_1">atKsOption@163.com<span class="change_info"><button class="btn img_btn" onclick="showForm('email',1)" >编辑</button></span></p>
+                    <p id="email_p_1">{{ user.email }}<span class="change_info"><button class="btn img_btn" onclick="showForm('email',1)" >编辑</button></span></p>
 
                     <!--点击编辑之后显示-->
                     <div id="email_div_1" style="display: none">
@@ -102,7 +97,7 @@
                         <b>手机号</b>
                     </p>
                     <p id="phone_p_1">
-                        +86151****5202
+                        {{ user.phone }}
                         <span class="change_info">
                             <button class="btn img_btn" onclick="showForm('phone',1)">编辑</button>
                         </span>

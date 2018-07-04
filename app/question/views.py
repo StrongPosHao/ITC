@@ -1,6 +1,6 @@
 from flask import render_template, request, current_app, redirect, url_for, jsonify
 from . import question
-from ..models import Question, User, Answer, AnswerComment, QuestionTag
+from ..models import Question, User, Answer, AnswerComment, QuestionTag, FavoriteQuestion
 from ..exts import db
 from datetime import datetime
 from flask_login import current_user
@@ -46,15 +46,20 @@ def comment_answer():
     return redirect(url_for('question.content', question_id=question_id, _external=True))
 
 
-# @question.route('/delete-comment', methods=['POST'])
-# def delete_comment():
-#     comment_id = request.form.get('comment_id')
-#
+@question.route('/delete-comment', methods=['POST'])
+def delete_comment():
+    comment_id = request.form.get('commentId')
+    print(comment_id)
+    comment = AnswerComment.query.filter(AnswerComment.commentId == comment_id).first()
+    db.session.delete(comment)
+    db.session.commit()
+    info = {'info': 'Succeed'}
+    return jsonify(info)
 
 
 @question.route('/delete-answer', methods=['POST'])
 def delete_answer():
-    answer_id = request.form.get('answer_id')
+    answer_id = request.form.get('answerId')
     answer = Answer.query.filter(Answer.answerId == answer_id).first()
     db.session.delete(answer)
     db.session.commit()
@@ -110,3 +115,26 @@ def publish_question():
     db.session.add(ques_tag)
     db.session.commit()
     return redirect(url_for('question.content', question_id=this_question.questionId, _external=True))
+
+
+@question.route('/favorite', methods=['POST'])
+def favorite_question():
+    r"""
+    收藏问题
+    :return:
+    """
+    is_checked = request.form.get('ischecked')
+    question_id = request.form.get('problemId')
+    user_id = request.form.get('userId')
+    if is_checked == 'true':
+        time = datetime.now()
+        favorite_question = FavoriteQuestion(questionId=question_id, userId=user_id, time=time)
+        db.session.add(favorite_question)
+        db.session.commit()
+    elif is_checked == 'false':
+        favorite_question = FavoriteQuestion.query.filter(FavoriteQuestion.questionId == question_id,
+                                                          FavoriteQuestion.userId == user_id).first()
+        db.session.add(favorite_question)
+        db.session.commit()
+    info = {'info': 'Succeed'}
+    return jsonify(info)

@@ -1,4 +1,6 @@
-from flask import current_app
+import hashlib
+
+from flask import current_app, request
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 from app.exts import db
@@ -14,15 +16,15 @@ import forgery_py
 
 class Follow(db.Model):
     __tablename__ = 'Follow'
-    followerId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True)
-    followedId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True)
+    followerId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True)
+    followedId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True)
     followTime = db.Column(db.DateTime, default=datetime.now())
 
 
 class UserTag(db.Model):
     __tablename__ = 'UserTag'
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True, nullable=False)
-    tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True, nullable=False)
+    tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
     def get_object(self):
@@ -31,8 +33,9 @@ class UserTag(db.Model):
 
 class ArticleTag(db.Model):
     __tablename__ = 'ArticleTag'
-    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), primary_key=True, nullable=False)
-    tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
+    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId', ondelete='CASCADE'), primary_key=True,
+                          nullable=False)
+    tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
     def __init__(self, articleId, tagId, time):
@@ -51,8 +54,9 @@ class ArticleTag(db.Model):
 
 class QuestionTag(db.Model):
     __tablename__ = 'QuestionTag'
-    questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), primary_key=True, nullable=False)
-    tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), primary_key=True, nullable=False)
+    questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId', ondelete='CASCADE'), primary_key=True,
+                           nullable=False)
+    tagId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
     def __init__(self, questionId, tagId, time):
@@ -71,15 +75,17 @@ class QuestionTag(db.Model):
 
 class FavoriteArticle(db.Model):
     __tablename__ = 'FavoriteArticle'
-    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), primary_key=True, nullable=False)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True, nullable=False)
+    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId', ondelete='CASCADE'), primary_key=True,
+                          nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
 
 class FavoriteQuestion(db.Model):
     __tablename__ = 'FavoriteQuestion'
-    questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), primary_key=True, nullable=False)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), primary_key=True, nullable=False)
+    questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId', ondelete='CASCADE'), primary_key=True,
+                           nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
 
@@ -90,15 +96,18 @@ class User(UserMixin, db.Model):
     email = db.Column(db.Unicode(64), nullable=False)
     phone = db.Column(db.CHAR(11), nullable=False)
     password = db.Column(db.Unicode(100), nullable=False)
-    headImage = db.Column(db.Unicode(256), default='static/image/defaultImage.jpg', nullable=False)
+    # headImage = db.Column(db.Unicode(256), default='static/image/defaultImage.jpg', nullable=False)
+    avatar_hash = db.Column(db.String(32))
     permission = db.Column(db.CHAR(1), default=0, nullable=False)
     introduction = db.Column(db.Text, default='这家伙很懒，什么也没有写~', nullable=False)
     confirmed = db.Column(db.Boolean, default=False)
-    tags = db.relationship('UserTag', backref=db.backref('tags'), lazy='dynamic')
-    articles = db.relationship('Article', backref=db.backref('articles'), lazy='dynamic')
-    questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic')
-    drafts = db.relationship('Draft', backref=db.backref('drafts'), lazy='dynamic')
-    user_answers = db.relationship('Answer', backref=db.backref('user_answers'), lazy='dynamic')
+    tags = db.relationship('UserTag', backref=db.backref('tags'), lazy='dynamic', cascade='all, delete-orphan')
+    articles = db.relationship('Article', backref=db.backref('articles'), lazy='dynamic', cascade='all, delete-orphan')
+    questions = db.relationship('Question', backref=db.backref('questions'), lazy='dynamic',
+                                cascade='all, delete-orphan')
+    drafts = db.relationship('Draft', backref=db.backref('drafts'), lazy='dynamic', cascade='all, delete-orphan')
+    user_answers = db.relationship('Answer', backref=db.backref('user_answers'), lazy='dynamic',
+                                   cascade='all, delete-orphan')
     followed = db.relationship('Follow', foreign_keys=[Follow.followerId],  # 用户关注的用户: user.followed
                                backref=db.backref('follower', lazy='joined'),  # 关注用户的用户: user.follower
                                lazy='dynamic',
@@ -107,9 +116,25 @@ class User(UserMixin, db.Model):
                                 backref=db.backref('followed', lazy='joined'),
                                 lazy='dynamic',
                                 cascade='all, delete-orphan')
-    favoriteArticles = db.relationship('FavoriteArticle', backref=db.backref('articles'), lazy='dynamic')
-    favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('questions'), lazy='dynamic')
-    notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic')
+    favoriteArticles = db.relationship('FavoriteArticle', backref=db.backref('favorite_articles'), lazy='dynamic',
+                                       cascade='all, delete-orphan')
+    favoriteQuestions = db.relationship('FavoriteQuestion', backref=db.backref('favorite_questions'), lazy='dynamic',
+                                        cascade='all, delete-orphan')
+    notifications = db.relationship('Notification', backref=db.backref('notifications'), lazy='dynamic',
+                                    cascade='all, delete-orphan')
+    likeArticles = db.relationship('LikeArticle', backref=db.backref('likeArticles'), lazy='dynamic',
+                                   cascade='all, delete-orphan')
+    likeAnswers = db.relationship('LikeAnswer', backref=db.backref('likeAnswers'), lazy='dynamic',
+                                  cascade='all, delete-orphan')
+    unlikeArticles = db.relationship('UnlikeArticle', backref=db.backref('unlikeArticles'), lazy='dynamic',
+                                     cascade='all, delete-orphan')
+    unlikeAnswers = db.relationship('UnlikeAnswer', backref=db.backref('unlikeAnswers'), lazy='dynamic',
+                                    cascade='all, delete-orphan')
+
+    def __init__(self, **kwargs):
+        super(User, self).__init__(**kwargs)
+        if self.email is not None and self.avatar_hash is None:
+            self.avatar_hash = hashlib.md5(self.email.encode('utf-8')).hexdigest()
 
     # 将类转为字典，然后响应json
     def as_dict(obj):
@@ -184,7 +209,17 @@ class User(UserMixin, db.Model):
             db.session.commit()
 
     def get_all_tags(self):
-        return Tag.query.filter(Tag.parentId!=None).all()
+        return Tag.query.filter(Tag.parentId != None).all()
+
+    def gravatar(self, size=100, default='identicon', rating='g'):
+        if request.is_secure:
+            url = 'https://secure.gravatar.com/avatar'
+        else:
+            url = 'http://www.gravatar.com/avatar'
+        hash = self.avatar_hash or hashlib.md5(
+            self.email.encode('utf-8')).hexdigest()
+        return '{url}/{hash}?s={size}&d={default}&r={rating}'.format(
+            url=url, hash=hash, size=size, default=default, rating=rating)
 
 
 @login_manager.user_loader
@@ -206,13 +241,14 @@ class Admin(db.Model):
 class Question(db.Model):
     __tablename__ = 'Question'
     questionId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'))
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'))
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    answers = db.relationship('Answer', backref=db.backref('answers'), lazy='dynamic')
-    tags = db.relationship('QuestionTag', backref=db.backref('tags'), lazy='dynamic')
-    favoriteUsers = db.relationship('FavoriteQuestion', lazy='dynamic')
+    answers = db.relationship('Answer', backref=db.backref('answers'), lazy='dynamic', cascade='all, delete-orphan')
+    tags = db.relationship('QuestionTag', backref=db.backref('tags'), lazy='dynamic', cascade='all, delete-orphan')
+    favoriteUsers = db.relationship('FavoriteQuestion', backref=db.backref('favorite_users'), lazy='dynamic',
+                                    cascade='all, delete-orphan')
 
     @staticmethod
     def generate_fake(count=100):
@@ -235,15 +271,21 @@ class Question(db.Model):
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
 
+    def is_user_favorite(self, user):
+        return 'true' if self.questionId in map(lambda x: x.questionId, user.favoriteQuestions.all()) else 'false'
+
 
 class Answer(db.Model):
     __tablename__ = 'Answer'
     answerId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
-    questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
+    questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId', ondelete='CASCADE'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     answerTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    answerComments = db.relationship('AnswerComment', backref=db.backref('comments'), lazy='dynamic')
+    answerComments = db.relationship('AnswerComment', backref=db.backref('answerComments'), lazy='dynamic',
+                                     cascade='all, delete-orphan')
+    likeUsers = db.relationship('LikeAnswer', backref=db.backref('like_users'), lazy='dynamic',
+                                cascade='all, delete-orphan')
 
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
@@ -251,17 +293,29 @@ class Answer(db.Model):
     def get_question(self):
         return Question.query.filter(Question.questionId == self.questionId).first()
 
+    def is_user_like(self, user):
+        return 'true' if self.answerId in map(lambda x: x.answerId, user.likeAnswers.all()) else 'false'
+
+    def is_user_unlike(self, user):
+        return 'true' if self.answerId in map(lambda x: x.answerId, user.unlikeAnswers.all()) else 'false'
+
 
 class Article(db.Model):
     __tablename__ = 'Article'
     articleId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     publicTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    articleComments = db.relationship('ArticleComment', backref=db.backref('comments'), lazy='dynamic')
-    tags = db.relationship('ArticleTag', backref=db.backref('tags'), lazy='dynamic')
-    favoriteUsers = db.relationship('FavoriteArticle', backref=db.backref('favoriteUsers'), lazy='dynamic')
+    articleComments = db.relationship('ArticleComment', backref=db.backref('comments'), lazy='dynamic',
+                                      cascade='all, delete-orphan')
+    tags = db.relationship('ArticleTag', backref=db.backref('tags'), lazy='dynamic', cascade='all, delete-orphan')
+    favoriteUsers = db.relationship('FavoriteArticle', backref=db.backref('favoriteUsers'), lazy='dynamic',
+                                    cascade='all, delete-orphan')
+    likeUsers = db.relationship('LikeArticle', backref=db.backref('like_users'), lazy='dynamic',
+                                cascade='all, delete-orphan')
+    unlikeUsers = db.relationship('UnlikeArticle', backref=db.backref('unlike_users'), lazy='dynamic',
+                                  cascade='all, delete-orphan')
 
     @staticmethod
     def generate_fake(count=100):
@@ -292,11 +346,20 @@ class Article(db.Model):
         return ArticleComment.query.filter(ArticleComment.articleId == self.articleId,
                                            ArticleComment.parentId == None).all()
 
+    def is_user_favorite(self, user):
+        return 'true' if self.articleId in map(lambda x: x.articleId, user.favoriteArticles.all()) else 'false'
+
+    def is_user_like(self, user):
+        return 'true' if self.articleId in map(lambda x: x.articleId, user.likeArticles.all()) else 'false'
+
+    def is_user_unlike(self, user):
+        return 'true' if self.articleId in map(lambda x: x.articleId, user.unlikeArticles.all()) else 'false'
+
 
 class Draft(db.Model):
     __tablename__ = 'Draft'
     draftId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     saveTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
@@ -305,13 +368,15 @@ class Draft(db.Model):
 class Tag(db.Model):
     __tablename__ = 'Tag'
     tagId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    parentId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId'), nullable=True)
+    parentId = db.Column(db.BigInteger, db.ForeignKey('Tag.tagId', ondelete='CASCADE'), nullable=True)
     name = db.Column(db.Unicode(30), nullable=False)
     description = db.Column(db.Text, nullable=False)
     popularity = db.Column(db.Integer, default=0, nullable=False)
-    tagUsers = db.relationship('UserTag', backref=db.backref('users'), lazy='dynamic')
-    articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic')
-    problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic')
+    tagUsers = db.relationship('UserTag', backref=db.backref('users'), lazy='dynamic', cascade='all, delete-orphan')
+    articles = db.relationship('ArticleTag', backref=db.backref('articles'), lazy='dynamic',
+                               cascade='all, delete-orphan')
+    problems = db.relationship('QuestionTag', backref=db.backref('problems'), lazy='dynamic',
+                               cascade='all, delete-orphan')
 
     def __init__(self, parentId, name, description, popularity):
         self.parentId = parentId
@@ -331,9 +396,9 @@ class Tag(db.Model):
 class ArticleComment(db.Model):
     __tablename__ = 'ArticleComment'
     commentId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
-    parentId = db.Column(db.BigInteger, db.ForeignKey('ArticleComment.commentId'), nullable=True)
-    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
+    parentId = db.Column(db.BigInteger, db.ForeignKey('ArticleComment.commentId', ondelete='CASCADE'), nullable=True)
+    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId', ondelete='CASCADE'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
@@ -352,9 +417,9 @@ class ArticleComment(db.Model):
 class AnswerComment(db.Model):
     __tablename__ = 'AnswerComment'
     commentId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
-    parentId = db.Column(db.BigInteger, db.ForeignKey('AnswerComment.commentId'), nullable=True)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
-    answerId = db.Column(db.BigInteger, db.ForeignKey('Answer.answerId'), nullable=False)
+    parentId = db.Column(db.BigInteger, db.ForeignKey('AnswerComment.commentId', ondelete='CASCADE'), nullable=True)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
+    answerId = db.Column(db.BigInteger, db.ForeignKey('Answer.answerId', ondelete='CASCADE'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     commentTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
@@ -368,7 +433,35 @@ class Notification(db.Model):
     __tablename__ = 'Notification'
     notificationId = db.Column(db.BigInteger, primary_key=True, nullable=False, autoincrement=True)
     title = db.Column(db.Unicode(200), nullable=False)
-    userId = db.Column(db.BigInteger, db.ForeignKey('User.id'), nullable=False)
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     isRead = db.Column(db.Boolean, default=False, nullable=False)
     notifyTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+
+class LikeArticle(db.Model):
+    __tablename__ = 'LikeArticle'
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True)
+    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId', ondelete='CASCADE'), primary_key=True)
+    time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+
+class LikeAnswer(db.Model):
+    __tablename__ = 'LikeAnswer'
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True)
+    answerId = db.Column(db.BigInteger, db.ForeignKey('Answer.answerId', ondelete='CASCADE'), primary_key=True)
+    time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+
+class UnlikeArticle(db.Model):
+    __tablename__ = 'UnlikeArticle'
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True)
+    articleId = db.Column(db.BigInteger, db.ForeignKey('Article.articleId', ondelete='CASCADE'), primary_key=True)
+    time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+
+class UnlikeAnswer(db.Model):
+    __tablename__ = 'UnlikeAnswer'
+    userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True)
+    answerId = db.Column(db.BigInteger, db.ForeignKey('Answer.answerId', ondelete='CASCADE'), primary_key=True)
+    time = db.Column(db.DateTime, default=datetime.now(), nullable=False)

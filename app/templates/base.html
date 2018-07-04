@@ -88,7 +88,7 @@
                         <li  id="nav_6" role="presentation" class="dropdown">
                             <a title="个人中心" href="{{ url_for('user.info', user_id = current_user.id, _external = True) }}"
                                target="_blank" class="dropdown-toggle head-img-box" data-toggle="dropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false"><img src="../../static/image/head.jpg"
+                               aria-haspopup="true" aria-expanded="false"><img src="{{ current_user.gravatar(size=256) }}"
                                                                                class="img-circle"></a>
                             <ul class="dropdown-menu" aria-labelledby="center">
                                 <li>

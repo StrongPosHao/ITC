@@ -9,14 +9,14 @@
 {% endblock %}
 {% block content %}
         <div class="usercontent">
-            <img src="{{ url_for('static', filename='image/touxiang.jpg') }}" height="100" width="100" />
+            <img src="{{ user.gravatar(size=256) }}" height="100" width="100" />
             <div class="userintroduction">
                 <p>
-                    <b>{{UserName}}</b>
+                    <b>{{ user.username }}</b>
                 </p>
-                <p>{{UserIntroduction}}</p>
+                <p>{{ user.introduction }}</p>
             </div>
-            <button class=" btn btn-default userbtn ">编辑个人资料</button>
+            <a href="{{ url_for('user.info', user_id=user.id, _external=True) }}"><button class=" btn btn-default userbtn ">编辑个人资料</button></a>
         </div>
     <div class="userblock row">
         {% block usercontent %}{% endblock %}
@@ -25,7 +25,7 @@
                 <p>我的标签</p>
             </div>
             <div class="category-tags">
-                {% for tag in current_user.tags.all() %}
+                {% for tag in user.tags.all() %}
                     <div class="category-tag">
                         <a>
                             <span>{{ tag.get_object().name }}</span>

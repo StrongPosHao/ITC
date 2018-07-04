@@ -18,9 +18,9 @@ function collect(userId, problemId) {
 
 function sendCollection(userId, problemId, ischecked) {
     $.ajax({
-        url: '/XX',
+        url: '/question/favorite',
         type: 'POST',
-        data: 'userId=' + userId + '&problemId=' + problemId + '&ischecked' + ischecked,
+        data: 'userId=' + userId + '&problemId=' + problemId + '&ischecked=' + ischecked,
         success: function (data) {
         }
     });
