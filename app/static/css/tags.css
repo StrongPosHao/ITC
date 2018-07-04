@@ -4,6 +4,8 @@ body{
 }
 
 .tag-name{
+    display: flex;
+    justify-content: space-between;
     border: none;
     background: #fcfcfcc7;
     border-bottom: 1px solid;
