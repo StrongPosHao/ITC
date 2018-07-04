@@ -3,7 +3,6 @@ from config import Config
 from .exts import db
 from .exts import mail
 from .exts import login_manager
-from .exts import redis_store
 from .models import *
 from flask_login import LoginManager
 
