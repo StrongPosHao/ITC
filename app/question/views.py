@@ -138,3 +138,17 @@ def favorite_question():
         db.session.commit()
     info = {'info': 'Succeed'}
     return jsonify(info)
+
+
+@question.route('/after-comment/<answer_id>/<parent_id>', methods=['POST'])
+def after_comment(answer_id, parent_id):
+    r"""
+    追评处理路由函数
+    :return:
+    """
+    the_content = request.form.get('after-comment')
+    answer_comment = AnswerComment(parentId=parent_id, userId=current_user.id, content=the_content,
+                                   commentTime=datetime.now(), answerId=answer_id)
+    db.session.add(answer_comment)
+    db.session.commit()
+    return redirect(url_for('question.content', answer_id=answer_id))

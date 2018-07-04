@@ -2,7 +2,7 @@ from flask import render_template, request, jsonify
 from flask_login import current_user
 
 from . import user
-from .. models import *
+from ..models import *
 
 
 @user.route('info/<user_id>')
@@ -70,7 +70,7 @@ def favorites(user_id):
     :return:
     """
     questions = current_user.favoriteQuestions.order_by(FavoriteQuestion.time.desc()).all()
-    articles= current_user.favoriteArticles.order_by(FavoriteArticle.time.desc()).all()
+    articles = current_user.favoriteArticles.order_by(FavoriteArticle.time.desc()).all()
     favorites_list = questions + articles
     favorites_list = sorted(favorites_list, key=lambda x: x.time)
     usr = User.query.filter(User.id == user_id).first()
@@ -130,3 +130,12 @@ def add_tag():
     :return:
     """
     return render_template('tag/tag-index.html')
+
+
+@user.route('/draft/<user_id>')
+def drafts():
+    r"""
+    用户查看草稿页面
+    :return:
+    """
+    return render_template('user/user-draft.html')

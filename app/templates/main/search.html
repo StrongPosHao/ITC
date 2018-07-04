@@ -43,7 +43,11 @@
                         {% for item in result %}
                             <div class="content-box">
                                 <div class="content-title">
-                                    <h4><a href="">{{ item.title }}</a></h4>
+                                    {% if item.get_type() == 'article' %}
+                                        <h4><a href="{{ url_for('article.content', article_id=item.articleId, _external=True) }}">{{ item.title }}</a></h4>
+                                    {% else %}
+                                        <h4><a href="{{ url_for('question.content', question_id=item.questionId, _external=True) }}">{{ item.title }}</a></h4>
+                                    {% endif %}
                                 </div>
                                 <div class="content">
                                     <p>{{ item.content }}</p>

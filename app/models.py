@@ -335,7 +335,6 @@ class Article(db.Model):
             title = forgery_py.lorem_ipsum.sentence()
             if len(title) > 50:
                 title = title[:20]
-            print(len(title))
             article = Article(userId=user.id, title=title,
                               content=forgery_py.lorem_ipsum.sentences(randint(1, 3)),
                               publicTime=forgery_py.date.date(True))
@@ -375,6 +374,9 @@ class Draft(db.Model):
     title = db.Column(db.Unicode(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
     saveTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def get_user(self):
+        return User.query.filter(User.id == self.userId).first().name
 
 
 class Tag(db.Model):
@@ -425,6 +427,9 @@ class ArticleComment(db.Model):
     def get_child_comments(self):
         return ArticleComment.query.filter(ArticleComment.parentId == self.commentId).all()
 
+    def get_parent_comment_user(self):
+        return ArticleComment.query.filter(ArticleComment.commentId == self.parentId).first().get_user()
+
 
 class AnswerComment(db.Model):
     __tablename__ = 'AnswerComment'
@@ -439,6 +444,9 @@ class AnswerComment(db.Model):
 
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
+
+    def get_parent_comment_user(self):
+        return AnswerComment.query.filter(self.parentId == AnswerComment.commentId).first().get_user()
 
 
 class Notification(db.Model):

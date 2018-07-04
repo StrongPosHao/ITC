@@ -57,8 +57,21 @@ function sendComment(title, commentId, userId,ischecked) {
     $.ajax({
         url: '/SS',
         type: 'POST',
-        data: 'title=' + title + '&commentId=' + commentId + '&userId=' + userId + '&ischecked' + ischecked,
+        data: 'title=' + title + '&commentId=' + commentId + '&userId=' + userId + '&ischecked=' + ischecked,
         success: function (data) {
+        }
+    });
+}
+
+function afterComment(parentId, articleId, userId) {
+    // var content = $('#content_'+answerId).val();
+    var content = $('#after_comment_' + parentId).val();
+    $.ajax({
+        url: '/question/after-comment',
+        type: 'POST',
+        data: 'parentId=' + parentId + '&articleId=' + articleId + '&content=' + content + '&userId=' + userId,
+        success: function (data) {
+
         }
     });
 }

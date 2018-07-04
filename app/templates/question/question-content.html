@@ -128,12 +128,12 @@
                                                     <span>{{ answer_comment.commentTime }}</span>
                                                 </div>
                                                 <div class="comment-comment" style="display: none;">
-                                                    <form action="" method="post">
+                                                    <form action="{{ url_for('question.after_comment', answer_id=answer.answerId, parent_id=answer_comment.commentId, _external=True) }}" method="post">
                                                         <div class="form-group">
-                                                            <input type="text" class="form-control" placeholder="评论...">
+                                                            <input type="text" name='after-comment' class="form-control" placeholder="评论...">
                                                         <div class="comment-comment-btn">
                                                             <button type="button" class="btn" style="background: none;" value="取消">取消</button>
-                                                            <button type="submit" class="btn form-control" value="评论">评&nbsp;&nbsp;论</button>
+                                                            <button type="submit" class="btn form-control" value="评论" onclick="">评&nbsp;&nbsp;论</button>
                                                         </div>
                                                         </div>
                                                     </form>

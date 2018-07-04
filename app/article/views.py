@@ -1,6 +1,6 @@
 from flask import render_template, request, redirect, url_for, current_app, json, jsonify
 from . import article
-from flask_login import current_user
+from flask_login import current_user, login_required
 from ..models import User, Article, ArticleTag, Tag, Draft, ArticleComment, FavoriteArticle, Follow, LikeArticle, \
     UnlikeArticle
 from datetime import datetime
@@ -42,6 +42,22 @@ def comment():
     article_comment = ArticleComment(parentId=parent_id, articleId=article_id, content=comment_content,
                                      commentTime=comment_time, userId=user_id)
     db.session.add(article_comment)
+    db.session.commit()
+    return redirect(url_for('article.content', article_id=article_id, _external=True))
+
+
+@article.route('/after-comment/<article_id>/<parent_id>', methods=['POST'])
+@login_required
+def after_comment(article_id, parent_id):
+    r"""
+    用于发表追评的路由函数
+    :return:
+    """
+    the_content = request.form.get('after-comment')
+    the_comment = ArticleComment(parentId=parent_id, articleId=article_id, content=the_content,
+                                 commentTime=datetime.now(),
+                                 userId=current_user.id)
+    db.session.add(the_comment)
     db.session.commit()
     return redirect(url_for('article.content', article_id=article_id, _external=True))
 
@@ -107,28 +123,13 @@ def unlike():
         db.session.add(unlike_article)
         db.session.commit()
     elif is_checked == 'false':
-        unlike_article = UnlikeArticle.query.filter(UnlikeArticle.articleId == article_id, UnlikeArticle.userId == user_id).first()
+        unlike_article = UnlikeArticle.query.filter(UnlikeArticle.articleId == article_id,
+                                                    UnlikeArticle.userId == user_id).first()
         db.session.delete(unlike_article)
         db.session.commit()
     info = {'info': 'Succeed'}
     return jsonify(info)
 
-
-# @article.route('/delete/<comment_id>', methods=['GET', 'POST'])
-# def delete(comment_id):
-#     r"""
-#     用于删除评论的路由函数
-#     :return:
-#     """
-#     article_comment = ArticleComment.query.filter(ArticleComment.commentId == comment_id).first()
-#     if not article_comment.parentId:
-#         child_comments = article_comment.get_child_comments()
-#         for child_comment in child_comments:
-#             db.session.delete(child_comment)
-#             db.session.commit()
-#     db.session.delete(article_comment)
-#     db.session.commit()
-#     return redirect(url_for('article.content', article_id=article_comment.articleId, _external=True))
 
 @article.route('/delete-comment', methods=['POST'])
 def delete_comment():
@@ -221,3 +222,14 @@ def focus_author():
         db.session.commit()
     data = {'info': 'Succeed'}
     return jsonify(data)
+
+
+@article.route('/draft/<draft_id>', methods=['GET', 'POST'])
+def draft(draft_id):
+    r"""
+    用户查看草稿页面
+    :return:
+    """
+    this_draft = Draft.query.filter(draft.draftId == draft_id).first()
+    tags = Tag.query.filter(Tag.parentId != None).all()
+    return render_template('article/article-publish.html', tags=tags, draft=this_draft)

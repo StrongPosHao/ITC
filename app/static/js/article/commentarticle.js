@@ -60,3 +60,27 @@ function saycomment1(commentId) {
     console.debug($('#comment_' + commentId + ' + div .' + 'write-comment'));
     $('#com_' + commentId + ' .comment-comment').css({display: 'inline'});
 }
+
+
+function afterComment(parentId, articleId, content, userId) {
+    $.ajax({
+        url: '/article/after-comment',
+        type: 'POST',
+        data: 'parentId=' + parentId + '&articleId=' + articleId + '&content=' + content + '&userId=' + userId,
+        success: function (data) {
+            window.location.reload();
+        }
+    })
+}
+
+function sendAfterComment(commentId, articleId, userId) {
+    var content = $('#after_comment_' + commentId).val();
+    $.ajax({
+        url: '/article/after-comment',
+        type: 'POST',
+        data: 'commentId=' + commentId + '&articleId=' + articleId + '&content=' + content + '&userId=' + userId,
+        success: function (res) {
+            window.location.reload();
+        },
+    });
+}
