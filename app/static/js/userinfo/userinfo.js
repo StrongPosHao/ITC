@@ -10,10 +10,11 @@ window.onload =(function() {
 function send_to_back_userName(userId) {
     var userName = $("#username").val()
     $.ajax({
-        url: '/XX',
+        url: '/user/change-name',
         type: 'POST',
         data: 'userName=' + userName + '&userId=' + userId,
         success: function (data) {
+            window.location.reload();
         }
     });
 }
@@ -21,10 +22,11 @@ function send_to_back_userName(userId) {
 function send_to_back_userIntro(userId) {
     var userIntro = $("#introduction").val();
     $.ajax({
-        url: '/XX',
+        url: '/user/change-intro',
         type: 'POST',
         data: 'userIntro=' + userIntro + '&userId=' + userId,
         success: function (data) {
+            window.location.reload();
         }
     });
 }

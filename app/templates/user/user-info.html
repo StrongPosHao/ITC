@@ -30,7 +30,7 @@
                         <div style="display: none;" id='name_div_1'>
                             <input type="text" id="username" name="username" class="form-control" placeholder="{{ user.username }}" aria-describedby="basic-addon1" minlength="4" maxlength="20">
                             <p>
-                                <button class="btn btn-primary" onclick="send_to_back_userName({{ user }})">确认</button>
+                                <button class="btn btn-primary" onclick="send_to_back_userName({{ user.id }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('name',1)">取消</button>
                             </p>
                         </div>
@@ -47,7 +47,7 @@
                         <div style="display: none;" id='intro_div_1'>
                             <input type="text" id="introduction" name="introduction" class="form-control" placeholder="{{ user.introduction }}" aria-describedby="basic-addon1" maxlength="35">
                             <p>
-                                <button class="btn btn-primary" onclick="send_to_back_userIntro({{ user }})">确认</button>
+                                <button class="btn btn-primary" onclick="send_to_back_userIntro({{ user.id }})">确认</button>
                                 <button class="btn btn-default" onclick="hideForm('intro',1)">取消</button>
                             </p>
                         </div>

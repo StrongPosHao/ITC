@@ -137,3 +137,37 @@ def drafts(user_id):
     """
     usr = User.query.filter(User.id == user_id).first()
     return render_template('user/user-draft.html', user=usr)
+
+
+@user.route('/change-name', methods=['POST'])
+def change_name():
+    r"""
+    用户修改用户名
+    :return:
+    """
+    user_id = request.form.get('userId')
+    username = request.form.get('userName')
+    usr = User.query.filter(User.id == user_id).first()
+    usr.username = username
+    db.session.add(usr)
+    db.session.commit()
+    s_info = {'info': 'Succeed'}
+    return jsonify(s_info)
+
+
+@user.route('/change-intro', methods=['POST'])
+def change_intro():
+    r"""
+    用户修改个人简介
+    :return:
+    """
+    user_id = request.form.get('userId')
+    user_intro = request.form.get('userIntro')
+    print(user_id)
+    print(user_intro)
+    usr = User.query.filter(User.id == user_id).first()
+    usr.introduction = user_intro
+    db.session.add(usr)
+    db.session.commit()
+    s_info = {'info': 'Succeed'}
+    return jsonify(s_info)
