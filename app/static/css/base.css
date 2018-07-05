@@ -1,3 +1,8 @@
 .pagination>li>a, .pagination>li>span{
     color: #e59e5d !important;
 }
+.pagination>.active>a {
+    color: white !important;
+    background-color: #e59e5d !important;
+    border-color: #e59e5d !important;
+}

@@ -141,7 +141,7 @@
                                                 <td><input type="checkbox" class="question"/></td>
                                                 <td>{{q[0].answerId}}</td>
                                                 <td>{{q[1].username}}</td>
-                                                <td>{{q[0].content}}</td>
+                                                <td>{{q[0].content | safe }}</td>
                                                 <td>{{q[0].answerTime}}</td>
                                                 <td><button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#modal_del" onclick="singledelete({{q[0].answerId}})">删除</button></td>
                                             </tr>
