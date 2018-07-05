@@ -50,7 +50,7 @@
                                     {% endif %}
                                 </div>
                                 <div class="content">
-                                    <p>{{ item.content }}</p>
+                                    <p>{{ item.content|safe }}</p>
                                 </div>
                                 <div class="content-tag">
                                     {% for tag in item.tags.all() %}

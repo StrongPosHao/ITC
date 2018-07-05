@@ -1,6 +1,6 @@
 from flask import render_template, request, current_app, redirect, url_for, jsonify
 from . import question
-from ..models import Question, User, Answer, AnswerComment, QuestionTag, FavoriteQuestion
+from ..models import Question, User, Answer, AnswerComment, QuestionTag, FavoriteQuestion, LikeAnswer, UnlikeAnswer
 from ..exts import db
 from datetime import datetime
 from flask_login import current_user
@@ -152,3 +152,33 @@ def after_comment(question_id, answer_id, parent_id):
     db.session.add(answer_comment)
     db.session.commit()
     return redirect(url_for('question.content', question_id=question_id))
+
+
+@question.route('/like-answer', methods=['POST'])
+def like_answer():
+    r"""
+    用户对回答点赞操作
+    :return:
+    """
+    user_id = request.form.get('userId')
+    answer_id = request.form.get('answerId')
+    like = LikeAnswer(userId=user_id, answerId=answer_id, time=datetime.now())
+    db.session.add(like)
+    db.session.commit()
+    info = {'info': 'Succeed'}
+    return jsonify(info)
+
+
+@question.route('/unlike-answer', methods=['POST'])
+def unlike_answer():
+    r"""
+    用户对回答点踩操作
+    :return:
+    """
+    user_id = request.form.get('userId')
+    answer_id = request.form.get('answerId')
+    unlike = UnlikeAnswer(userId=user_id, answerId=answer_id, time=datetime.now())
+    db.session.add(unlike)
+    db.session.commit()
+    info = {'info': 'Succeed'}
+    return jsonify(info)

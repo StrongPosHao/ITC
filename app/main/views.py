@@ -21,6 +21,12 @@ def index():
     return render_template('main/search.html', result=map(lambda x: x.get_item(), res))
 
 
+@main.route('/for-visitor', methods=['GET', 'POST'])
+def for_visitor():
+    questions = Question.query.all()
+    return render_template('main/search.html', result=questions)
+
+
 @main.route('/test')
 def test():
     # return render_template('tag/tag-index.html')

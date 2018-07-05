@@ -104,9 +104,9 @@ class FavoriteQuestion(db.Model):
 class User(UserMixin, db.Model):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.Unicode(20), nullable=False)
-    email = db.Column(db.Unicode(64), nullable=False)
-    phone = db.Column(db.CHAR(11), nullable=False)
+    username = db.Column(db.Unicode(20), nullable=False, unique=True)
+    email = db.Column(db.Unicode(64), nullable=False, unique=True)
+    phone = db.Column(db.CHAR(11), nullable=False, unique=True)
     password = db.Column(db.Unicode(100), nullable=False)
     # headImage = db.Column(db.Unicode(256), default='static/image/defaultImage.jpg', nullable=False)
     avatar_hash = db.Column(db.String(32))
@@ -301,6 +301,8 @@ class Answer(db.Model):
                                      cascade='all, delete-orphan')
     likeUsers = db.relationship('LikeAnswer', backref=db.backref('like_users'), lazy='dynamic',
                                 cascade='all, delete-orphan')
+    unlikeUsers = db.relationship('UnlikeAnswer', backref=db.backref('unlike_users'), lazy='dynamic',
+                                  cascade='all, delete-orphan')
 
     def get_user(self):
         return User.query.filter(User.id == self.userId).first().username
