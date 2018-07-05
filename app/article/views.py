@@ -28,6 +28,7 @@ def content(article_id):
 
 
 @article.route('/comment', methods=['POST'])
+@login_required
 def comment():
     r"""
     用于发表评论的路由函数
@@ -63,6 +64,7 @@ def after_comment(article_id, parent_id):
 
 
 @article.route('/favorite', methods=['POST'])
+@login_required
 def favorite():
     r"""
     用户收藏文章处理
@@ -86,6 +88,7 @@ def favorite():
 
 
 @article.route('/like', methods=['POST'])
+@login_required
 def like():
     r"""
     用于处理用户点赞的路由函数
@@ -109,6 +112,7 @@ def like():
 
 
 @article.route('/unlike', methods=['POST'])
+@login_required
 def unlike():
     r"""
     用于处理用户点踩的路由函数
@@ -146,6 +150,7 @@ def delete_comment():
 
 
 @article.route('/publish', methods=['GET', 'POST'])
+@login_required
 def publish():
     r"""
     文章发表页面
@@ -206,6 +211,7 @@ def list_user_article(user_id):
 
 
 @article.route('/focus-author', methods=['POST'])
+@login_required
 def focus_author():
     r"""
     关注作者处理函数
@@ -227,6 +233,7 @@ def focus_author():
 
 
 @article.route('/draft/<draft_id>', methods=['GET', 'POST'])
+@login_required
 def draft(draft_id):
     r"""
     用户查看草稿页面
