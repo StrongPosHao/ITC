@@ -51,7 +51,7 @@
         {% for favorite in favorites %}
             <div class="content-box">
                 <div class="content-title">
-                    <h4><a href="">{{ favorite.get_object().title }}</a></h4>
+                    <h4><a href="{{ url_for('question.content', question_id=favorite.get_object().questionId, _external=True) }}">{{ favorite.get_object().title }}</a></h4>
                 </div>
                 <div class="content-tag">
                     <a>标签1</a>
