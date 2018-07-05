@@ -56,9 +56,9 @@
                                         <a href="{{ url_for('article.content', article_id=article.articleId, _external=True) }}">{{ article.title }}</a>
                                     </h4>
                                 </div>
-                                <div class="content">
-                                    <p>{{ article.content }}</p>
-                                </div>
+{#                                <div class="content">#}
+{#                                    <p>{{ article.content | safe | truncate(50, True) }}</p>#}
+{#                                </div>#}
                                 {% for tag in article.tags %}
                                     <div class="content-tag">
                                         <a title="该文章的标签">{{ tag.get_object().name }}</a>

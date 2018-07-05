@@ -46,7 +46,8 @@
 
 </head>
 <body>
-{% if current_user %}
+
+{% if current_user.is_authenticated %}
     {#已登录header#}
     <div class="nav-box">
         <nav class="navbar navbar-default" role="navigation">
@@ -128,7 +129,7 @@
                     <li><a href="{{ url_for('article.list_article') }}">文章</a></li>
                     <li><a href="{{ url_for('question.list_question') }}">问答</a></li>
                     <li><a href="{{ url_for('article.publish') }}">发文章</a></li>
-                    <li><a href="{{ url_for('question.publish') }}">提问</a></li>
+                    <li><a href="{{ url_for('question.publish_question') }}">提问</a></li>
                 </ul>
                 <form class="nav navbar-form f-left-t" role="search" action="" method="post" name="searchForm">
                     <div class="form-group input-box">
@@ -150,7 +151,7 @@
 
 {% block content %}{% endblock %}
 
-{% if current_user %}
+{% if current_user.is_authenticated %}
 <div class="write-question-box" style="display:none">
     <div class="question-container">
         <div class="box-title">

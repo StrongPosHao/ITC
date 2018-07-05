@@ -3,7 +3,7 @@ from . import question
 from ..models import Question, User, Answer, AnswerComment, QuestionTag, FavoriteQuestion, LikeAnswer, UnlikeAnswer
 from ..exts import db
 from datetime import datetime
-from flask_login import current_user
+from flask_login import current_user, login_required
 import json
 
 
@@ -32,6 +32,7 @@ def content(question_id):
 
 
 @question.route('/comment_answer', methods=['POST'])
+@login_required
 def comment_answer():
     data = json.loads(request.form.get('data'))
     user_id = current_user.id
@@ -47,6 +48,7 @@ def comment_answer():
 
 
 @question.route('/delete-comment', methods=['POST'])
+@login_required
 def delete_comment():
     comment_id = request.form.get('commentId')
     print(comment_id)
@@ -97,6 +99,7 @@ def list_user_question(user_id):
 
 
 @question.route('/publish-question', methods=['POST'])
+@login_required
 def publish_question():
     r"""
     发表问题
@@ -118,6 +121,7 @@ def publish_question():
 
 
 @question.route('/favorite', methods=['POST'])
+@login_required
 def favorite_question():
     r"""
     收藏问题
@@ -141,6 +145,7 @@ def favorite_question():
 
 
 @question.route('/after-comment/<question_id>/<answer_id>/<parent_id>', methods=['POST'])
+@login_required
 def after_comment(question_id, answer_id, parent_id):
     r"""
     追评处理路由函数
@@ -155,6 +160,7 @@ def after_comment(question_id, answer_id, parent_id):
 
 
 @question.route('/like-answer', methods=['POST'])
+@login_required
 def like_answer():
     r"""
     用户对回答点赞操作
@@ -170,6 +176,7 @@ def like_answer():
 
 
 @question.route('/unlike-answer', methods=['POST'])
+@login_required
 def unlike_answer():
     r"""
     用户对回答点踩操作
