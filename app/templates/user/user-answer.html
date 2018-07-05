@@ -62,7 +62,7 @@
                     {% endfor %}
                 </div>
                 <div class="content">
-                    <p>{{ answer.content }}</p>
+                    <p>{{ answer.content | safe }}</p>
                 </div>
                 <dl class="article-info">
                     <dd class="writer">

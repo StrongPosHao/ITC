@@ -86,6 +86,9 @@ class FavoriteArticle(db.Model):
     userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
+    def get_object(self):
+        return Article.query.filter(Article.articleId == self.articleId).first()
+
 
 class FavoriteQuestion(db.Model):
     __tablename__ = 'FavoriteQuestion'
@@ -93,6 +96,9 @@ class FavoriteQuestion(db.Model):
                            nullable=False)
     userId = db.Column(db.BigInteger, db.ForeignKey('User.id', ondelete='CASCADE'), primary_key=True, nullable=False)
     time = db.Column(db.DateTime, default=datetime.now(), nullable=False)
+
+    def get_object(self):
+        return Question.query.filter(Question.questionId == self.questionId).first()
 
 
 class User(UserMixin, db.Model):
@@ -291,7 +297,7 @@ class Answer(db.Model):
     questionId = db.Column(db.BigInteger, db.ForeignKey('Question.questionId', ondelete='CASCADE'), nullable=False)
     content = db.Column(db.Text, nullable=False)
     answerTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
-    answerComments = db.relationship('AnswerComment', backref=db.backref('answerComments'), lazy='dynamic',
+    answerComments = db.relationship('AnswerComment', backref=db.backref('comments'), lazy='dynamic',
                                      cascade='all, delete-orphan')
     likeUsers = db.relationship('LikeAnswer', backref=db.backref('like_users'), lazy='dynamic',
                                 cascade='all, delete-orphan')

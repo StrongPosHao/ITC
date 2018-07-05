@@ -72,7 +72,7 @@ def favorites(user_id):
     questions = current_user.favoriteQuestions.order_by(FavoriteQuestion.time.desc()).all()
     articles = current_user.favoriteArticles.order_by(FavoriteArticle.time.desc()).all()
     favorites_list = questions + articles
-    favorites_list = sorted(favorites_list, key=lambda x: x.time)
+    favorites_list = sorted(favorites_list, key=lambda x: x.time, reverse=True)
     usr = User.query.filter(User.id == user_id).first()
     return render_template('user/user-collection.html', favorites=favorites_list, user=usr)
 
