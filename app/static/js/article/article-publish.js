@@ -4,3 +4,8 @@ window.onload =(function() {
     $("#nav_2,#nav_3,#nav_1,#nav_5,#nav_6").removeClass("active");
 
 });
+
+
+function succeed() {
+    toastr.success('保存成功');
+}

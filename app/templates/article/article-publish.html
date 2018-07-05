@@ -1,9 +1,20 @@
 {% extends "base.html" %}
 {% block title %}发表文章-ITC技术社区{% endblock %}
 {% block head %}
-    <link rel="stylesheet" href="../../static/css/navbar.css" type="text/css">
-    <link rel="stylesheet" href="../../static/css/publish.css" type="text/css">
-    <script src="../../static/js/article/article-publish.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/navbar.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/publish.css') }}" type="text/css">
+    <script src="{{ url_for('static', filename='js/article/article-publish.js') }}"></script>
+    {% if draft %}
+        <script>
+            $(function () {
+                $("#article-title").val('{{ draft.title }}')
+            });
+            $(function () {
+                $("#container").val('{{ draft.content|safe }}')
+            });
+
+        </script>
+    {% endif %}
 {% endblock %}
 {% block content %}
 <div style="margin-top: 7.5em">
@@ -13,7 +24,7 @@
                 <div class="form-box">
                     <form class="" action="" method="post">
                         <div class="title-box">
-                            <input type="text" class="form-control" name="title" placeholder="请输入文章标题">
+                            <input id="article-title" type="text" class="form-control" name="title" placeholder="请输入文章标题">
                         </div>
                         <div class="article-box">
                              <!--加载编辑器的容器-->
@@ -30,7 +41,7 @@
                             </div>
                             <div class="choose-btn-box">
                                 <button type="submit" name='publish' class="btn submit" value="发表">发表</button>
-                                <button type="submit" name='save' class="btn draft" value="草稿">存为草稿</button>
+                                <button type="submit" name='save' class="btn draft" value="草稿" onclick="succeed()")>存为草稿</button>
                                 <button class="btn return" value="返回">返回</button>
                             </div>
                         </div>

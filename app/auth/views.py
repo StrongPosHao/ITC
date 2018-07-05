@@ -43,6 +43,8 @@ def login():
             session['username'] = username
             # session.permanent = True
             login_user(user, remember=True)
+            if user.permission == '1':
+                return redirect(url_for('admin.index'))
             return redirect(request.args.get('next') or url_for('main.index'))
         else:
             flash('用户名或密码错误，请检查您的输入后重试')

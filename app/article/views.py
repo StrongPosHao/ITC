@@ -172,7 +172,9 @@ def publish():
             draft = Draft(userId=user_id, title=title, content=article_content, saveTime=public_time)
             db.session.add(draft)
             db.session.commit()
-            return '草稿保存成功'
+            the_draft = Draft.query.filter(Draft.userId == user_id, Draft.title == title).first()
+            info = {'info:': 'Succeed'}
+            return redirect(url_for('article.draft', draft_id=the_draft.draftId, _external=True))
 
 
 @article.route('/list')
@@ -230,6 +232,6 @@ def draft(draft_id):
     用户查看草稿页面
     :return:
     """
-    this_draft = Draft.query.filter(draft.draftId == draft_id).first()
+    this_draft = Draft.query.filter(Draft.draftId == draft_id).first()
     tags = Tag.query.filter(Tag.parentId != None).all()
     return render_template('article/article-publish.html', tags=tags, draft=this_draft)

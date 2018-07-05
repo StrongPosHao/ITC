@@ -382,7 +382,7 @@ class Draft(db.Model):
     saveTime = db.Column(db.DateTime, default=datetime.now(), nullable=False)
 
     def get_user(self):
-        return User.query.filter(User.id == self.userId).first().name
+        return User.query.filter(User.id == self.userId).first().username
 
 
 class Tag(db.Model):

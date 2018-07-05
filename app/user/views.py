@@ -130,9 +130,10 @@ def add_tag():
 
 
 @user.route('/draft/<user_id>')
-def drafts():
+def drafts(user_id):
     r"""
     用户查看草稿页面
     :return:
     """
-    return render_template('user/user-draft.html')
+    usr = User.query.filter(User.id == user_id).first()
+    return render_template('user/user-draft.html', user=usr)
