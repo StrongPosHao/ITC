@@ -46,21 +46,21 @@
         </div>
 
 
-        {% for notifaction in notifactions %}
+        {% for notification in user.notifications.all() %}
             <!-- 通知 -->
             <div class="notification-box">
                 <div class="notification-title">
 
                     <button type="button" data-toggle="modal" data-target="#notify">
-                        <h4 class="red-point">{{ notifaction.title }}</h4>
+                        <h4 class="red-point">{{ notification.title }}</h4>
                     </button>
                 </div>
                 <div class="notification-content">
-                    <p>{{ notifaction.content }}</p>
+                    <p>{{ notification.content }}</p>
                 </div>
                 <dl>
                     <dd class="notification-time">
-                        <span>{{ notifaction.notifyTime }}</span>
+                        <span>{{ notification.notifyTime }}</span>
                         <button class="delete-btn btn " type="button" data-toggle="modal" data-target="#confirm_delete">删除
                         </button>
                     </dd>
@@ -76,10 +76,10 @@
                                         onclick="checknotice(1,1)">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
-                                <h4 class="modal-title">通知标题</h4>
+                                <h4 class="modal-title">{{ notification.title }}</h4>
                             </div>
                             <div class="modal-body">
-                                通知内容
+                                {{ notification.content }}
                             </div>
                         </div>
                     </div>

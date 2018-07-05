@@ -80,6 +80,9 @@ def confirm(token):
     if current_user.confirmed:
         return redirect(url_for('main.index'))
     if current_user.confirm(token):
+        notification = Notification(userId=current_user.id, title='欢迎加入ITC', content='您已注册成功，赶快开始和小伙伴们进行交流吧~', isRead=0,
+                                    notifyTime=datetime.now())
+        db.session.add(notification)
         db.session.commit()
     else:
         flash('确认链接无效或已过期！')
@@ -130,7 +133,8 @@ def forget_password():
         if email != user.email or phone != user.phone:
             return '用户邮箱或手机号输入有误'
         token = user.generate_reset_token()
-        send_mail(user.email, 'Reset Your Password', 'auth/email/reset_password', user=user, token=token, next=request.args.get('next'))
+        send_mail(user.email, 'Reset Your Password', 'auth/email/reset_password', user=user, token=token,
+                  next=request.args.get('next'))
         return '一封确认和指导您重置密码的邮件已发往您的邮箱中!'
 
 
