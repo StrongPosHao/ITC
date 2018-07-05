@@ -8,7 +8,7 @@ function checkChange(input){
 //此页面用于删除与批量删除
 function singledelete(answerId){
     aid = answerId
-    var info = "确定要删除选中的文章吗?"
+    var info = "确定要删除选中的回答吗?"
     $('.modal.fade .modal-body').text(info)
 }
 //批量删除
@@ -16,7 +16,7 @@ function batchdelete(){
     $(".table.table-hover.table-striped tbody td input:checked").each(function(index,ele){
         aids.push($(ele).parent().next().text())
     });
-    var info = "确定要删除选中的文章吗?"
+    var info = "确定要删除选中的回答吗?"
     $('.modal.fade .modal-body').text(info)
 }
 
